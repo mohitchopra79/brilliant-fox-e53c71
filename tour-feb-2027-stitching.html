@@ -1,0 +1,774 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Stitching Tracks · Textiles &amp; Railways of India · Feb 2027 — Travel Pals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=3">
+<style>
+  /* Page-local: host bio + textile gallery */
+  .stitching-hero { background-position: center 30% !important; }
+  .stitching-hero::after {
+    background: linear-gradient(180deg, rgba(26,31,58,0.45) 0%, rgba(26,31,58,0.55) 50%, rgba(26,31,58,0.92) 100%) !important;
+  }
+  .host-card {
+    display:grid;
+    grid-template-columns: 320px 1fr;
+    gap: 56px;
+    align-items:start;
+    background: var(--ivory);
+    padding: 56px;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  .host-card .portrait {
+    width:100%;
+    aspect-ratio: 4/5;
+    background-size:cover;
+    background-position: center top;
+    background-color: var(--sandstone);
+  }
+  .host-card .signature {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--sandstone);
+    font-size: 22px;
+    margin-top: 12px;
+  }
+  .host-card p + p { margin-top: 18px; }
+  .host-card .lede + p { margin-top: 20px; }
+  @media (max-width: 760px) {
+    .host-card { grid-template-columns: 1fr; padding: 28px; gap: 28px; }
+  }
+
+  .textile-gallery {
+    display:grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    grid-template-rows: 220px 220px;
+    gap: 14px;
+    margin-top: 40px;
+  }
+  .textile-gallery .tile {
+    background-size: cover;
+    background-position: center;
+    position:relative;
+  }
+  .textile-gallery .tile.tall { grid-row: span 2; }
+  .textile-gallery .tile .cap {
+    position:absolute; left:14px; bottom:14px;
+    background: rgba(20,17,14,0.72);
+    color: var(--cream);
+    font-family: var(--mono, 'Inter', sans-serif);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 10px;
+  }
+  @media (max-width: 760px) {
+    .textile-gallery {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 180px 180px 180px;
+    }
+    .textile-gallery .tile.tall { grid-row: span 1; grid-column: span 2; }
+  }
+
+  .craft-list {
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    margin-top: 36px;
+  }
+  .craft-list > div {
+    padding: 28px 24px;
+    border-right: 1px solid rgba(0,0,0,0.08);
+  }
+  .craft-list > div:last-child { border-right: none; }
+  .craft-list .name {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--charcoal, #14110E);
+    margin-bottom: 6px;
+  }
+  .craft-list .place {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sandstone);
+    margin-bottom: 10px;
+  }
+  .craft-list .blurb {
+    font-size: 14px;
+    line-height: 1.55;
+    color: rgba(20,17,14,0.78);
+  }
+  @media (max-width: 760px) {
+    .craft-list { grid-template-columns: 1fr 1fr; }
+    .craft-list > div:nth-child(2) { border-right: none; }
+    .craft-list > div:nth-child(1), .craft-list > div:nth-child(2) { border-bottom: 1px solid rgba(0,0,0,0.08); }
+  }
+
+  /* ============================================================
+     MOMENTS SHOWCASE — magazine-style triptych
+     ============================================================ */
+  .moments {
+    background: #14110E;
+    color: var(--cream);
+    padding: 120px 0 140px;
+    position: relative;
+    overflow: hidden;
+  }
+  .moments::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(207,160,84,0.5), transparent);
+  }
+  .moments .container { position: relative; z-index: 2; }
+  .moments-head {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 48px;
+    align-items: end;
+    margin-bottom: 72px;
+  }
+  .moments-head .eyebrow {
+    color: var(--sandstone);
+    letter-spacing: 0.22em;
+  }
+  .moments-head h2 {
+    font-family: var(--serif);
+    font-size: clamp(38px, 5vw, 68px);
+    line-height: 1.02;
+    color: var(--cream);
+    margin: 0;
+    max-width: 18ch;
+  }
+  .moments-head h2 em {
+    font-style: italic;
+    color: var(--sandstone);
+    font-weight: 400;
+  }
+  .moments-head .ledger {
+    text-align: right;
+    font-family: var(--mono, 'Inter');
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(251,247,238,0.5);
+    line-height: 1.8;
+  }
+  .moments-head .ledger span { color: var(--sandstone); }
+
+  .triptych {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr 1fr;
+    grid-template-rows: 60px auto 60px;
+    gap: 24px;
+    align-items: stretch;
+  }
+  .triptych .panel {
+    position: relative;
+    overflow: hidden;
+    background: #2a241e;
+    transition: transform 700ms cubic-bezier(0.2,0.8,0.2,1);
+  }
+  .triptych .panel .img {
+    position: absolute; inset: -8% -8%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 6000ms cubic-bezier(0.4,0.0,0.2,1), filter 700ms ease;
+    filter: saturate(0.95) contrast(1.02);
+    will-change: transform;
+  }
+  .triptych .panel:hover .img {
+    transform: scale(1.08);
+    filter: saturate(1.1) contrast(1.05);
+  }
+  .triptych .panel::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(20,17,14,0) 25%, rgba(20,17,14,0.55) 55%, rgba(20,17,14,0.92) 100%);
+    pointer-events: none;
+  }
+  .triptych .panel .meta {
+    position: absolute;
+    left: 28px; right: 28px; bottom: 28px;
+    z-index: 2;
+  }
+  .triptych .panel .marker {
+    font-family: var(--mono, 'Inter');
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sandstone);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .triptych .panel .marker::before {
+    content: "";
+    width: 24px; height: 1px;
+    background: var(--sandstone);
+  }
+  .triptych .panel .title {
+    font-family: var(--serif);
+    font-size: 26px;
+    line-height: 1.15;
+    color: var(--cream);
+    margin: 0;
+  }
+  .triptych .panel .title em {
+    font-style: italic;
+    color: var(--sandstone);
+  }
+  .triptych .panel .frame-desc {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.45;
+    color: rgba(251,247,238,0.86);
+    margin-top: 12px;
+    max-width: 32ch;
+  }
+
+  /* Layout: tall left, big center, stacked right */
+  .triptych .p-left  { grid-column: 1; grid-row: 1 / 4; min-height: 620px; }
+  .triptych .p-main  { grid-column: 2; grid-row: 1 / 4; min-height: 620px; }
+  .triptych .p-right-top { grid-column: 3; grid-row: 1 / 3; }
+  .triptych .p-right-bot { grid-column: 3; grid-row: 3 / 4; min-height: 240px; padding: 32px; background: var(--ivory); color: var(--charcoal,#14110E); display:flex; flex-direction:column; justify-content:space-between; }
+  .triptych .p-right-bot::after { display:none; }
+  .triptych .p-right-bot .quote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.3;
+    color: var(--charcoal,#14110E);
+  }
+  .triptych .p-right-bot .quote::before {
+    content: "“";
+    font-family: var(--serif);
+    font-size: 56px;
+    color: var(--sandstone);
+    line-height: 0.4;
+    display: block;
+    margin-bottom: 16px;
+  }
+  .triptych .p-right-bot .attrib {
+    font-family: var(--mono, 'Inter');
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sandstone);
+    margin-top: 16px;
+  }
+  .triptych .p-right-top { min-height: 360px; }
+
+  /* Side panels: smaller, denser captions */
+  .triptych .p-left .title,
+  .triptych .p-right-top .title { font-size: 22px; line-height: 1.18; }
+  .triptych .p-left .frame-desc { font-size: 15px; line-height: 1.5; max-width: 24ch; margin-top: 10px; }
+  .triptych .p-right-top .frame-desc { display: none; }
+  .triptych .p-left .meta,
+  .triptych .p-right-top .meta { left: 22px; right: 22px; bottom: 24px; }
+
+  /* Slow ken-burns drift on the main panel */
+  @keyframes drift {
+    0%   { transform: scale(1.0) translate(0, 0); }
+    50%  { transform: scale(1.06) translate(-1.5%, -1%); }
+    100% { transform: scale(1.0) translate(0, 0); }
+  }
+  .triptych .p-main .img { animation: drift 22s ease-in-out infinite; }
+  .triptych .p-left .img { animation: drift 28s ease-in-out infinite reverse; }
+
+  @media (max-width: 900px) {
+    .moments-head { grid-template-columns: 1fr; gap: 18px; }
+    .moments-head .ledger { text-align: left; }
+    .triptych {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      gap: 14px;
+    }
+    .triptych .p-left, .triptych .p-main, .triptych .p-right-top, .triptych .p-right-bot {
+      grid-column: 1; grid-row: auto; min-height: 360px;
+    }
+  }
+
+  /* ============================================================
+     INCLUSIONS — categorized, editorial
+     ============================================================ */
+  .incl-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid rgba(20,17,14,0.12);
+  }
+  .incl-col {
+    padding: 40px 32px 36px 0;
+    border-right: 1px solid rgba(20,17,14,0.10);
+    position: relative;
+  }
+  .incl-col:not(:first-child) { padding-left: 32px; }
+  .incl-col:last-child { border-right: none; padding-right: 0; }
+
+  .incl-num {
+    font-family: var(--mono, 'Inter');
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: var(--sandstone);
+    margin-bottom: 18px;
+  }
+  .incl-title {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.15;
+    color: var(--charcoal, #14110E);
+    margin: 0 0 22px;
+    padding-bottom: 18px;
+    border-bottom: 1px dashed rgba(207,160,84,0.5);
+    letter-spacing: -0.01em;
+  }
+  .incl-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .incl-list li {
+    position: relative;
+    padding: 10px 0 10px 22px;
+    font-size: 14px;
+    line-height: 1.55;
+    color: rgba(20,17,14,0.82);
+    border-bottom: 1px solid rgba(20,17,14,0.05);
+  }
+  .incl-list li:last-child { border-bottom: none; }
+  .incl-list li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 18px;
+    width: 12px; height: 1px;
+    background: var(--sandstone);
+  }
+
+  .incl-not {
+    margin-top: 28px;
+    padding: 18px 0 0;
+    border-top: 1px solid rgba(20,17,14,0.10);
+  }
+  .incl-not-label {
+    display: block;
+    font-family: var(--mono, 'Inter');
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(20,17,14,0.5);
+    margin-bottom: 8px;
+  }
+  .incl-not p {
+    font-size: 13px;
+    line-height: 1.55;
+    color: rgba(20,17,14,0.65);
+    margin: 0;
+    font-style: italic;
+  }
+
+  @media (max-width: 1000px) {
+    .incl-grid { grid-template-columns: repeat(2, 1fr); }
+    .incl-col { padding: 36px 28px 32px; border-bottom: 1px solid rgba(20,17,14,0.10); }
+    .incl-col:nth-child(2) { border-right: none; }
+    .incl-col:nth-child(3), .incl-col:nth-child(4) { border-bottom: none; }
+    .incl-col:not(:first-child) { padding-left: 28px; }
+    .incl-col:nth-child(odd) { padding-left: 0; }
+    .incl-col:nth-child(even) { padding-right: 0; }
+  }
+  @media (max-width: 600px) {
+    .incl-grid { grid-template-columns: 1fr; }
+    .incl-col { border-right: none !important; padding: 28px 0 !important; }
+    .incl-col:not(:last-child) { border-bottom: 1px solid rgba(20,17,14,0.10); }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <div class="brand-mark">T</div>
+      <div><div class="brand-name">Travel Pals</div><span class="brand-tag">Curated Journeys</span></div>
+    </a>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('nav-links').classList.toggle('open')">☰</button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="tours.html" class="active">Group Tours</a></li>
+      <li><a href="private.html">Private Journeys</a></li>
+      <li><a href="india.html">About India</a></li>
+      <li><a href="about.html">Our Story</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="booking.html" class="nav-cta">Book Now</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="tour-hero stitching-hero" style="background-image:url('images/stitching-kantha-circle.jpg');">
+  <div class="container">
+    <div class="crumb">Group Tour · February 2027 · Hosted by Pat Archibald</div>
+    <h1 style="max-width:16ch;">Stitching Tracks. <em style="font-family:var(--serif); font-style:italic; color:var(--sandstone); font-weight:400;">A textile journey across India.</em></h1>
+    <p class="lede" style="color:rgba(251,247,238,0.9); margin-top:20px; max-width:62ch;">Seventeen nights tracing kantha, brocade, chikankari, Himachali knit and phulkari — woven together with vintage railway, cycle rickshaw, river boat and the slow narrow-gauge climb to Shimla.</p>
+  </div>
+</section>
+
+<div class="container">
+  <div class="tour-summary">
+    <div class="item"><div class="k">Dates</div><div class="v">10 – 27 Feb 2027</div></div>
+    <div class="item"><div class="k">Duration</div><div class="v">17 Nights / 18 Days</div></div>
+    <div class="item"><div class="k">Group Size</div><div class="v">10 – 15 Travellers</div></div>
+    <div class="item"><div class="k">Hosted By</div><div class="v">Pat Archibald</div></div>
+  </div>
+</div>
+
+<!-- INTRO -->
+<section class="tight">
+  <div class="container-narrow" style="text-align:center;">
+    <span class="eyebrow">A Stitched-and-Steamed India</span>
+    <h2 style="margin-top:16px;">Five embroideries. Five railways. One unforgettable seam.</h2>
+    <div style="display:flex;justify-content:center;"><div class="hr-gold"></div></div>
+    <p class="lede">From the Crafts Council of West Bengal to the SEWA chikankari ateliers of Lucknow, from the Vande Bharat Express to the UNESCO narrow-gauge climb to Shimla — a journey designed for travellers who love the feel of cloth between their fingers and the rhythm of trains beneath their feet.</p>
+  </div>
+</section>
+
+<!-- HOST -->
+<section style="background:var(--ivory);">
+  <div class="container">
+    <div class="sec-head left" style="margin-bottom:32px;">
+      <span class="eyebrow">Your Host</span>
+      <h2 style="margin-top:16px;">Pat Archibald.</h2>
+    </div>
+    <div class="host-card">
+      <div class="portrait" style="background-image:url('images/pat-archibald.png');"></div>
+      <div>
+        <p class="lede" style="margin-top:0;">A celebrated textile expert renowned for guiding travellers on worldwide textile journeys, Pat brings a decade of rich experience exploring India's regional textiles, weaving, and stitched crafts. Her passion for India's diverse traditions has not only deepened her expertise — it has inspired her own art quilts, turning age-old techniques into vibrant expressions of creativity.</p>
+        <p>Joining one of Pat's tours means diving into an immersive tapestry of knowledge and hands-on experiences. She delights in sharing stories, explaining intricate techniques, and even designing bespoke stitching projects for travellers — so every participant carries home not just memories, but their own stitched masterpiece of this extraordinary journey.</p>
+        <div class="signature">— with Pat, all the way from Kolkata to Amritsar</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MOMENTS SHOWCASE -->
+<section class="moments">
+  <div class="container">
+    <div class="moments-head">
+      <span class="eyebrow">Frames from the Journey</span>
+      <h2>The cloth tells one story. <em>The track tells another.</em></h2>
+      <div class="ledger">
+        17 nights · 7 cities<br/>
+        <span>5 textiles · 4 trains</span>
+      </div>
+    </div>
+
+    <div class="triptych">
+
+      <!-- Tall left: brocade reveal on the table -->
+      <article class="panel p-left">
+        <div class="img" style="background-image:url('images/stitching-brocade-table.jpg');"></div>
+        <div class="meta">
+          <div class="marker">Day 07 · Varanasi</div>
+          <h3 class="title">A bolt of <em>Banarasi</em> unrolls.</h3>
+          <p class="frame-desc">The Weavers' Hub pulls a 200-year archive from the back wall, one folded length at a time.</p>
+        </div>
+      </article>
+
+      <!-- Big center: block printing close-up -->
+      <article class="panel p-main">
+        <div class="img" style="background-image:url('images/stitching-block-print.jpg');"></div>
+        <div class="meta">
+          <div class="marker">Day 11 · Lucknow Workshop</div>
+          <h3 class="title">Wood, dye, cloth — <em>repeat.</em></h3>
+          <p class="frame-desc">Hands-on at the bench. The rhythm settles in by the third stamp.</p>
+        </div>
+      </article>
+
+      <!-- Right top: narrow-gauge train -->
+      <article class="panel p-right-top">
+        <div class="img" style="background-image:url('images/stitching-narrow-gauge.jpg');"></div>
+        <div class="meta">
+          <div class="marker">Day 14 · Kalka–Shimla</div>
+          <h3 class="title">UNESCO narrow-gauge.</h3>
+        </div>
+      </article>
+
+      <!-- Right bottom: pull quote on cream -->
+      <aside class="panel p-right-bot">
+        <div class="quote">A textile journey designed by someone who has actually held the cloth, met the weavers, and ridden every line.</div>
+        <div class="attrib">— Hosted by Pat Archibald</div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<!-- CRAFTS GRID -->
+<section class="tight">
+  <div class="container">
+    <div class="sec-head left">
+      <span class="eyebrow">The Crafts</span>
+      <h2 style="margin-top:16px;">Five regional embroideries, one journey.</h2>
+    </div>
+    <div class="craft-list">
+      <div>
+        <div class="place">Kolkata · West Bengal</div>
+        <div class="name">Kantha</div>
+        <div class="blurb">Running-stitch quilting from old saris — a women's tradition lifted from village heirloom into haute couture by the Crafts Council of West Bengal.</div>
+      </div>
+      <div>
+        <div class="place">Varanasi · Uttar Pradesh</div>
+        <div class="name">Silk Brocade</div>
+        <div class="blurb">Banarasi silk woven on pit looms with gold and silver zari — the Weavers' Hub demonstration takes us inside a 200-year-old family workshop.</div>
+      </div>
+      <div>
+        <div class="place">Lucknow · Uttar Pradesh</div>
+        <div class="name">Chikankari</div>
+        <div class="blurb">Persian-inflected white-on-white shadow work introduced to Mughal India by Empress Noor Jahan. Hands-on with the SEWA artisans.</div>
+      </div>
+      <div>
+        <div class="place">Shimla &amp; Amritsar</div>
+        <div class="name">Knit &amp; Phulkari</div>
+        <div class="blurb">Himachali wool knitting with Rotary Club ladies, then darn-stitch flowering across coarse khaddar in the Phulkari studios of Punjab.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROUTE BLEED -->
+<section class="bleed" style="background-image:url('images/stitching-narrow-gauge.jpg'); padding:0;">
+  <div class="container">
+    <span class="eyebrow">The Route</span>
+    <h2 style="margin-top:16px; max-width:20ch;">Kolkata · Varanasi · Lucknow · Chandigarh · Shimla · Amritsar</h2>
+    <p class="lede" style="margin-top:20px; max-width:62ch;">A diagonal stitch across northern India — by air for the long jumps, by Vande Bharat for the Gangetic plain, and by chartered vintage rail-bus on the UNESCO Kalka–Shimla line.</p>
+  </div>
+</section>
+
+<!-- ITINERARY -->
+<section>
+  <div class="container">
+    <div class="sec-head left" style="margin-bottom:32px;">
+      <span class="eyebrow">Day by Day</span>
+      <h2 style="margin-top:16px;">The Itinerary</h2>
+    </div>
+
+    <div class="day"><div class="num"><strong>01</strong>Wed · 10 Feb</div><div>
+      <div class="place">Depart for India</div>
+      <h3>Overnight flight to Kolkata.</h3>
+      <p>Check in for your overnight flight east. Pat and the team meet the group on arrival.</p>
+    </div></div>
+
+    <div class="day"><div class="num"><strong>02</strong>Thu · 11 Feb</div><div>
+      <div class="place">Arrive Kolkata</div>
+      <h3>City of Joy — and a sunset on the Hooghly.</h3>
+      <p>Marigold welcome at the airport. A relaxed heritage walking tour with chai and a butter bun at a local eatery. We close the day on a boat across the Hooghly, the floodlit Howrah Bridge silhouetted against the dusk.</p>
+    </div></div>
+
+    <div class="day"><div class="num"><strong>03</strong>Fri · 12 Feb</div><div>
+      <div class="place">Kolkata · Trams &amp; Kantha</div>
+      <h3>The 1902 tram, then a stitch by the Crafts Council.</h3>
+      <p>A morning ride on the city's century-old tram network — still drawing 550-volt DC from the catenary. Afternoon at the Crafts Council of West Bengal: Kantha demonstration with the artisans, with time to browse and shop the studio.</p>
+    </div></div>
+
+    <div class="day"><div class="num"><strong>04</strong>Sat · 13 Feb</div><div>
+      <div class="place">Kolkata · Markets &amp; Memorials</div>
+      <h3>Flower market, Kumartuli, Mother Teresa, Victoria.</h3>
+      <p>Asia's largest flower market under Howrah Bridge at dawn. Kumartuli, the potters' colony where Durga's clay-and-straw idols are born. Mother Teresa's House. Victoria Memorial in white marble. Afternoon at a second Kantha centre lifting the stitch into haute couture.</p>
+    </div></div>
+
+    <div class="day"><div class="num"><strong>05</strong>Sun · 14 Feb</div><div>
+      <div class="place">Kolkata → Varanasi · by air</div>
+      <h3>Into Kashi by evening light.</h3>
+      <p>Leisurely morning, then a midday flight to Varanasi — one of the world's oldest continuously inhabited cities. Transfer to our city hotel for three nights.</p>
+    </div></div>
+
+    <div class="day"><div class="num"><strong>06</strong>Mon · 15 Feb</div><div>
+      <div class="place">Varanasi · Sunrise &amp; Aarti</div>
+      <h3>Sunrise on the Ganga, lamps at dusk.</h3>
+      <p>Hand-rowed boat at sunrise from Manikarnika Ghat. A drive past Banaras Hindu University — Asia's largest residential campus. At leisure for spa and pool, or join Pat's textile workshop. Cycle-rickshaw down to the river at dusk for the Ganga Aarti — priests, lamps, and the chants of the river goddess.</p>
+    </div></div>
+
+    <div class="day"><div class="num"><strong>07</strong>Tue · 16 Feb</div><div>
+      <div class="place">Varanasi · Silk Brocade</div>
+      <h3>Pit looms &amp; Banarasi gold.</h3>
+      <p>An optional 45-minute morning yoga session. Then to the Varanasi Weavers &amp; Artisans Society — the Weavers' Hub — for a Banarasi silk-brocade demonstration and workshop. Afternoon with one of the city's oldest weaving families, looms clattering on the upper floors of their home.</p>
+    </div></div>
+
+    <div class="day"><div class="num"><strong>08</strong>Wed · 17 Feb</div><div>
+      <div class="place">Varanasi → Lucknow · Vande Bharat</div>
+      <h3>Modern India at 160 km/h.</h3>
+      <p>Short transfer to Varanasi Junction for the 0932 Vande Bharat Express — India's flagship semi-high-speed service, built in Chennai. Arrive Lucknow 1432 with proper meal service on board. Transfer to our iconic hotel for three nights.</p>
+    </div></div>
+
+    <div class="day"><div class="num"><strong>09</strong>Thu · 18 Feb</div><div>
+      <div class="place">Lucknow · The Royal City</div>
+      <h3>Bara Imambara &amp; the maze.</h3>
+      <p>The Bara Imambara — the world's largest unsupported vaulted hall — and its labyrinthine Bhul Bhulaiya. The graceful Chota Imambara. La Martinière College, the only school in the world to hold royal battle honours.</p>
+    </div></div>
+
+    <div class="day"><div class="num"><strong>10</strong>Fri · 19 Feb</div><div>
+      <div class="place">Lucknow · Chikankari</div>
+      <h3>Hands-on with SEWA.</h3>
+      <p>A morning at the Self Employed Women's Association — demonstration, hands-on chikankari workshop, and time with the artisans through their daily routine (a head scarf for the prayer interlude). Afternoon stroll through the Hazratganj market for kebabs and shopping.</p>
+    </div></div>
+
+    <div class="day"><div class="num"><strong>11</strong>Sat · 20 Feb</div><div>
+      <div class="place">Lucknow → Chandigarh · by air</div>
+      <h3>A poolside workshop, then west.</h3>
+      <p>Morning at leisure with Pat's poolside textile workshop. Afternoon flight (just over an hour) to Chandigarh — Le Corbusier's grid city — for an early check-in and dinner.</p>
+    </div></div>
+
+    <div class="day"><div class="num"><strong>12</strong>Sun · 21 Feb</div><div>
+      <div class="place">Chandigarh → Shimla · Vintage Rail-Bus</div>
+      <h3>The narrow-gauge climb to the hills.</h3>
+      <p>Morning at Nek Chand's Rock Garden — three decades of one man's secret recycled-ceramic dreamworld. Then to Kalka station to board our exclusively chartered vintage rail-bus on the UNESCO Kalka–Shimla line — a 1903 two-foot gauge, 102 tunnels, 800-plus bridges, picnic lunch on board. Arrive Shimla by early evening for our colonial hotel on The Mall — home for three nights.</p>
+    </div></div>
+
+    <div class="day"><div class="num"><strong>13</strong>Mon · 22 Feb</div><div>
+      <div class="place">Shimla · Mall Road &amp; Viceregal Lodge</div>
+      <h3>Gothic Victorian above the Himalayan foothills.</h3>
+      <p>The Indian Institute of Advanced Studies — the former Vice Regal Lodge in full Gothic-Victorian theatre. A leisurely walk down The Mall through The Ridge, Scandal Point, the Gaiety Theatre (private tour) and Christ Church. Atrium-bar drinks before a dressed-for-dinner evening.</p>
+    </div></div>
+
+    <div class="day"><div class="num"><strong>14</strong>Tue · 23 Feb</div><div>
+      <div class="place">Shimla · Himachali Knit</div>
+      <h3>Mountain wool with the Rotary ladies.</h3>
+      <p>Morning at leisure — heated indoor pool, spa. Afternoon Himachali knitting workshop with the local ladies supported by the Rotary Club of Shimla — vibrant patterns, woollens, and the warmth of the hills.</p>
+    </div></div>
+
+    <div class="day"><div class="num"><strong>15</strong>Wed · 24 Feb</div><div>
+      <div class="place">Shimla → Chandigarh → Amritsar · by rail</div>
+      <h3>Down the mountain, across the plain.</h3>
+      <p>A late breakfast, then three hours by armchair coach down the Shimla–Chandigarh highway with a relaxed valley-resort lunch. Onward by train from Chandigarh to Amritsar by late evening — luggage forwarded by road.</p>
+    </div></div>
+
+    <div class="day"><div class="num"><strong>16</strong>Thu · 25 Feb</div><div>
+      <div class="place">Amritsar · The Golden Temple</div>
+      <h3>Harmandir Sahib &amp; the Wagah ceremony.</h3>
+      <p>Morning at the Harmandir Sahib — the holiest shrine of the Sikh faith, founded 1574 — with the Akal Takht and the tower of Baba Atal. A walk through Jallianwala Bagh in remembrance. Bazaar shopping for embroidered juttis and pathani suits. Late afternoon to Wagah, the India–Pakistan border, for the flag-lowering retreat — an extraordinary piece of theatre.</p>
+    </div></div>
+
+    <div class="day"><div class="num"><strong>17</strong>Fri · 26 Feb</div><div>
+      <div class="place">Amritsar · Phulkari</div>
+      <h3>Floral darning across coarse khaddar.</h3>
+      <p>Our final workshop — Phulkari embroidery in a recreated Punjabi village setting, with demonstration and hands-on stitching. Afternoon at the century-old Khalsa College and the Partition Museum, the world's first museum of Partition memory.</p>
+    </div></div>
+
+    <div class="day"><div class="num"><strong>18</strong>Sat · 27 Feb</div><div>
+      <div class="place">Amritsar · Departure</div>
+      <h3>Home with a stitched masterpiece.</h3>
+      <p>Breakfast and transfer to Amritsar airport for flights home — with a finished panel, a sketchbook of techniques, and a small library of bought cloth in the suitcase.</p>
+    </div></div>
+  </div>
+</section>
+
+<!-- INCLUSIONS -->
+<section style="background:var(--ivory); padding:120px 0;">
+  <div class="container">
+    <div class="sec-head left" style="margin-bottom:56px; max-width:780px;">
+      <span class="eyebrow">What's Included</span>
+      <h2 style="margin-top:16px;">All the threads, taken care of.</h2>
+      <div class="hr-gold" style="margin-top:24px;"></div>
+    </div>
+
+    <div class="incl-grid">
+
+      <div class="incl-col">
+        <div class="incl-num">01</div>
+        <h4 class="incl-title">Hospitality</h4>
+        <ul class="incl-list">
+          <li>Five-star city-centre hotels, every night</li>
+          <li>Buffet breakfast and dinner daily</li>
+          <li>Lunch on the Kalka–Shimla rail-bus</li>
+        </ul>
+      </div>
+
+      <div class="incl-col">
+        <div class="incl-num">02</div>
+        <h4 class="incl-title">Rails &amp; Roads</h4>
+        <ul class="incl-list">
+          <li>Exclusively chartered vintage rail-bus, Kalka to Shimla</li>
+          <li>Vande Bharat Express · Varanasi → Lucknow</li>
+          <li>Train Chandigarh → Amritsar · 2AC or 3AC</li>
+          <li>Domestic flights Kolkata → Varanasi, Lucknow → Chandigarh — economy, 20 kg check-in</li>
+          <li>Deluxe AC vehicles with experienced drivers throughout</li>
+        </ul>
+      </div>
+
+      <div class="incl-col">
+        <div class="incl-num">03</div>
+        <h4 class="incl-title">Workshops &amp; Hosting</h4>
+        <ul class="incl-list">
+          <li>Hosted throughout by textile expert Pat Archibald</li>
+          <li>Travel Pals tour manager, arrival to departure</li>
+          <li>Hands-on textile workshops in Kolkata, Varanasi, Lucknow, Shimla and Amritsar</li>
+        </ul>
+      </div>
+
+      <div class="incl-col">
+        <div class="incl-num">04</div>
+        <h4 class="incl-title">Quietly Handled</h4>
+        <ul class="incl-list">
+          <li>All tipping (excluding tour manager) settled on your behalf</li>
+        </ul>
+        <div class="incl-not">
+          <span class="incl-not-label">Not included</span>
+          <p>Personal and incidental expenses, international airfare, visa fees, travel insurance.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PRICE & CTA -->
+<section>
+  <div class="container">
+    <div class="price-card">
+      <div>
+        <span class="eyebrow" style="color:var(--sandstone);">Reserve Your Seat</span>
+        <h3>Stitching Tracks · February 2027</h3>
+        <div class="price-row" style="flex-direction:column; align-items:flex-start; gap:6px;">
+          <div><span class="big">$7,625</span><span class="per">per person · twin / double sharing</span></div>
+          <div><span class="big" style="font-size:32px;">$9,990</span><span class="per">per person · single occupancy</span></div>
+        </div>
+        <p>Ground-only price. International flights to Kolkata and from Amritsar are arranged separately — we're happy to advise on routings.</p>
+        <hr/>
+        <p><strong style="color:var(--sandstone);">To secure your place:</strong> pay the $500 per-person deposit via the link, and complete the booking form. We'll be in touch with bank details for the balance.</p>
+      </div>
+      <div class="cta-stack">
+        <a href="https://buy.stripe.com/4gMdR13VZ9y0cZ10jlew806" target="_blank" rel="noopener" class="btn">Pay $500 Booking Fee →</a>
+        <a href="https://buy.stripe.com/9B6eV58cfeSkgbdgijew805" target="_blank" rel="noopener" class="btn btn-ghost">Tour Deposit →</a>
+        <a href="booking.html" class="btn btn-ghost">Booking Form</a>
+        <a href="contact.html" class="btn btn-ghost">Ask Us a Question</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div>
+      <div class="brand" style="margin-bottom:20px;"><div class="brand-mark" style="border-color: var(--sandstone); color: var(--sandstone);">T</div><div><div class="brand-name" style="color:var(--cream);">Travel Pals</div><span class="brand-tag" style="color: var(--sandstone);">Curated Journeys</span></div></div>
+      <p>Bespoke and small-group journeys through Incredible India.</p>
+    </div>
+    <div><h4>Journeys</h4><ul><li><a href="tour-nov-2026.html">North India · Nov 2026</a></li><li><a href="tour-feb-2027.html">Nagaur Cattle Fair · Feb 2027</a></li><li><a href="tour-feb-2027-stitching.html">Stitching Tracks · Feb 2027</a></li><li><a href="private.html">Private Journeys</a></li></ul></div>
+    <div><h4>Discover</h4><ul><li><a href="india.html">About India</a></li><li><a href="about.html">Our Story</a></li><li><a href="booking.html">Booking</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div><h4>Connect</h4><ul><li><a href="mailto:tours@travelpals.us">tours@travelpals.us</a></li><li><a href="tel:+15875865189">+1 587 586 5189</a></li></ul></div>
+  </div>
+  <div class="container footer-bottom"><span>© 2026 Travel Pals · Atithi Devo Bhava</span><span>Curated with care</span></div>
+</footer>
+
+</body>
+</html>
