@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Contact — Travel Pals</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=3">
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><div class="brand-mark">T</div><div><div class="brand-name">Travel Pals</div><span class="brand-tag">Curated Journeys</span></div></a>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('nav-links').classList.toggle('open')">☰</button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="tours.html">Group Tours</a></li>
+      <li><a href="private.html">Private Journeys</a></li>
+      <li><a href="india.html">About India</a></li>
+      <li><a href="about.html">Our Story</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+      <li><a href="booking.html" class="nav-cta">Book Now</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="tight" style="padding-top:96px;">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">Begin a Conversation</span>
+      <h2 style="margin-top:16px;">Contact Travel Pals</h2>
+      <p class="lede">A short message is all it takes. We answer within one business day — and within hours during your travel window.</p>
+    </div>
+
+    <div class="split" style="align-items:flex-start; margin-top:64px;">
+      <div>
+        <div class="form-card">
+          <div class="field">
+            <label>Your Name</label>
+            <input type="text" placeholder="Full name" />
+          </div>
+          <div class="field">
+            <label>Email Address</label>
+            <input type="email" placeholder="you@example.com" />
+          </div>
+          <div class="field">
+            <label>Phone (optional)</label>
+            <input type="tel" placeholder="+1 555 555 5555" />
+          </div>
+          <div class="field">
+            <label>I'm interested in</label>
+            <select>
+              <option>North India · November 2026</option>
+              <option>Nagaur Cattle Fair · February 2027</option>
+              <option>A private, tailor-made journey</option>
+              <option>General enquiry</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Tell us about your trip</label>
+            <textarea rows="5" placeholder="Travel dates, who's joining you, what moves you about India…"></textarea>
+          </div>
+          <button class="btn">Send Message →</button>
+          <p style="margin-top:16px; font-size:13px; color:var(--muted);">Or write to us directly — <a href="mailto:tours@travelpals.us" style="color:var(--gold-deep); border-bottom:1px solid var(--gold);">tours@travelpals.us</a></p>
+        </div>
+      </div>
+
+      <div>
+        <span class="eyebrow">Reach Us</span>
+        <h2 style="margin-top:16px; font-size:36px;">Delhi · New York</h2>
+        <div class="hr-gold"></div>
+
+        <div style="margin-bottom:32px;">
+          <div style="font-family: var(--caps); font-size:10px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold-deep); font-weight:600; margin-bottom:8px;">Email</div>
+          <div style="font-family: var(--display); font-size:22px;"><a href="mailto:tours@travelpals.us">tours@travelpals.us</a></div>
+        </div>
+
+        <div style="margin-bottom:32px;">
+          <div style="font-family: var(--caps); font-size:10px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold-deep); font-weight:600; margin-bottom:8px;">Phone &amp; WhatsApp</div>
+          <div style="font-family: var(--display); font-size:22px;"><a href="tel:+15875865189">+1 587 586 5189</a></div>
+        </div>
+
+        <div style="margin-bottom:32px;">
+          <div style="font-family: var(--caps); font-size:10px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold-deep); font-weight:600; margin-bottom:8px;">Office</div>
+          <div style="font-family: var(--serif); font-size:18px; font-style:italic; color:var(--ink-soft); line-height:1.6;">
+            Travel Pals India<br/>New Delhi, India<br/>Established 1995
+          </div>
+        </div>
+
+        <div style="margin-bottom:32px;">
+          <div style="font-family: var(--caps); font-size:10px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold-deep); font-weight:600; margin-bottom:8px;">Hours</div>
+          <div style="color:var(--ink-soft);">
+            Mon–Fri · 09:00 – 18:00 IST<br/>Saturday · 10:00 – 14:00 IST<br/>WhatsApp answered around the clock during your travel window.
+          </div>
+        </div>
+
+        <div style="background:var(--paper); border:1px solid rgba(184,146,74,0.25); padding:24px; margin-top:32px;">
+          <div style="font-family: var(--caps); font-size:10px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold-deep); font-weight:600; margin-bottom:12px;">Already Booked?</div>
+          <p style="color:var(--ink-soft); font-size:15px; margin-bottom:16px;">Pay your deposit by Stripe via the booking page — or use the direct links on your tour page.</p>
+          <a href="booking.html" class="btn-text">Go to booking →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div><div class="brand" style="margin-bottom:20px;"><div class="brand-mark" style="border-color: var(--sandstone); color: var(--sandstone);">T</div><div><div class="brand-name" style="color:var(--cream);">Travel Pals</div><span class="brand-tag" style="color: var(--sandstone);">Curated Journeys</span></div></div><p>Bespoke and small-group journeys through Incredible India.</p></div>
+    <div><h4>Journeys</h4><ul><li><a href="tour-nov-2026.html">North India · Nov 2026</a></li><li><a href="tour-feb-2027.html">Nagaur Cattle Fair · Feb 2027</a></li><li><a href="private.html">Private Journeys</a></li></ul></div>
+    <div><h4>Discover</h4><ul><li><a href="india.html">About India</a></li><li><a href="about.html">Our Story</a></li><li><a href="booking.html">Booking</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div><h4>Connect</h4><ul><li><a href="mailto:tours@travelpals.us">tours@travelpals.us</a></li><li><a href="tel:+15875865189">+1 587 586 5189</a></li></ul></div>
+  </div>
+  <div class="container footer-bottom"><span>© 2026 Travel Pals · Atithi Devo Bhava</span><span>Curated with care</span></div>
+</footer>
+
+</body>
+</html>
