@@ -4,8 +4,8 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Exotic Luxury · Five-Star India — Travel Pals</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=5">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,30..100;1,9..144,300..700,30..100&family=Inter+Tight:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap">
+<link rel="stylesheet" href="styles.css">
 <style>
 .lux-hero {
   position: relative; min-height: 92vh; display: flex; align-items: flex-end;
@@ -14,24 +14,24 @@
     linear-gradient(180deg, rgba(26,31,58,0.15) 0%, rgba(26,31,58,0.55) 70%, rgba(26,31,58,0.88) 100%),
     url('https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=2400&q=85');
   background-size: cover; background-position: center 40%;
-  color: var(--cream); padding: 120px 0 80px;
+  color: var(--linen); padding: 120px 0 80px;
 }
-.lux-hero .crumb { font-family: var(--caps); font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--sandstone); margin-bottom: 28px; }
-.lux-hero h1 { font-family: var(--display); font-size: clamp(48px, 7.5vw, 112px); line-height: 1.02; color: var(--cream); max-width: 14ch; letter-spacing: -0.015em; margin-bottom: 24px; }
-.lux-hero h1 em { font-family: var(--serif); font-style: italic; color: var(--sandstone); font-weight: 400; }
+.lux-hero .crumb { font-family: var(--caps); font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--linen-2); margin-bottom: 28px; }
+.lux-hero h1 { font-family: var(--display); font-size: clamp(48px, 7.5vw, 112px); line-height: 1.02; color: var(--linen); max-width: 14ch; letter-spacing: -0.015em; margin-bottom: 24px; }
+.lux-hero h1 em { font-family: var(--serif); font-style: italic; color: var(--linen-2); font-weight: 400; }
 .lux-hero .lede { color: rgba(251,247,238,0.88); max-width: 64ch; font-size: 20px; line-height: 1.55; }
 .lux-hero .meta { display: flex; gap: 48px; margin-top: 48px; flex-wrap: wrap; padding-top: 32px; border-top: 1px solid rgba(212,184,150,0.3); }
-.lux-hero .meta div .k { display: block; font-family: var(--caps); font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--sandstone); margin-bottom: 8px; }
-.lux-hero .meta div .v { font-family: var(--display); font-size: 22px; color: var(--cream); letter-spacing: 0.02em; }
+.lux-hero .meta div .k { display: block; font-family: var(--caps); font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--linen-2); margin-bottom: 8px; }
+.lux-hero .meta div .v { font-family: var(--display); font-size: 22px; color: var(--linen); letter-spacing: 0.02em; }
 
-.lux-banner { background: var(--ivory-2); border-top: 1px solid var(--henna); border-bottom: 1px solid var(--henna); padding: 28px 0; text-align: center; }
-.lux-banner .pill { display: inline-block; font-family: var(--caps); font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--cream); background: var(--henna); padding: 6px 14px; margin-right: 16px; font-weight: 600; }
+.lux-banner { background: var(--ivory-2); border-top: 1px solid var(--terracotta-deep); border-bottom: 1px solid var(--terracotta-deep); padding: 28px 0; text-align: center; }
+.lux-banner .pill { display: inline-block; font-family: var(--caps); font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--linen); background: var(--terracotta-deep); padding: 6px 14px; margin-right: 16px; font-weight: 600; }
 .lux-banner span.txt { font-family: var(--serif); font-style: italic; font-size: 17px; color: var(--ink-soft); }
 
 /* Narrative arc */
-.arc { background: var(--cream); padding: 120px 0; }
-.arc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--gold); border: 1px solid var(--gold); margin-top: 56px; }
-.arc-cell { background: var(--cream); padding: 48px 36px; }
+.arc { background: var(--linen); padding: 120px 0; }
+.arc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--terracotta-deep); border: 1px solid var(--terracotta-deep); margin-top: 56px; }
+.arc-cell { background: var(--linen); padding: 48px 36px; }
 .arc-cell .arc-num { font-family: var(--caps); font-size: 11px; letter-spacing: 0.36em; color: var(--gold-deep); font-weight: 600; margin-bottom: 18px; }
 .arc-cell h3 { font-family: var(--display); font-size: 26px; color: var(--ink); line-height: 1.2; margin-bottom: 8px; }
 .arc-cell h3 em { font-family: var(--serif); font-style: italic; color: var(--gold-deep); font-weight: 400; }
@@ -43,33 +43,33 @@
 /* Day-by-day */
 .itin { background: var(--ivory); padding: 96px 0; }
 .day-stack { max-width: 940px; margin: 56px auto 0; }
-.day-card { background: var(--cream); padding: 40px 48px; margin-bottom: 4px; display: grid; grid-template-columns: 160px 1fr; gap: 40px; align-items: start; border-left: 2px solid var(--henna); }
-.day-card .day-num { font-family: var(--caps); font-size: 10px; letter-spacing: 0.32em; color: var(--henna); font-weight: 600; margin-bottom: 6px; }
+.day-card { background: var(--linen); padding: 40px 48px; margin-bottom: 4px; display: grid; grid-template-columns: 160px 1fr; gap: 40px; align-items: start; border-left: 2px solid var(--terracotta-deep); }
+.day-card .day-num { font-family: var(--caps); font-size: 10px; letter-spacing: 0.32em; color: var(--terracotta-deep); font-weight: 600; margin-bottom: 6px; }
 .day-card .day-where { font-family: var(--display); font-size: 24px; color: var(--ink); line-height: 1.2; }
 .day-card .day-hotel { font-family: var(--serif); font-style: italic; color: var(--gold-deep); font-size: 14px; margin-top: 6px; }
-.day-card .day-where .arrow { color: var(--gold); margin: 0 6px; }
+.day-card .day-where .arrow { color: var(--terracotta-deep); margin: 0 6px; }
 .day-card .day-body p { color: var(--ink-soft); margin-bottom: 12px; font-size: 16px; line-height: 1.7; }
 .day-card .day-body p:last-child { margin-bottom: 0; }
-.day-card .day-body .moment { display: inline-block; font-family: var(--serif); font-style: italic; color: var(--gold-deep); font-size: 15px; margin-top: 4px; border-left: 1px solid var(--gold); padding-left: 14px; }
+.day-card .day-body .moment { display: inline-block; font-family: var(--serif); font-style: italic; color: var(--gold-deep); font-size: 15px; margin-top: 4px; border-left: 1px solid var(--terracotta-deep); padding-left: 14px; }
 @media (max-width: 800px) { .day-card { grid-template-columns: 1fr; padding: 32px 24px; gap: 16px; } }
 
 /* Hotels gallery */
-.hotels { background: var(--ink); color: var(--cream); padding: 120px 0; }
-.hotels h2, .hotels .eyebrow { color: var(--cream); }
-.hotels .eyebrow { color: var(--sandstone); }
+.hotels { background: var(--ink); color: var(--linen); padding: 120px 0; }
+.hotels h2, .hotels .eyebrow { color: var(--linen); }
+.hotels .eyebrow { color: var(--linen-2); }
 .hotels .lede { color: rgba(251,247,238,0.85); }
 .hotel-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(212,184,150,0.18); margin-top: 56px; border: 1px solid rgba(212,184,150,0.18); }
 .hotel-cell { background: var(--ink); padding: 40px 32px; }
-.hotel-cell .hotel-city { font-family: var(--caps); font-size: 10px; letter-spacing: 0.36em; color: var(--sandstone); margin-bottom: 12px; font-weight: 600; }
-.hotel-cell h4 { font-family: var(--display); font-size: 22px; color: var(--cream); line-height: 1.25; margin-bottom: 10px; }
+.hotel-cell .hotel-city { font-family: var(--caps); font-size: 10px; letter-spacing: 0.36em; color: var(--linen-2); margin-bottom: 12px; font-weight: 600; }
+.hotel-cell h4 { font-family: var(--display); font-size: 22px; color: var(--linen); line-height: 1.25; margin-bottom: 10px; }
 .hotel-cell p { color: rgba(251,247,238,0.78); font-size: 14px; line-height: 1.65; }
 @media (max-width: 900px) { .hotel-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 600px) { .hotel-grid { grid-template-columns: 1fr; } }
 
 /* Pricing */
 .pricing { background: var(--ivory); padding: 96px 0; }
-.price-card { max-width: 760px; margin: 56px auto 0; background: var(--cream); border: 1px solid var(--henna); padding: 56px; position: relative; }
-.price-card::before { content: "✦"; position: absolute; top: -16px; left: 50%; transform: translateX(-50%); background: var(--ivory); color: var(--henna); padding: 0 16px; font-size: 18px; }
+.price-card { max-width: 760px; margin: 56px auto 0; background: var(--linen); border: 1px solid var(--terracotta-deep); padding: 56px; position: relative; }
+.price-card::before { content: "✦"; position: absolute; top: -16px; left: 50%; transform: translateX(-50%); background: var(--ivory); color: var(--terracotta-deep); padding: 0 16px; font-size: 18px; }
 .price-card h3 { font-family: var(--display); font-size: 30px; color: var(--ink); margin-bottom: 8px; }
 .price-card .price-sub { font-family: var(--serif); font-style: italic; color: var(--gold-deep); margin-bottom: 32px; }
 .price-table { display: grid; grid-template-columns: 1fr auto; gap: 18px 24px; padding: 24px 0; border-top: 1px solid var(--ivory-2); border-bottom: 1px solid var(--ivory-2); margin-bottom: 28px; }
@@ -79,9 +79,9 @@
 .price-card .actions a { flex: 1; min-width: 200px; text-align: center; }
 
 /* Departures */
-.departures { background: var(--cream); padding: 96px 0; }
-.dep-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--gold); margin-top: 56px; border: 1px solid var(--gold); max-width: 1100px; margin-left:auto; margin-right:auto; }
-.dep-cell { background: var(--cream); padding: 28px; }
+.departures { background: var(--linen); padding: 96px 0; }
+.dep-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--terracotta-deep); margin-top: 56px; border: 1px solid var(--terracotta-deep); max-width: 1100px; margin-left:auto; margin-right:auto; }
+.dep-cell { background: var(--linen); padding: 28px; }
 .dep-cell .dep-month { font-family: var(--caps); font-size: 11px; letter-spacing: 0.36em; color: var(--gold-deep); margin-bottom: 10px; font-weight: 600; }
 .dep-cell .dep-date { font-family: var(--display); font-size: 18px; color: var(--ink); margin-bottom: 4px; }
 .dep-cell .dep-note { font-family: var(--serif); font-style: italic; color: var(--ink-soft); font-size: 13px; }
@@ -170,6 +170,8 @@
     </div>
   </div>
 </section>
+<div class="section-divider"><span class="ornament"><span class="dot"></span><span class="stroke"></span><span class="dot center"></span><span class="stroke"></span><span class="dot"></span></span></div>
+
 
 <!-- DAY-BY-DAY -->
 <section class="itin">
@@ -301,14 +303,16 @@
     </div>
   </div>
 </section>
+<div class="section-divider"><span class="ornament"><span class="dot"></span><span class="stroke"></span><span class="dot center"></span><span class="stroke"></span><span class="dot"></span></span></div>
+
 
 <!-- HOTELS GALLERY -->
 <section class="hotels">
   <div class="container">
     <div class="sec-head">
-      <span class="eyebrow" style="color:var(--sandstone);">Where You Stay</span>
+      <span class="eyebrow" style="color:var(--linen-2);">Where You Stay</span>
       <h2 style="margin-top:16px;">Landmark hotels, end to end.</h2>
-      <div style="display:flex;justify-content:center;"><div class="hr-gold" style="background:var(--sandstone);"></div></div>
+      <div style="display:flex;justify-content:center;"><div class="hr-gold" style="background:var(--linen-2);"></div></div>
     </div>
 
     <div class="hotel-grid">
@@ -365,6 +369,8 @@
     </div>
   </div>
 </section>
+<div class="section-divider"><span class="ornament"><span class="dot"></span><span class="stroke"></span><span class="dot center"></span><span class="stroke"></span><span class="dot"></span></span></div>
+
 
 <!-- DEPARTURES -->
 <section class="departures">
@@ -389,12 +395,14 @@
     </div>
   </div>
 </section>
+<div class="section-divider"><span class="ornament"><span class="dot"></span><span class="stroke"></span><span class="dot center"></span><span class="stroke"></span><span class="dot"></span></span></div>
+
 
 <!-- BEGIN THE CONVERSATION -->
-<section class="bleed" style="background-image: linear-gradient(90deg, rgba(26,31,58,0.85) 0%, rgba(26,31,58,0.4) 100%), url('https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=2400&q=80'); padding:120px 0; color:var(--cream);">
+<section class="bleed" style="background-image: linear-gradient(90deg, rgba(26,31,58,0.85) 0%, rgba(26,31,58,0.4) 100%), url('https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=2400&q=80'); padding:120px 0; color:var(--linen);">
   <div class="container">
-    <span class="eyebrow" style="color:var(--sandstone);">Begin the Conversation</span>
-    <h2 style="margin-top:16px; max-width:22ch; color:var(--cream);">Half the joy is the planning.</h2>
+    <span class="eyebrow" style="color:var(--linen-2);">Begin the Conversation</span>
+    <h2 style="margin-top:16px; max-width:22ch; color:var(--linen);">Half the joy is the planning.</h2>
     <p class="lede" style="margin-top:24px; max-width:62ch; color:rgba(251,247,238,0.92);">Send us a note and one of our travel curators will pick up the thread. Expect to learn the small things \u2014 which week the jacarandas flower in Delhi, why the Mehrangarh walls are blue, where to find the best <em>jalebi</em> in Old Jaipur \u2014 and to feel the journey come alive long before you board the plane.</p>
     <p class="lede" style="margin-top:16px; max-width:62ch; color:rgba(251,247,238,0.85); font-style:italic; font-family:var(--serif);">Hotels are tailored to your taste, the days are paced to your rhythm, and the whole itinerary is yours to shape. By the time the marigold garland goes around your neck at the airport, you'll already know the country a little.</p>
     <div style="margin-top:36px; display:flex; gap:16px; flex-wrap:wrap;">
@@ -406,7 +414,7 @@
 
 <footer class="site-footer">
   <div class="container">
-    <div><div class="brand" style="margin-bottom:20px;"><div class="brand-mark" style="border-color: var(--sandstone); color: var(--sandstone);">T</div><div><div class="brand-name" style="color:var(--cream);">Travel Pals</div><span class="brand-tag" style="color: var(--sandstone);">Curated Journeys</span></div></div><p>Bespoke and small-group journeys through Incredible India.</p></div>
+    <div><div class="brand" style="margin-bottom:20px;"><div class="brand-mark" style="border-color: var(--linen-2); color: var(--linen-2);">T</div><div><div class="brand-name" style="color:var(--linen);">Travel Pals</div><span class="brand-tag" style="color: var(--linen-2);">Curated Journeys</span></div></div><p>Bespoke and small-group journeys through Incredible India.</p></div>
     <div><h4>Journeys</h4><ul><li><a href="tour-nov-2026.html">North India · Nov 2026</a></li><li><a href="tour-nov-2026-rail.html">Rail on All Gauges · Nov 2026</a></li><li><a href="tour-feb-2027.html">Nagaur Cattle Fair · Feb 2027</a></li><li><a href="tour-feb-2027-stitching.html">Stitching Tracks · Feb 2027</a></li><li><a href="private.html">Private Journeys</a></li></ul></div>
     <div><h4>Discover</h4><ul><li><a href="india.html">About India</a></li><li><a href="about.html">Our Story</a></li><li><a href="booking.html">Booking</a></li><li><a href="contact.html">Contact</a></li></ul></div>
     <div><h4>Connect</h4><ul><li><a href="mailto:tours@travelpals.us">tours@travelpals.us</a></li><li><a href="tel:+15875865189">+1 587 586 5189</a></li></ul></div>

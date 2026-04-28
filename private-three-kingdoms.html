@@ -4,8 +4,8 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Three Kingdoms · A Suggestive Private Journey — Travel Pals</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=5">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,30..100;1,9..144,300..700,30..100&family=Inter+Tight:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap">
+<link rel="stylesheet" href="styles.css">
 <style>
 .tk-hero {
   position: relative;
@@ -16,22 +16,22 @@
     linear-gradient(180deg, rgba(26,31,58,0.65) 0%, rgba(26,31,58,0.5) 45%, rgba(26,31,58,0.7) 75%, rgba(26,31,58,0.92) 100%),
     url('https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&w=2400&q=85');
   background-size: cover; background-position: center;
-  color: var(--cream);
+  color: var(--linen);
   padding: 120px 0 80px;
 }
 .tk-hero .crumb {
   font-family: var(--caps); font-size: 11px; letter-spacing: 0.4em;
-  text-transform: uppercase; color: var(--sandstone); margin-bottom: 28px;
+  text-transform: uppercase; color: var(--linen-2); margin-bottom: 28px;
 }
 .tk-hero h1 {
   font-family: var(--display);
   font-size: clamp(48px, 7.5vw, 108px);
-  line-height: 1.02; color: var(--cream);
+  line-height: 1.02; color: var(--linen);
   max-width: 16ch; letter-spacing: -0.015em; margin-bottom: 24px;
 }
 .tk-hero h1 em {
   font-family: var(--serif); font-style: italic;
-  color: var(--sandstone); font-weight: 400;
+  color: var(--linen-2); font-weight: 400;
 }
 .tk-hero .lede { color: rgba(251,247,238,0.88); max-width: 64ch; font-size: 20px; line-height: 1.55; }
 .tk-hero .meta {
@@ -40,26 +40,26 @@
 }
 .tk-hero .meta div .k {
   display: block; font-family: var(--caps); font-size: 10px;
-  letter-spacing: 0.4em; text-transform: uppercase; color: var(--sandstone); margin-bottom: 8px;
+  letter-spacing: 0.4em; text-transform: uppercase; color: var(--linen-2); margin-bottom: 8px;
 }
 .tk-hero .meta div .v {
-  font-family: var(--display); font-size: 22px; color: var(--cream); letter-spacing: 0.02em;
+  font-family: var(--display); font-size: 22px; color: var(--linen); letter-spacing: 0.02em;
 }
 
 .sample-banner {
-  background: var(--ivory-2); border-top: 1px solid var(--gold);
-  border-bottom: 1px solid var(--gold); padding: 28px 0; text-align: center;
+  background: var(--ivory-2); border-top: 1px solid var(--terracotta-deep);
+  border-bottom: 1px solid var(--terracotta-deep); padding: 28px 0; text-align: center;
 }
 .sample-banner .pill {
   display: inline-block; font-family: var(--caps); font-size: 10px;
-  letter-spacing: 0.4em; text-transform: uppercase; color: var(--cream);
-  background: var(--henna); padding: 6px 14px; margin-right: 16px; font-weight: 600;
+  letter-spacing: 0.4em; text-transform: uppercase; color: var(--linen);
+  background: var(--terracotta-deep); padding: 6px 14px; margin-right: 16px; font-weight: 600;
 }
 .sample-banner span.txt { font-family: var(--serif); font-style: italic; font-size: 17px; color: var(--ink-soft); }
 
 /* Three-act structure */
 .act-divider {
-  background: var(--cream); padding: 96px 0 32px; text-align: center;
+  background: var(--linen); padding: 96px 0 32px; text-align: center;
 }
 .act-divider.alt { background: var(--ivory-2); }
 .act-divider.alt2 { background: var(--ivory); }
@@ -74,14 +74,14 @@
 }
 .act-divider::before, .act-divider::after {
   content: ""; display: inline-block; width: 60px; height: 1px;
-  background: var(--gold); vertical-align: middle; margin: 0 16px;
+  background: var(--terracotta-deep); vertical-align: middle; margin: 0 16px;
 }
 .act-divider .h-row { display: flex; align-items: center; justify-content: center; }
 
 .chapters { padding: 32px 0 64px; }
 .chapters.alt { background: var(--ivory-2); }
 .chapters.alt2 { background: var(--ivory); }
-.chapters.main { background: var(--cream); }
+.chapters.main { background: var(--linen); }
 .chapter-list {
   display: grid; grid-template-columns: 1fr;
   max-width: 1100px; margin: 32px auto 0;
@@ -112,26 +112,26 @@
 .itinerary { background: var(--ivory); padding: 96px 0; }
 .day-stack { max-width: 940px; margin: 56px auto 0; }
 .day-card {
-  background: var(--cream); padding: 40px 48px; margin-bottom: 4px;
+  background: var(--linen); padding: 40px 48px; margin-bottom: 4px;
   display: grid; grid-template-columns: 140px 1fr; gap: 40px; align-items: start;
-  border-left: 2px solid var(--gold);
+  border-left: 2px solid var(--terracotta-deep);
 }
 .day-card .day-num { font-family: var(--caps); font-size: 10px; letter-spacing: 0.32em; color: var(--gold-deep); font-weight: 600; margin-bottom: 6px; }
 .day-card .day-where { font-family: var(--display); font-size: 26px; color: var(--ink); line-height: 1.2; }
-.day-card .day-where .arrow { color: var(--gold); margin: 0 6px; }
+.day-card .day-where .arrow { color: var(--terracotta-deep); margin: 0 6px; }
 .day-card .day-body p { color: var(--ink-soft); margin-bottom: 12px; font-size: 16px; line-height: 1.7; }
 .day-card .day-body p:last-child { margin-bottom: 0; }
 .day-card .day-body .moment {
   display: inline-block; font-family: var(--serif); font-style: italic;
   color: var(--gold-deep); font-size: 15px; margin-top: 4px;
-  border-left: 1px solid var(--gold); padding-left: 14px;
+  border-left: 1px solid var(--terracotta-deep); padding-left: 14px;
 }
 @media (max-width: 800px) { .day-card { grid-template-columns: 1fr; padding: 32px 24px; gap: 16px; } }
 
 /* Hotels */
-.hotels-showcase { background: var(--ink); color: var(--cream); padding: 120px 0; }
-.hotels-showcase h2, .hotels-showcase .eyebrow { color: var(--cream); }
-.hotels-showcase .eyebrow { color: var(--sandstone); }
+.hotels-showcase { background: var(--ink); color: var(--linen); padding: 120px 0; }
+.hotels-showcase h2, .hotels-showcase .eyebrow { color: var(--linen); }
+.hotels-showcase .eyebrow { color: var(--linen-2); }
 .hotels-grid {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
   background: rgba(212,184,150,0.18); margin-top: 56px;
@@ -140,15 +140,15 @@
 .hotel-cell { background: var(--ink); padding: 32px 24px; }
 .hotel-cell .city {
   font-family: var(--caps); font-size: 10px; letter-spacing: 0.32em;
-  text-transform: uppercase; color: var(--sandstone); margin-bottom: 12px;
+  text-transform: uppercase; color: var(--linen-2); margin-bottom: 12px;
 }
-.hotel-cell .name { font-family: var(--display); font-size: 20px; color: var(--cream); line-height: 1.2; margin-bottom: 8px; }
+.hotel-cell .name { font-family: var(--display); font-size: 20px; color: var(--linen); line-height: 1.2; margin-bottom: 8px; }
 .hotel-cell .desc { font-size: 13px; color: rgba(251,247,238,0.72); line-height: 1.6; }
 @media (max-width: 1000px) { .hotels-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 600px)  { .hotels-grid { grid-template-columns: 1fr; } }
 
 /* Map / sweep */
-.sweep { background: var(--cream); padding: 120px 0; }
+.sweep { background: var(--linen); padding: 120px 0; }
 .sweep-grid {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 56px;
 }
@@ -164,12 +164,12 @@
 /* Disclaimer */
 .disclaimer { background: var(--ivory); padding: 96px 0; text-align: center; }
 .disclaimer .frame {
-  max-width: 720px; margin: 0 auto; border: 1px solid var(--gold);
-  padding: 64px 48px; background: var(--cream); position: relative;
+  max-width: 720px; margin: 0 auto; border: 1px solid var(--terracotta-deep);
+  padding: 64px 48px; background: var(--linen); position: relative;
 }
 .disclaimer .frame::before {
   content: "✦"; position: absolute; top: -16px; left: 50%; transform: translateX(-50%);
-  background: var(--ivory); color: var(--gold); padding: 0 16px; font-size: 18px;
+  background: var(--ivory); color: var(--terracotta-deep); padding: 0 16px; font-size: 18px;
 }
 .disclaimer h3 { font-family: var(--display); font-size: 36px; color: var(--ink); margin-bottom: 20px; }
 .disclaimer p { font-size: 17px; color: var(--ink-soft); line-height: 1.7; max-width: 56ch; margin: 0 auto 16px; }
@@ -179,10 +179,10 @@
     linear-gradient(90deg, rgba(26,31,58,0.85) 0%, rgba(26,31,58,0.4) 100%),
     url('https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&w=2400&q=80');
   background-size: cover; background-position: center;
-  color: var(--cream); padding: 120px 0;
+  color: var(--linen); padding: 120px 0;
 }
-.begin-strip .eyebrow { color: var(--sandstone); }
-.begin-strip h2 { color: var(--cream); max-width: 18ch; }
+.begin-strip .eyebrow { color: var(--linen-2); }
+.begin-strip h2 { color: var(--linen); max-width: 18ch; }
 .begin-strip p { color: rgba(251,247,238,0.85); max-width: 60ch; }
 
 .other-samples { background: var(--ivory); padding: 96px 0; }
@@ -191,7 +191,7 @@
   max-width: 1200px; margin: 56px auto 0;
 }
 .other-card2 {
-  background: var(--cream); border: 1px solid var(--ivory-2);
+  background: var(--linen); border: 1px solid var(--ivory-2);
   text-decoration: none; color: inherit;
   transition: box-shadow .3s ease;
   display: block;
@@ -251,6 +251,7 @@
     <div class="h-row"><span class="sub">Kathmandu temples, a mountain flight past Everest, the lakes of Pokhara, and the cliff-monastery of Paro.</span></div>
   </div>
 </section>
+<div class="section-divider"><span class="ornament"><span class="dot"></span><span class="stroke"></span><span class="dot center"></span><span class="stroke"></span><span class="dot"></span></span></div>
 
 <section class="chapters main">
   <div class="container">
@@ -293,6 +294,8 @@
     </div>
   </div>
 </section>
+<div class="section-divider"><span class="ornament"><span class="dot"></span><span class="stroke"></span><span class="dot center"></span><span class="stroke"></span><span class="dot"></span></span></div>
+
 
 <!-- ACT II — RAJASTHAN DESERT -->
 <section class="act-divider alt">
@@ -302,6 +305,7 @@
     <div class="h-row"><span class="sub">A descent into the Thar — the painted havelis of Mandawa, the spice city of Bikaner, golden Jaisalmer, and blue Jodhpur.</span></div>
   </div>
 </section>
+<div class="section-divider"><span class="ornament"><span class="dot"></span><span class="stroke"></span><span class="dot center"></span><span class="stroke"></span><span class="dot"></span></span></div>
 
 <section class="chapters alt">
   <div class="container">
@@ -371,6 +375,8 @@
     </div>
   </div>
 </section>
+<div class="section-divider"><span class="ornament"><span class="dot"></span><span class="stroke"></span><span class="dot center"></span><span class="stroke"></span><span class="dot"></span></span></div>
+
 
 <!-- ACT III — THE GOLDEN END -->
 <section class="act-divider alt2">
@@ -380,6 +386,7 @@
     <div class="h-row"><span class="sub">A flight north to Amritsar — Sikhism's holiest shrine and the theatrical Wagah border with Pakistan.</span></div>
   </div>
 </section>
+<div class="section-divider"><span class="ornament"><span class="dot"></span><span class="stroke"></span><span class="dot center"></span><span class="stroke"></span><span class="dot"></span></span></div>
 
 <section class="chapters alt2">
   <div class="container">
@@ -404,6 +411,8 @@
     </div>
   </div>
 </section>
+<div class="section-divider"><span class="ornament"><span class="dot"></span><span class="stroke"></span><span class="dot center"></span><span class="stroke"></span><span class="dot"></span></span></div>
+
 
 <!-- DAY-BY-DAY HIGHLIGHTS -->
 <section class="itinerary">
@@ -480,6 +489,8 @@
     <p style="text-align:center; max-width:60ch; margin:64px auto 0; color:var(--ink-soft); font-style:italic; font-family:var(--serif);">A full day-by-day, room-by-room itinerary is written for you once we begin a conversation. This is the shape of the journey — yours will be one of a kind.</p>
   </div>
 </section>
+<div class="section-divider"><span class="ornament"><span class="dot"></span><span class="stroke"></span><span class="dot center"></span><span class="stroke"></span><span class="dot"></span></span></div>
+
 
 <!-- HOTELS SHOWCASE -->
 <section class="hotels-showcase">
@@ -509,6 +520,8 @@
     <p style="text-align:center; margin-top:48px; color:rgba(251,247,238,0.65); font-style:italic; font-family:var(--serif); font-size:15px;">Equivalent properties — Taj, Leela, ITC, Aman and others — can be substituted at any city.</p>
   </div>
 </section>
+<div class="section-divider"><span class="ornament"><span class="dot"></span><span class="stroke"></span><span class="dot center"></span><span class="stroke"></span><span class="dot"></span></span></div>
+
 
 <!-- THREE COUNTRY SWEEP -->
 <section class="sweep">
@@ -538,6 +551,8 @@
     </div>
   </div>
 </section>
+<div class="section-divider"><span class="ornament"><span class="dot"></span><span class="stroke"></span><span class="dot center"></span><span class="stroke"></span><span class="dot"></span></span></div>
+
 
 <!-- DISCLAIMER -->
 <section class="disclaimer">
@@ -550,6 +565,8 @@
     </div>
   </div>
 </section>
+<div class="section-divider"><span class="ornament"><span class="dot"></span><span class="stroke"></span><span class="dot center"></span><span class="stroke"></span><span class="dot"></span></span></div>
+
 
 <!-- OTHER SAMPLES -->
 <section class="other-samples">
@@ -568,7 +585,7 @@
           <h3 style="font-family:var(--display); font-size:30px; line-height:1.12; margin-bottom:14px; color:var(--ink);">Quintessential India</h3>
           <p style="font-family:var(--serif); font-style:italic; color:var(--gold-deep); font-size:15px; margin-bottom:18px;">Delhi · Shimla · Mumbai · Pench · Kanha · Varanasi · Agra · Ranthambore · Jaipur · Udaipur</p>
           <p style="color:var(--ink-soft); font-size:15px; margin-bottom:24px;">A north-India sweep with Himalayan hill stations, two jungle reserves, and the ghats of Varanasi.</p>
-          <span style="font-family:var(--caps); font-size:11px; letter-spacing:0.28em; text-transform:uppercase; color:var(--ink); border-bottom:1px solid var(--gold); padding-bottom:4px;">Read the itinerary →</span>
+          <span style="font-family:var(--caps); font-size:11px; letter-spacing:0.28em; text-transform:uppercase; color:var(--ink); border-bottom:1px solid var(--terracotta-deep); padding-bottom:4px;">Read the itinerary →</span>
         </div>
       </a>
 
@@ -579,12 +596,14 @@
           <h3 style="font-family:var(--display); font-size:30px; line-height:1.12; margin-bottom:14px; color:var(--ink);">North to Kerala</h3>
           <p style="font-family:var(--serif); font-style:italic; color:var(--gold-deep); font-size:15px; margin-bottom:18px;">Delhi · Agra · Ranthambore · Jaipur · Udaipur · Mumbai · Cochin · Backwaters · Kumarakom</p>
           <p style="color:var(--ink-soft); font-size:15px; margin-bottom:24px;">Both Indias — Mughal forts and tiger country, then a houseboat through the Kerala backwaters.</p>
-          <span style="font-family:var(--caps); font-size:11px; letter-spacing:0.28em; text-transform:uppercase; color:var(--ink); border-bottom:1px solid var(--gold); padding-bottom:4px;">Read the itinerary →</span>
+          <span style="font-family:var(--caps); font-size:11px; letter-spacing:0.28em; text-transform:uppercase; color:var(--ink); border-bottom:1px solid var(--terracotta-deep); padding-bottom:4px;">Read the itinerary →</span>
         </div>
       </a>
     </div>
   </div>
 </section>
+<div class="section-divider"><span class="ornament"><span class="dot"></span><span class="stroke"></span><span class="dot center"></span><span class="stroke"></span><span class="dot"></span></span></div>
+
 
 <!-- BEGIN STRIP -->
 <section class="begin-strip">
@@ -602,7 +621,7 @@
 
 <footer class="site-footer">
   <div class="container">
-    <div><div class="brand" style="margin-bottom:20px;"><div class="brand-mark" style="border-color: var(--sandstone); color: var(--sandstone);">T</div><div><div class="brand-name" style="color:var(--cream);">Travel Pals</div><span class="brand-tag" style="color: var(--sandstone);">Curated Journeys</span></div></div><p>Bespoke and small-group journeys through Incredible India.</p></div>
+    <div><div class="brand" style="margin-bottom:20px;"><div class="brand-mark" style="border-color: var(--linen-2); color: var(--linen-2);">T</div><div><div class="brand-name" style="color:var(--linen);">Travel Pals</div><span class="brand-tag" style="color: var(--linen-2);">Curated Journeys</span></div></div><p>Bespoke and small-group journeys through Incredible India.</p></div>
     <div><h4>Journeys</h4><ul><li><a href="tour-nov-2026.html">North India · Nov 2026</a></li><li><a href="tour-nov-2026-rail.html">Rail on All Gauges · Nov 2026</a></li><li><a href="tour-feb-2027.html">Nagaur Cattle Fair · Feb 2027</a></li><li><a href="tour-feb-2027-stitching.html">Stitching Tracks · Feb 2027</a></li><li><a href="private.html">Private Journeys</a></li></ul></div>
     <div><h4>Discover</h4><ul><li><a href="india.html">About India</a></li><li><a href="about.html">Our Story</a></li><li><a href="booking.html">Booking</a></li><li><a href="contact.html">Contact</a></li></ul></div>
     <div><h4>Connect</h4><ul><li><a href="mailto:tours@travelpals.us">tours@travelpals.us</a></li><li><a href="tel:+15875865189">+1 587 586 5189</a></li></ul></div>
