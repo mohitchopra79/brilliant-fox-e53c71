@@ -6,6 +6,60 @@
 <title>Our Story — Travel Pals</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css?v=5">
+<style>
+  /* Indian-traditional portrait frame for founder bios */
+  .portrait-frame {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 1;
+    margin: 0 auto;
+    padding: 14px;
+    box-sizing: border-box;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle, transparent calc(50% - 4px), #B8860B calc(50% - 4px), #B8860B calc(50% - 1px), transparent calc(50% - 1px)),
+      radial-gradient(circle, transparent calc(50% - 12px), #F5C99A calc(50% - 12px), #F5C99A calc(50% - 10px), transparent calc(50% - 10px)),
+      radial-gradient(circle, transparent calc(50% - 22px), #B8860B calc(50% - 22px), #B8860B calc(50% - 20px), transparent calc(50% - 20px));
+  }
+  .portrait-frame .photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-size: cover;
+    box-shadow:
+      inset 0 0 0 6px var(--cream),
+      inset 0 0 0 8px #B8860B,
+      0 24px 56px rgba(26,31,58,0.22);
+  }
+  /* Marigold toran (festive arch) above */
+  .portrait-frame::before {
+    content: "";
+    position: absolute;
+    top: -36px; left: 50%; transform: translateX(-50%);
+    width: 280px; height: 48px;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 280 48'><path d='M14 8 Q 140 56 266 8' fill='none' stroke='%23B8860B' stroke-width='1' opacity='0.6'/><g><circle cx='40' cy='22' r='6.5' fill='%23E8893A'/><circle cx='40' cy='22' r='3' fill='%23B8242A'/><circle cx='75' cy='30' r='6.5' fill='%23F4A340'/><circle cx='75' cy='30' r='3' fill='%23B8242A'/><circle cx='110' cy='35' r='6.5' fill='%23E8893A'/><circle cx='110' cy='35' r='3' fill='%23B8242A'/><circle cx='140' cy='37' r='7' fill='%23F4A340'/><circle cx='140' cy='37' r='3.2' fill='%23B8242A'/><circle cx='170' cy='35' r='6.5' fill='%23E8893A'/><circle cx='170' cy='35' r='3' fill='%23B8242A'/><circle cx='205' cy='30' r='6.5' fill='%23F4A340'/><circle cx='205' cy='30' r='3' fill='%23B8242A'/><circle cx='240' cy='22' r='6.5' fill='%23E8893A'/><circle cx='240' cy='22' r='3' fill='%23B8242A'/></g><g fill='%2386A550'><path d='M40 30 q -3 6 -1 10 q 4 -2 5 -8 z'/><path d='M75 38 q -3 6 -1 10 q 4 -2 5 -8 z'/><path d='M110 43 q -3 6 -1 10 q 4 -2 5 -8 z'/><path d='M170 43 q 3 6 1 10 q -4 -2 -5 -8 z'/><path d='M205 38 q 3 6 1 10 q -4 -2 -5 -8 z'/><path d='M240 30 q 3 6 1 10 q -4 -2 -5 -8 z'/></g></svg>");
+    background-repeat: no-repeat; background-position: center;
+  }
+  /* Lotus pendant below */
+  .portrait-frame::after {
+    content: "";
+    position: absolute;
+    bottom: -28px; left: 50%; transform: translateX(-50%);
+    width: 110px; height: 38px;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 110 38'><g fill='none' stroke='%23B8860B' stroke-width='1.1'><path d='M55 4 Q 22 18 55 32 Q 88 18 55 4 Z'/><path d='M55 10 Q 36 18 55 26 Q 74 18 55 10 Z'/><path d='M30 18 Q 18 12 14 22'/><path d='M80 18 Q 92 12 96 22'/></g><circle cx='55' cy='18' r='2.6' fill='%23B8242A'/><circle cx='14' cy='22' r='1.6' fill='%23B8242A'/><circle cx='96' cy='22' r='1.6' fill='%23B8242A'/></svg>");
+    background-repeat: no-repeat; background-position: center;
+  }
+
+  /* Push the bio columns away from the frame so the toran/lotus don't crowd text */
+  .split.has-portrait { align-items: center; gap: 80px; }
+  @media (max-width: 800px) {
+    .portrait-frame { max-width: 320px; }
+    .split.has-portrait { gap: 56px; }
+  }
+</style>
 </head>
 <body>
 
@@ -45,8 +99,8 @@
 <!-- MOHIT -->
 <section class="tight">
   <div class="container">
-    <div class="split">
-      <div class="img-col" style="background-image:url('images/mohit-chopra.jpg'); background-size:cover; background-position:center 30%; "></div>
+    <div class="split has-portrait">
+      <div><div class="portrait-frame"><div class="photo" style="background-image:url('images/mohit-chopra.jpg'); background-position:center 30%;"></div></div></div>
       <div>
         <span class="eyebrow">The Founder</span>
         <h2 style="margin-top:16px; font-size:48px;">Mohit Chopra</h2>
@@ -63,8 +117,8 @@
 <!-- AMIT -->
 <section style="background:var(--ivory);">
   <div class="container">
-    <div class="split flip">
-      <div class="img-col" style="background-image:url('images/amit-chopra.png'); background-size:cover; background-position:center top; "></div>
+    <div class="split flip has-portrait">
+      <div><div class="portrait-frame"><div class="photo" style="background-image:url('images/amit-chopra.png'); background-position:center top;"></div></div></div>
       <div>
         <span class="eyebrow">The Co-Founder</span>
         <h2 style="margin-top:16px; font-size:48px;">Amit Chopra</h2>
@@ -81,8 +135,8 @@
 <!-- MARY -->
 <section class="tight">
   <div class="container">
-    <div class="split">
-      <div class="img-col" style="background-image:url('images/mary-crave.jpg'); background-size:cover; background-position:center 25%; "></div>
+    <div class="split has-portrait">
+      <div><div class="portrait-frame"><div class="photo" style="background-image:url('images/mary-crave.jpg'); background-position:center 25%;"></div></div></div>
       <div>
         <span class="eyebrow">Tour Host With a Difference</span>
         <h2 style="margin-top:16px; font-size:48px;">Mary Crave</h2>
@@ -115,10 +169,10 @@
     <div><div class="brand" style="margin-bottom:20px;"><div class="brand-mark" style="border-color: var(--sandstone); color: var(--sandstone);">T</div><div><div class="brand-name" style="color:var(--cream);">Travel Pals</div><span class="brand-tag" style="color: var(--sandstone);">Curated Journeys</span></div></div><p>Bespoke and small-group journeys through Incredible India and beyond.</p></div>
     <div><h4>Journeys</h4><ul><li><a href="tour-nov-2026.html">North India · Nov 2026</a></li><li><a href="tour-nov-2026-rail.html">Rail on All Gauges · Nov 2026</a></li><li><a href="tour-feb-2027.html">Nagaur Cattle Fair · Feb 2027</a></li><li><a href="tour-feb-2027-stitching.html">Stitching Tracks · Feb 2027</a></li><li><a href="private.html">Private Journeys</a></li></ul></div>
     <div><h4>Discover</h4><ul><li><a href="india.html">About India</a></li><li><a href="about.html">Our Story</a></li><li><a href="booking.html">Booking</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-    <div><h4>Connect</h4><ul><li><a href="/cdn-cgi/l/email-protection#23574c5651506357514255464f53424f500d5650"><span class="__cf_email__" data-cfemail="deaab1abacad9eaaacbfa8bbb2aebfb2adf0abad">[email&#160;protected]</span></a></li><li><a href="tel:+15875865189">+1 587 586 5189</a></li></ul></div>
+    <div><h4>Connect</h4><ul><li><a href="mailto:tours@travelpals.us">tours@travelpals.us</a></li><li><a href="tel:+15875865189">+1 587 586 5189</a></li></ul></div>
   </div>
   <div class="container footer-bottom"><span>© 2026 Travel Pals · Atithi Devo Bhava</span><span>Curated with care</span></div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</body>
 </html>

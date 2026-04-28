@@ -8,6 +8,79 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css?v=5">
+<style>
+  /* Hosts trio — oval frames with Indian-traditional ornament */
+  .hosts-trio { padding: 96px 0 88px; background: var(--cream); position: relative; }
+  .hosts-trio::before, .hosts-trio::after {
+    content: ""; position: absolute; left: 50%; transform: translateX(-50%);
+    width: 200px; height: 24px; opacity: 0.55; pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 24'><g fill='none' stroke='%23B8860B' stroke-width='1.2'><path d='M0 12 Q 8 4 16 12 T 32 12 T 48 12 T 64 12 T 80 12 T 96 12 T 112 12 T 128 12 T 144 12 T 160 12 T 176 12 T 192 12 T 208 12'/></g><g fill='%23B8242A'><circle cx='8' cy='12' r='1.6'/><circle cx='40' cy='12' r='1.6'/><circle cx='72' cy='12' r='1.6'/><circle cx='104' cy='12' r='1.6'/><circle cx='136' cy='12' r='1.6'/><circle cx='168' cy='12' r='1.6'/></g></svg>");
+    background-repeat: no-repeat; background-position: center;
+  }
+  .hosts-trio::before { top: 38px; }
+  .hosts-trio::after  { bottom: 38px; }
+  .hosts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px; max-width: 1080px; margin: 64px auto 0; }
+  .host-card { text-align: center; }
+  .host-frame {
+    position: relative;
+    width: 240px; height: 240px;
+    margin: 0 auto;
+    border-radius: 50%;
+    /* Concentric gold rings */
+    background:
+      radial-gradient(circle, transparent 102px, #B8860B 102px, #B8860B 105px, transparent 105px),
+      radial-gradient(circle, transparent 110px, #F5C99A 110px, #F5C99A 112px, transparent 112px),
+      radial-gradient(circle, transparent 117px, #B8860B 117px, #B8860B 120px, transparent 120px);
+    padding: 12px;
+    box-sizing: border-box;
+  }
+  .host-frame .photo {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center 25%;
+    box-shadow: inset 0 0 0 3px var(--cream), inset 0 0 0 5px #B8860B;
+  }
+  /* Marigold toran at top */
+  .host-frame::before {
+    content: "";
+    position: absolute;
+    top: -28px; left: 50%; transform: translateX(-50%);
+    width: 180px; height: 36px; pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 36'><path d='M10 6 Q 90 38 170 6' fill='none' stroke='%23B8860B' stroke-width='0.8' opacity='0.6'/><g><circle cx='30' cy='16' r='5' fill='%23E8893A'/><circle cx='30' cy='16' r='2.2' fill='%23B8242A'/><circle cx='55' cy='22' r='5' fill='%23F4A340'/><circle cx='55' cy='22' r='2.2' fill='%23B8242A'/><circle cx='80' cy='26' r='5' fill='%23E8893A'/><circle cx='80' cy='26' r='2.2' fill='%23B8242A'/><circle cx='100' cy='26' r='5' fill='%23F4A340'/><circle cx='100' cy='26' r='2.2' fill='%23B8242A'/><circle cx='125' cy='22' r='5' fill='%23E8893A'/><circle cx='125' cy='22' r='2.2' fill='%23B8242A'/><circle cx='150' cy='16' r='5' fill='%23F4A340'/><circle cx='150' cy='16' r='2.2' fill='%23B8242A'/></g><g fill='%2386A550'><path d='M30 22 q -3 5 -1 8 q 3 -2 4 -7 z'/><path d='M55 28 q -3 5 -1 8 q 3 -2 4 -7 z'/><path d='M80 32 q -3 5 -1 8 q 3 -2 4 -7 z'/><path d='M100 32 q 3 5 1 8 q -3 -2 -4 -7 z'/><path d='M125 28 q 3 5 1 8 q -3 -2 -4 -7 z'/><path d='M150 22 q 3 5 1 8 q -3 -2 -4 -7 z'/></g></svg>");
+    background-repeat: no-repeat; background-position: center;
+  }
+  /* Lotus / paisley at bottom */
+  .host-frame::after {
+    content: "";
+    position: absolute;
+    bottom: -22px; left: 50%; transform: translateX(-50%);
+    width: 80px; height: 28px; pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 28'><g fill='none' stroke='%23B8860B' stroke-width='1'><path d='M40 4 Q 20 14 40 24 Q 60 14 40 4 Z'/><path d='M40 8 Q 28 14 40 20 Q 52 14 40 8 Z'/></g><circle cx='40' cy='14' r='2' fill='%23B8242A'/></svg>");
+    background-repeat: no-repeat; background-position: center;
+  }
+  .host-name { font-family: var(--display); font-size: 26px; color: var(--ink); margin-top: 36px; line-height: 1.2; }
+  .host-role { font-family: var(--caps); font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-deep); margin-top: 8px; font-weight: 600; }
+  .host-quote { font-family: var(--serif); font-style: italic; color: var(--ink-soft); font-size: 14.5px; line-height: 1.6; margin-top: 14px; max-width: 28ch; margin-left: auto; margin-right: auto; }
+
+  @media (max-width: 800px) {
+    .hosts-grid { grid-template-columns: 1fr; gap: 64px; }
+    .host-frame { width: 220px; height: 220px; }
+  }
+
+  /* Mary bio image — circular accent, gold ring */
+  .mary-portrait {
+    width: 100%; max-width: 360px; aspect-ratio: 1; border-radius: 50%;
+    background-size: cover; background-position: center 25%;
+    margin: 0 auto;
+    box-shadow:
+      0 0 0 4px var(--cream),
+      0 0 0 6px #B8860B,
+      0 0 0 12px var(--cream),
+      0 0 0 13px #F5C99A,
+      0 20px 50px rgba(26,31,58,0.18);
+  }
+</style>
 </head>
 <body>
 
@@ -54,6 +127,27 @@
     <h2 style="margin-top:16px;">A theatrical Rajasthan, once a year.</h2>
     <div style="display:flex;justify-content:center;"><div class="hr-gold"></div></div>
     <p class="lede">Approximately 70,000 bullocks, camels and horses lavishly decorated. Owners in long moustaches and colourful turbans. Tug-of-war, camel races, jugglers, puppeteers, storytellers — and the Mirchi Bazaar in full bloom. We've shaped a fourteen-day journey around it.</p>
+  </div>
+</section>
+
+<!-- MARY BIO -->
+<section style="background:var(--ivory);">
+  <div class="container">
+    <div class="split">
+      <div>
+        <div class="mary-portrait" style="background-image:url('images/mary-crave.jpg');"></div>
+      </div>
+      <div>
+        <span class="eyebrow">Meet Your Tour Host</span>
+        <h2 style="margin-top:16px;">Mary Crave</h2>
+        <div style="font-family: var(--caps); font-size:11px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold-deep); font-weight:600; margin-top:12px;">A Traveller's Traveller</div>
+        <div class="hr-gold"></div>
+        <p class="lede" style="margin-bottom:20px;">"Join me on a journey I have prepared, with care, for just fifteen of us."</p>
+        <p style="margin-bottom:18px; color:var(--ink-soft); font-size:17px; line-height:1.75;">Mary first lived overseas in Sri Lanka on a 4-H exchange — and the world never let her go. Decades of leading small groups across East and Southern Africa taught her exactly what makes a hosted journey work: the right pace, the right pause, the moments people remember a year later.</p>
+        <p style="margin-bottom:18px; color:var(--ink-soft); font-size:17px; line-height:1.75;">She fell for India in early 2025 — the diversity, the colour, the rituals, the warmth of strangers. Now she partners with the Chopra brothers to bring small groups of North American travellers into the country she has come to love. The Nagaur Fair tour is her February 2027 invitation.</p>
+        <p style="color:var(--ink-soft); font-size:17px; line-height:1.75;">"I will be there from arrival to farewell — to translate, to introduce, to make sure every traveller feels at home in a country that has felt like home to me from the first morning."</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -193,10 +287,10 @@
     </div>
     <div><h4>Journeys</h4><ul><li><a href="tour-nov-2026.html">North India · Nov 2026</a></li><li><a href="tour-nov-2026-rail.html">Rail on All Gauges · Nov 2026</a></li><li><a href="tour-feb-2027.html">Nagaur Cattle Fair · Feb 2027</a></li><li><a href="tour-feb-2027-stitching.html">Stitching Tracks · Feb 2027</a></li><li><a href="private.html">Private Journeys</a></li></ul></div>
     <div><h4>Discover</h4><ul><li><a href="india.html">About India</a></li><li><a href="about.html">Our Story</a></li><li><a href="booking.html">Booking</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-    <div><h4>Connect</h4><ul><li><a href="/cdn-cgi/l/email-protection#51253e2423221125233027343d21303d227f2422"><span class="__cf_email__" data-cfemail="aadec5dfd8d9eaded8cbdccfc6dacbc6d984dfd9">[email&#160;protected]</span></a></li><li><a href="tel:+15875865189">+1 587 586 5189</a></li></ul></div>
+    <div><h4>Connect</h4><ul><li><a href="mailto:tours@travelpals.us">tours@travelpals.us</a></li><li><a href="tel:+15875865189">+1 587 586 5189</a></li></ul></div>
   </div>
   <div class="container footer-bottom"><span>© 2026 Travel Pals · Atithi Devo Bhava</span><span>Curated with care</span></div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</body>
 </html>
