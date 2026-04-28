@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Three Kingdoms · A Suggestive Private Journey — Travel Pals</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=5">
+<style>
+.tk-hero {
+  position: relative;
+  min-height: 88vh;
+  display: flex; align-items: flex-end;
+  background: var(--ink);
+  background-image:
+    linear-gradient(180deg, rgba(26,31,58,0.65) 0%, rgba(26,31,58,0.5) 45%, rgba(26,31,58,0.7) 75%, rgba(26,31,58,0.92) 100%),
+    url('https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&w=2400&q=85');
+  background-size: cover; background-position: center;
+  color: var(--cream);
+  padding: 120px 0 80px;
+}
+.tk-hero .crumb {
+  font-family: var(--caps); font-size: 11px; letter-spacing: 0.4em;
+  text-transform: uppercase; color: var(--sandstone); margin-bottom: 28px;
+}
+.tk-hero h1 {
+  font-family: var(--display);
+  font-size: clamp(48px, 7.5vw, 108px);
+  line-height: 1.02; color: var(--cream);
+  max-width: 16ch; letter-spacing: -0.015em; margin-bottom: 24px;
+}
+.tk-hero h1 em {
+  font-family: var(--serif); font-style: italic;
+  color: var(--sandstone); font-weight: 400;
+}
+.tk-hero .lede { color: rgba(251,247,238,0.88); max-width: 64ch; font-size: 20px; line-height: 1.55; }
+.tk-hero .meta {
+  display: flex; gap: 48px; margin-top: 48px; flex-wrap: wrap;
+  padding-top: 32px; border-top: 1px solid rgba(212,184,150,0.3);
+}
+.tk-hero .meta div .k {
+  display: block; font-family: var(--caps); font-size: 10px;
+  letter-spacing: 0.4em; text-transform: uppercase; color: var(--sandstone); margin-bottom: 8px;
+}
+.tk-hero .meta div .v {
+  font-family: var(--display); font-size: 22px; color: var(--cream); letter-spacing: 0.02em;
+}
+
+.sample-banner {
+  background: var(--ivory-2); border-top: 1px solid var(--gold);
+  border-bottom: 1px solid var(--gold); padding: 28px 0; text-align: center;
+}
+.sample-banner .pill {
+  display: inline-block; font-family: var(--caps); font-size: 10px;
+  letter-spacing: 0.4em; text-transform: uppercase; color: var(--cream);
+  background: var(--henna); padding: 6px 14px; margin-right: 16px; font-weight: 600;
+}
+.sample-banner span.txt { font-family: var(--serif); font-style: italic; font-size: 17px; color: var(--ink-soft); }
+
+/* Three-act structure */
+.act-divider {
+  background: var(--cream); padding: 96px 0 32px; text-align: center;
+}
+.act-divider.alt { background: var(--ivory-2); }
+.act-divider.alt2 { background: var(--ivory); }
+.act-divider .roman {
+  font-family: var(--display); font-size: 22px;
+  color: var(--gold-deep); letter-spacing: 0.4em; margin-bottom: 12px;
+}
+.act-divider h3 { font-family: var(--display); font-size: 48px; color: var(--ink); margin-bottom: 12px; }
+.act-divider .sub {
+  font-family: var(--serif); font-style: italic; font-size: 19px;
+  color: var(--ink-soft); max-width: 52ch; margin: 0 auto;
+}
+.act-divider::before, .act-divider::after {
+  content: ""; display: inline-block; width: 60px; height: 1px;
+  background: var(--gold); vertical-align: middle; margin: 0 16px;
+}
+.act-divider .h-row { display: flex; align-items: center; justify-content: center; }
+
+.chapters { padding: 32px 0 64px; }
+.chapters.alt { background: var(--ivory-2); }
+.chapters.alt2 { background: var(--ivory); }
+.chapters.main { background: var(--cream); }
+.chapter-list {
+  display: grid; grid-template-columns: 1fr;
+  max-width: 1100px; margin: 32px auto 0;
+}
+.chapter {
+  display: grid; grid-template-columns: 80px 1fr 280px; gap: 40px;
+  padding: 28px 0; border-bottom: 1px solid rgba(160,140,110,0.2); align-items: baseline;
+}
+.chapter:last-child { border-bottom: 0; }
+.chapter .num { font-family: var(--display); font-size: 18px; color: var(--gold-deep); letter-spacing: 0.05em; }
+.chapter .where { font-family: var(--display); font-size: 28px; color: var(--ink); line-height: 1.2; margin-bottom: 4px; }
+.chapter .where .nights {
+  font-family: var(--caps); font-size: 11px; letter-spacing: 0.3em;
+  color: var(--gold-deep); margin-left: 12px; vertical-align: middle;
+}
+.chapter .gist { font-size: 15px; color: var(--ink-soft); line-height: 1.6; font-family: var(--display); font-style: italic; }
+.chapter .stay {
+  font-family: var(--caps); font-size: 10px; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--ink-soft); text-align: right; line-height: 1.7;
+}
+.chapter .stay strong { color: var(--gold-deep); font-weight: 600; display: block; margin-bottom: 2px; }
+@media (max-width: 800px) {
+  .chapter { grid-template-columns: 1fr; gap: 8px; }
+  .chapter .stay { text-align: left; margin-top: 8px; }
+}
+
+/* Day cards */
+.itinerary { background: var(--ivory); padding: 96px 0; }
+.day-stack { max-width: 940px; margin: 56px auto 0; }
+.day-card {
+  background: var(--cream); padding: 40px 48px; margin-bottom: 4px;
+  display: grid; grid-template-columns: 140px 1fr; gap: 40px; align-items: start;
+  border-left: 2px solid var(--gold);
+}
+.day-card .day-num { font-family: var(--caps); font-size: 10px; letter-spacing: 0.32em; color: var(--gold-deep); font-weight: 600; margin-bottom: 6px; }
+.day-card .day-where { font-family: var(--display); font-size: 26px; color: var(--ink); line-height: 1.2; }
+.day-card .day-where .arrow { color: var(--gold); margin: 0 6px; }
+.day-card .day-body p { color: var(--ink-soft); margin-bottom: 12px; font-size: 16px; line-height: 1.7; }
+.day-card .day-body p:last-child { margin-bottom: 0; }
+.day-card .day-body .moment {
+  display: inline-block; font-family: var(--serif); font-style: italic;
+  color: var(--gold-deep); font-size: 15px; margin-top: 4px;
+  border-left: 1px solid var(--gold); padding-left: 14px;
+}
+@media (max-width: 800px) { .day-card { grid-template-columns: 1fr; padding: 32px 24px; gap: 16px; } }
+
+/* Hotels */
+.hotels-showcase { background: var(--ink); color: var(--cream); padding: 120px 0; }
+.hotels-showcase h2, .hotels-showcase .eyebrow { color: var(--cream); }
+.hotels-showcase .eyebrow { color: var(--sandstone); }
+.hotels-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+  background: rgba(212,184,150,0.18); margin-top: 56px;
+  border: 1px solid rgba(212,184,150,0.18);
+}
+.hotel-cell { background: var(--ink); padding: 32px 24px; }
+.hotel-cell .city {
+  font-family: var(--caps); font-size: 10px; letter-spacing: 0.32em;
+  text-transform: uppercase; color: var(--sandstone); margin-bottom: 12px;
+}
+.hotel-cell .name { font-family: var(--display); font-size: 20px; color: var(--cream); line-height: 1.2; margin-bottom: 8px; }
+.hotel-cell .desc { font-size: 13px; color: rgba(251,247,238,0.72); line-height: 1.6; }
+@media (max-width: 1000px) { .hotels-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px)  { .hotels-grid { grid-template-columns: 1fr; } }
+
+/* Map / sweep */
+.sweep { background: var(--cream); padding: 120px 0; }
+.sweep-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 56px;
+}
+.sweep-cell { padding: 8px 0; }
+.sweep-cell .num {
+  font-family: var(--display); font-size: 14px; color: var(--gold-deep);
+  letter-spacing: 0.32em; margin-bottom: 16px; text-transform: uppercase;
+}
+.sweep-cell h4 { font-family: var(--display); font-size: 26px; color: var(--ink); margin-bottom: 12px; }
+.sweep-cell p { font-size: 15px; color: var(--ink-soft); line-height: 1.7; }
+@media (max-width: 900px) { .sweep-grid { grid-template-columns: 1fr; } }
+
+/* Disclaimer */
+.disclaimer { background: var(--ivory); padding: 96px 0; text-align: center; }
+.disclaimer .frame {
+  max-width: 720px; margin: 0 auto; border: 1px solid var(--gold);
+  padding: 64px 48px; background: var(--cream); position: relative;
+}
+.disclaimer .frame::before {
+  content: "✦"; position: absolute; top: -16px; left: 50%; transform: translateX(-50%);
+  background: var(--ivory); color: var(--gold); padding: 0 16px; font-size: 18px;
+}
+.disclaimer h3 { font-family: var(--display); font-size: 36px; color: var(--ink); margin-bottom: 20px; }
+.disclaimer p { font-size: 17px; color: var(--ink-soft); line-height: 1.7; max-width: 56ch; margin: 0 auto 16px; }
+
+.begin-strip {
+  background-image:
+    linear-gradient(90deg, rgba(26,31,58,0.85) 0%, rgba(26,31,58,0.4) 100%),
+    url('https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&w=2400&q=80');
+  background-size: cover; background-position: center;
+  color: var(--cream); padding: 120px 0;
+}
+.begin-strip .eyebrow { color: var(--sandstone); }
+.begin-strip h2 { color: var(--cream); max-width: 18ch; }
+.begin-strip p { color: rgba(251,247,238,0.85); max-width: 60ch; }
+
+.other-samples { background: var(--ivory); padding: 96px 0; }
+.others-grid {
+  display:grid; grid-template-columns: 1fr 1fr; gap: 32px;
+  max-width: 1200px; margin: 56px auto 0;
+}
+.other-card2 {
+  background: var(--cream); border: 1px solid var(--ivory-2);
+  text-decoration: none; color: inherit;
+  transition: box-shadow .3s ease;
+  display: block;
+}
+.other-card2:hover { box-shadow: 0 24px 60px -20px rgba(26,31,58,0.25); }
+.other-card2 .image { height: 220px; background-size: cover; background-position: center; }
+.other-card2 .body { padding: 36px 32px; }
+@media (max-width: 800px) { .others-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><div class="brand-mark">T</div><div><div class="brand-name">Travel Pals</div><span class="brand-tag">Curated Journeys</span></div></a>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('nav-links').classList.toggle('open')">☰</button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="tours.html">Group Tours</a></li>
+      <li><a href="private.html" class="active">Private Journeys</a></li>
+      <li><a href="india.html">About India</a></li>
+      <li><a href="about.html">Our Story</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="booking.html" class="nav-cta">Book Now</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="tk-hero">
+  <div class="container">
+    <div class="crumb">Private Journeys · Suggestive Itinerary · Three-Country Edition</div>
+    <h1>Three Kingdoms, <em>twenty-two</em> nights.</h1>
+    <p class="lede">For the traveller who wants to draw the entire arc of the Subcontinent — from the snow peaks of the Nepalese Himalaya, across the Bhutanese cliff-monasteries of Paro, down through the Thar Desert citadels of Rajasthan, and ending at the gold-domed Sikh shrine of Amritsar. Distilled from a private tour we built for two couples.</p>
+    <div class="meta">
+      <div><span class="k">Duration</span><span class="v">22 nights / 23 days</span></div>
+      <div><span class="k">Countries</span><span class="v">India · Nepal · Bhutan</span></div>
+      <div><span class="k">Best Season</span><span class="v">Oct – Mar</span></div>
+      <div><span class="k">Pace</span><span class="v">Ambitious</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- BANNER -->
+<div class="sample-banner">
+  <div class="container" style="display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:8px;">
+    <span class="pill">Sample Itinerary</span>
+    <span class="txt">A starting point — not a fixed package. Pace, hotels, side-trips and inclusions are entirely yours to shape.</span>
+  </div>
+</div>
+
+<!-- ACT I — HIMALAYAN KINGDOMS -->
+<section class="act-divider">
+  <div class="container">
+    <div class="roman">— ACT I —</div>
+    <h3>The Himalayan Kingdoms</h3>
+    <div class="h-row"><span class="sub">Kathmandu temples, a mountain flight past Everest, the lakes of Pokhara, and the cliff-monastery of Paro.</span></div>
+  </div>
+</section>
+
+<section class="chapters main">
+  <div class="container">
+    <div class="chapter-list">
+      <div class="chapter">
+        <div class="num">— 01</div>
+        <div>
+          <div class="where">Delhi <span class="nights">2 nights</span></div>
+          <p class="gist">An easy first landing — early check-in, drive-throughs of Lutyens' Delhi, and an optional visit to the Mother Teresa-managed school for the blind.</p>
+        </div>
+        <div class="stay"><strong>The Imperial</strong>Janpath, Lutyens' Delhi</div>
+      </div>
+
+      <div class="chapter">
+        <div class="num">— 02</div>
+        <div>
+          <div class="where">Kathmandu <span class="nights">2 nights</span></div>
+          <p class="gist">A morning mountain flight along the spine of the Himalayas — Everest off the wing — followed by Pashupatinath, Boudhanath, and the medieval lanes of Patan.</p>
+        </div>
+        <div class="stay"><strong>Hyatt Regency</strong>Boudha</div>
+      </div>
+
+      <div class="chapter">
+        <div class="num">— 03</div>
+        <div>
+          <div class="where">Pokhara <span class="nights">2 nights</span></div>
+          <p class="gist">A short flight west to lakes and white peaks. Sunrise at Sarangkot — the Annapurna massif lighting up over Phewa Lake.</p>
+        </div>
+        <div class="stay"><strong>Fish Tail Lodge</strong>Phewa Lake</div>
+      </div>
+
+      <div class="chapter">
+        <div class="num">— 04</div>
+        <div>
+          <div class="where">Paro · Bhutan <span class="nights">3 nights</span></div>
+          <p class="gist">The hike up to Tiger's Nest Monastery, the dzongs and chortens of the valley, and three quiet nights at a heritage retreat — full board.</p>
+        </div>
+        <div class="stay"><strong>Zhiwa Ling Heritage</strong>Paro Valley</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACT II — RAJASTHAN DESERT -->
+<section class="act-divider alt">
+  <div class="container">
+    <div class="roman">— ACT II —</div>
+    <h3>Rajasthan, the Desert Kingdoms</h3>
+    <div class="h-row"><span class="sub">A descent into the Thar — the painted havelis of Mandawa, the spice city of Bikaner, golden Jaisalmer, and blue Jodhpur.</span></div>
+  </div>
+</section>
+
+<section class="chapters alt">
+  <div class="container">
+    <div class="chapter-list">
+      <div class="chapter">
+        <div class="num">— 05</div>
+        <div>
+          <div class="where">Mandawa <span class="nights">1 night</span></div>
+          <p class="gist">The painted havelis of Shekhawati — open-air frescoes from 18th-century merchant houses, the world's largest gallery of folk art.</p>
+        </div>
+        <div class="stay"><strong>Vivaana Culture</strong>Shekhawati</div>
+      </div>
+
+      <div class="chapter">
+        <div class="num">— 06</div>
+        <div>
+          <div class="where">Bikaner <span class="nights">1 night</span></div>
+          <p class="gist">Junagarh Fort, Lalgarh Palace, the Laxmi Nath Temple — and the spicy snacks Bikaner is, somewhat improbably, world-famous for.</p>
+        </div>
+        <div class="stay"><strong>Narendra Bhawan</strong>Royal Heritage</div>
+      </div>
+
+      <div class="chapter">
+        <div class="num">— 07</div>
+        <div>
+          <div class="where">Jaisalmer <span class="nights">2 nights</span></div>
+          <p class="gist">The Golden City rising from the dunes — Jain temples carved like lace, the Patwon Ki Haveli, and a camel-back sunset across Sam Sand Dunes with folk dancers and dinner under the stars.</p>
+        </div>
+        <div class="stay"><strong>Marriott</strong>Jaisalmer</div>
+      </div>
+
+      <div class="chapter">
+        <div class="num">— 08</div>
+        <div>
+          <div class="where">Jodhpur <span class="nights">2 nights</span></div>
+          <p class="gist">A jeep safari to a Bishnoi village, Mehrangarh Fort high above the blue city, the cenotaphs of Jaswant Thada, and the bustling 'haat bazaar' of Sadar Market.</p>
+        </div>
+        <div class="stay"><strong>Umaid Bhawan Palace</strong>Royal Wing</div>
+      </div>
+
+      <div class="chapter">
+        <div class="num">— 09</div>
+        <div>
+          <div class="where">Deogarh <span class="nights">1 night</span></div>
+          <p class="gist">A 17th-century palace-hotel in the Aravalli foothills — rural Rajasthan, lakeside picnics, no other guests for kilometres.</p>
+        </div>
+        <div class="stay"><strong>Deogarh Mahal</strong>Heritage Palace</div>
+      </div>
+
+      <div class="chapter">
+        <div class="num">— 10</div>
+        <div>
+          <div class="where">Jaipur <span class="nights">2 nights</span></div>
+          <p class="gist">The Pink City — Amber Fort, City Palace, Jantar Mantar — and a more local pleasure: a visit to the street barber.</p>
+        </div>
+        <div class="stay"><strong>Trident</strong>Jal Mahal</div>
+      </div>
+
+      <div class="chapter">
+        <div class="num">— 11</div>
+        <div>
+          <div class="where">Agra <span class="nights">1 night</span></div>
+          <p class="gist">A road via Fatehpur Sikri, Akbar's abandoned red-sandstone capital — and a dawn visit to the Taj Mahal the next morning.</p>
+        </div>
+        <div class="stay"><strong>The Oberoi Amarvilas</strong>Taj East Gate</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACT III — THE GOLDEN END -->
+<section class="act-divider alt2">
+  <div class="container">
+    <div class="roman">— ACT III —</div>
+    <h3>The Golden Temple</h3>
+    <div class="h-row"><span class="sub">A flight north to Amritsar — Sikhism's holiest shrine and the theatrical Wagah border with Pakistan.</span></div>
+  </div>
+</section>
+
+<section class="chapters alt2">
+  <div class="container">
+    <div class="chapter-list">
+      <div class="chapter">
+        <div class="num">— 12</div>
+        <div>
+          <div class="where">Amritsar <span class="nights">2 nights</span></div>
+          <p class="gist">The Golden Temple by day and by lamplight — the 'Palki' ceremony in the evening, when the holy book is laid to rest. Jallianwala Bagh. The 'Beating the Retreat' at the Wagah border, where India and Pakistan march each evening at dusk.</p>
+        </div>
+        <div class="stay"><strong>Hyatt</strong>Amritsar</div>
+      </div>
+
+      <div class="chapter">
+        <div class="num">— 13</div>
+        <div>
+          <div class="where">Delhi <span class="nights">1 night</span></div>
+          <p class="gist">An airport hotel for an early morning flight home — the gentle landing back into the modern world.</p>
+        </div>
+        <div class="stay"><strong>Andaz / Pullman</strong>Aerocity</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DAY-BY-DAY HIGHLIGHTS -->
+<section class="itinerary">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">Five Days, Five Stories</span>
+      <h2 style="margin-top:16px;">A more considered look.</h2>
+      <div style="display:flex;justify-content:center;"><div class="hr-gold"></div></div>
+      <p class="lede">A handful of representative days. Every one of these is moveable, lengthenable, and re-shapeable around your interests.</p>
+    </div>
+
+    <div class="day-stack">
+      <div class="day-card">
+        <div>
+          <div class="day-num">Day 04</div>
+          <div class="day-where">Kathmandu · Mountain Flight</div>
+        </div>
+        <div class="day-body">
+          <p>A 5:30 AM transfer to the domestic terminal for the one-hour mountain flight. The Saab 340 climbs east from Kathmandu and runs the full spine of the Himalayas — fourteen 7,000-metre peaks visible from the right-side window, Everest itself off the wing.</p>
+          <p>Back at the hotel by 9 AM for breakfast. The afternoon is unhurried: Pashupatinath at the cremation ghats, Boudhanath stupa, and the brick lanes of Patan Durbar Square.</p>
+          <p class="moment">There are flights with views, and there are flights you remember the rest of your life. This is the second kind.</p>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div>
+          <div class="day-num">Day 08</div>
+          <div class="day-where">Paro · Tiger's Nest</div>
+        </div>
+        <div class="day-body">
+          <p>A 7 AM start with packed breakfast for the hike up to Taktsang — the Tiger's Nest Monastery — clinging 900 metres above the valley floor. Three hours up, including a stop at the cafeteria viewpoint for hot tea.</p>
+          <p>The monastery itself is small, dim, butter-lamp-lit. The descent is gentler. A late lunch at the resort, an afternoon hot stone bath, and dinner of red rice and ema datshi.</p>
+          <p class="moment">Bhutan does not let you in if you are unwilling to walk.</p>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div>
+          <div class="day-num">Day 13</div>
+          <div class="day-where">Jaisalmer · Sam Sand Dunes</div>
+        </div>
+        <div class="day-body">
+          <p>A morning tour of the living fort — the Patwon Ki Haveli, the Jain temples carved like ivory — and a long siesta through the desert afternoon.</p>
+          <p>At 4 PM, drive 40 km west to Sam Sand Dunes. Camel ride to the crest. Sit. Watch the sun drop. Folk dancers arrive. A bonfire is lit. Dinner is a Rajasthani thali on a low table on the sand.</p>
+          <p class="moment">The Thar at sunset is the cleanest silence on earth.</p>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div>
+          <div class="day-num">Day 20</div>
+          <div class="day-where">Agra <span class="arrow">→</span> Delhi <span class="arrow">→</span> Amritsar</div>
+        </div>
+        <div class="day-body">
+          <p>A 5:30 AM departure for the Taj — gates open at sunrise, and you'll have it nearly to yourselves for thirty golden minutes. Back to Amarvilas for breakfast on the lawn, then a drive to Delhi, a 3:25 PM Vistara flight to Amritsar, and arrival at the Hyatt by evening.</p>
+          <p>After dinner — optional but strongly recommended — the 'Palki' service at the Golden Temple. The holy book of Sikhism, the Guru Granth Sahib, is carried from the inner sanctum to its night chamber by hand. Pilgrims line the marble walkways. The temple, lit and reflected in the pool, is somehow even more beautiful at night than at dawn.</p>
+          <p class="moment">"An awe-inspiring moment of peace, tranquillity and spirituality."</p>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div>
+          <div class="day-num">Day 21</div>
+          <div class="day-where">Amritsar · Wagah Border</div>
+        </div>
+        <div class="day-body">
+          <p>A morning at the Golden Temple — the langar kitchen, where 100,000 people are fed for free every day; the museum; the Akal Takht. Then to Jallianwala Bagh, the garden where in 1919 Brigadier Dyer's troops fired 1,650 rounds into an unarmed crowd — the moment the Raj began to lose India.</p>
+          <p>Late afternoon, drive 30 km west to Attari-Wagah — the only road border between India and Pakistan. Both nations conduct a synchronised flag-lowering ceremony at sunset, with high-kicking soldiers, brass bands, and crowds chanting from facing stadiums. It is part military drill, part spectator sport, and entirely unique.</p>
+          <p class="moment">Two countries, two flags, one sunset, lowered at the same instant.</p>
+        </div>
+      </div>
+    </div>
+
+    <p style="text-align:center; max-width:60ch; margin:64px auto 0; color:var(--ink-soft); font-style:italic; font-family:var(--serif);">A full day-by-day, room-by-room itinerary is written for you once we begin a conversation. This is the shape of the journey — yours will be one of a kind.</p>
+  </div>
+</section>
+
+<!-- HOTELS SHOWCASE -->
+<section class="hotels-showcase">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">Where You'll Stay</span>
+      <h2 style="margin-top:16px;">A landmark property in every city.</h2>
+      <div style="display:flex;justify-content:center;"><div class="hr-gold"></div></div>
+      <p class="lede" style="color:rgba(251,247,238,0.78);">In the spirit of the original tour we built — a heritage flagship in each of the thirteen stops. Substitute, mix, or upgrade as you wish.</p>
+    </div>
+
+    <div class="hotels-grid">
+      <div class="hotel-cell"><div class="city">Delhi</div><div class="name">The Imperial</div><div class="desc">Lutyens-era heritage on Janpath. Where Independence was negotiated.</div></div>
+      <div class="hotel-cell"><div class="city">Kathmandu</div><div class="name">Hyatt Regency</div><div class="desc">A 37-acre Newari-style estate beside the great Boudhanath stupa.</div></div>
+      <div class="hotel-cell"><div class="city">Pokhara</div><div class="name">Fish Tail Lodge</div><div class="desc">A barge crossing to a private island on Phewa Lake; full Annapurna view.</div></div>
+      <div class="hotel-cell"><div class="city">Paro</div><div class="name">Zhiwa Ling Heritage</div><div class="desc">A traditionally-built Bhutanese resort, full board, in the Paro valley.</div></div>
+      <div class="hotel-cell"><div class="city">Mandawa</div><div class="name">Vivaana Culture</div><div class="desc">Two restored 19th-century havelis, every room frescoed by hand.</div></div>
+      <div class="hotel-cell"><div class="city">Bikaner</div><div class="name">Narendra Bhawan</div><div class="desc">The last Maharaja's private residence, now a 82-room boutique hotel.</div></div>
+      <div class="hotel-cell"><div class="city">Jaisalmer</div><div class="name">Marriott</div><div class="desc">A modern fort-style hotel, infinity pool overlooking the desert.</div></div>
+      <div class="hotel-cell"><div class="city">Jodhpur</div><div class="name">Umaid Bhawan Palace</div><div class="desc">The largest private residence in the world. The Maharaja still lives in one wing.</div></div>
+      <div class="hotel-cell"><div class="city">Deogarh</div><div class="name">Deogarh Mahal</div><div class="desc">A 17th-century hilltop fortress-palace, run by the descendants who own it.</div></div>
+      <div class="hotel-cell"><div class="city">Jaipur</div><div class="name">Trident</div><div class="desc">Lakeside grounds opposite the floating Jal Mahal palace.</div></div>
+      <div class="hotel-cell"><div class="city">Agra</div><div class="name">Oberoi Amarvilas</div><div class="desc">Six hundred metres from the Taj. Every room with a Taj view.</div></div>
+      <div class="hotel-cell"><div class="city">Amritsar</div><div class="name">Hyatt</div><div class="desc">Modern luxury, ten minutes from the Golden Temple.</div></div>
+    </div>
+
+    <p style="text-align:center; margin-top:48px; color:rgba(251,247,238,0.65); font-style:italic; font-family:var(--serif); font-size:15px;">Equivalent properties — Taj, Leela, ITC, Aman and others — can be substituted at any city.</p>
+  </div>
+</section>
+
+<!-- THREE COUNTRY SWEEP -->
+<section class="sweep">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">Three Countries, One Arc</span>
+      <h2 style="margin-top:16px;">The shape of the journey.</h2>
+      <div style="display:flex;justify-content:center;"><div class="hr-gold"></div></div>
+    </div>
+
+    <div class="sweep-grid">
+      <div class="sweep-cell">
+        <div class="num">— I · Nepal</div>
+        <h4>The Roof of the World</h4>
+        <p>Three nights split between Kathmandu and Pokhara. A mountain flight along the Everest range, sunrise at Sarangkot, the great Boudhanath stupa, and the medieval brickwork of Patan Durbar Square.</p>
+      </div>
+      <div class="sweep-cell">
+        <div class="num">— II · Bhutan</div>
+        <h4>The Last Shangri-La</h4>
+        <p>Three quiet nights in the Paro valley with full board — the hike up to Tiger's Nest, the dzongs and chortens, traditional hot-stone baths, and hours of nothing but mountain silence.</p>
+      </div>
+      <div class="sweep-cell">
+        <div class="num">— III · India</div>
+        <h4>The Subcontinent's Sweep</h4>
+        <p>Sixteen nights — Delhi, the Shekhawati frescoes, four desert citadels of Rajasthan, the Taj at dawn, and the gold-domed shrine of Sikhism at Amritsar with the spectacle of the Wagah border.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DISCLAIMER -->
+<section class="disclaimer">
+  <div class="container">
+    <div class="frame">
+      <h3>This is a starting point.</h3>
+      <p>The itinerary above is one ambitious edition we have built for travellers who wanted to draw the entire arc of the Subcontinent in one journey — three countries, twenty-two nights.</p>
+      <p>Yours may be longer or shorter, drop a country, add Sikkim or Ladakh, slow down in Rajasthan, or trade Amritsar for Varanasi. We listen first, propose within a week, and refine until it feels right.</p>
+      <p style="margin-top:32px;"><a href="contact.html" class="btn">Begin the Conversation</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- OTHER SAMPLES -->
+<section class="other-samples">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">Or Read the Other Samples</span>
+      <h2 style="margin-top:16px;">Two other ways of seeing India.</h2>
+      <div style="display:flex;justify-content:center;"><div class="hr-gold"></div></div>
+    </div>
+
+    <div class="others-grid">
+      <a href="private-quintessential.html" class="other-card2">
+        <div class="image" style="background-image:url('https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=1600&q=85');"></div>
+        <div class="body">
+          <div style="font-family:var(--caps); font-size:11px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold-deep); font-weight:600; margin-bottom:14px;">21 nights · Boutique Heritage</div>
+          <h3 style="font-family:var(--display); font-size:30px; line-height:1.12; margin-bottom:14px; color:var(--ink);">Quintessential India</h3>
+          <p style="font-family:var(--serif); font-style:italic; color:var(--gold-deep); font-size:15px; margin-bottom:18px;">Delhi · Shimla · Mumbai · Pench · Kanha · Varanasi · Agra · Ranthambore · Jaipur · Udaipur</p>
+          <p style="color:var(--ink-soft); font-size:15px; margin-bottom:24px;">A north-India sweep with Himalayan hill stations, two jungle reserves, and the ghats of Varanasi.</p>
+          <span style="font-family:var(--caps); font-size:11px; letter-spacing:0.28em; text-transform:uppercase; color:var(--ink); border-bottom:1px solid var(--gold); padding-bottom:4px;">Read the itinerary →</span>
+        </div>
+      </a>
+
+      <a href="private-north-kerala.html" class="other-card2">
+        <div class="image" style="background-image:url('https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1600&q=85');"></div>
+        <div class="body">
+          <div style="font-family:var(--caps); font-size:11px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold-deep); font-weight:600; margin-bottom:14px;">18 nights · Five-Star Luxury</div>
+          <h3 style="font-family:var(--display); font-size:30px; line-height:1.12; margin-bottom:14px; color:var(--ink);">North to Kerala</h3>
+          <p style="font-family:var(--serif); font-style:italic; color:var(--gold-deep); font-size:15px; margin-bottom:18px;">Delhi · Agra · Ranthambore · Jaipur · Udaipur · Mumbai · Cochin · Backwaters · Kumarakom</p>
+          <p style="color:var(--ink-soft); font-size:15px; margin-bottom:24px;">Both Indias — Mughal forts and tiger country, then a houseboat through the Kerala backwaters.</p>
+          <span style="font-family:var(--caps); font-size:11px; letter-spacing:0.28em; text-transform:uppercase; color:var(--ink); border-bottom:1px solid var(--gold); padding-bottom:4px;">Read the itinerary →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- BEGIN STRIP -->
+<section class="begin-strip">
+  <div class="container">
+    <span class="eyebrow">Three Conversations, One Journey</span>
+    <h2 style="margin-top:16px;">Tell us about your India.</h2>
+    <p class="lede" style="margin-top:20px;">We listen first, propose within a week, and refine until the itinerary feels right. No pressure, no packages — just a quiet, careful conversation.</p>
+    <div style="margin-top:32px; display:flex; gap:16px; flex-wrap:wrap;">
+      <a href="booking.html" class="btn">Booking Form</a>
+      <a href="contact.html" class="btn btn-ghost">Send a Message</a>
+      <a href="private.html" class="btn btn-ghost">All Private Journeys</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div><div class="brand" style="margin-bottom:20px;"><div class="brand-mark" style="border-color: var(--sandstone); color: var(--sandstone);">T</div><div><div class="brand-name" style="color:var(--cream);">Travel Pals</div><span class="brand-tag" style="color: var(--sandstone);">Curated Journeys</span></div></div><p>Bespoke and small-group journeys through Incredible India.</p></div>
+    <div><h4>Journeys</h4><ul><li><a href="tour-nov-2026.html">North India · Nov 2026</a></li><li><a href="tour-nov-2026-rail.html">Rail on All Gauges · Nov 2026</a></li><li><a href="tour-feb-2027.html">Nagaur Cattle Fair · Feb 2027</a></li><li><a href="tour-feb-2027-stitching.html">Stitching Tracks · Feb 2027</a></li><li><a href="private.html">Private Journeys</a></li></ul></div>
+    <div><h4>Discover</h4><ul><li><a href="india.html">About India</a></li><li><a href="about.html">Our Story</a></li><li><a href="booking.html">Booking</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div><h4>Connect</h4><ul><li><a href="/cdn-cgi/l/email-protection#b6c2d9c3c4c5f6c2c4d7c0d3dac6d7dac598c3c5"><span class="__cf_email__" data-cfemail="0f7b607a7d7c4f7b7d6e796a637f6e637c217a7c">[email&#160;protected]</span></a></li><li><a href="tel:+15875865189">+1 587 586 5189</a></li></ul></div>
+  </div>
+  <div class="container footer-bottom"><span>© 2026 Travel Pals · Atithi Devo Bhava</span><span>Curated with care</span></div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>

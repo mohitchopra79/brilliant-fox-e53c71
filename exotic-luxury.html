@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Exotic Luxury · Five-Star India — Travel Pals</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=5">
+<style>
+.lux-hero {
+  position: relative; min-height: 92vh; display: flex; align-items: flex-end;
+  background: var(--ink);
+  background-image:
+    linear-gradient(180deg, rgba(26,31,58,0.15) 0%, rgba(26,31,58,0.55) 70%, rgba(26,31,58,0.88) 100%),
+    url('https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=2400&q=85');
+  background-size: cover; background-position: center 40%;
+  color: var(--cream); padding: 120px 0 80px;
+}
+.lux-hero .crumb { font-family: var(--caps); font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--sandstone); margin-bottom: 28px; }
+.lux-hero h1 { font-family: var(--display); font-size: clamp(48px, 7.5vw, 112px); line-height: 1.02; color: var(--cream); max-width: 14ch; letter-spacing: -0.015em; margin-bottom: 24px; }
+.lux-hero h1 em { font-family: var(--serif); font-style: italic; color: var(--sandstone); font-weight: 400; }
+.lux-hero .lede { color: rgba(251,247,238,0.88); max-width: 64ch; font-size: 20px; line-height: 1.55; }
+.lux-hero .meta { display: flex; gap: 48px; margin-top: 48px; flex-wrap: wrap; padding-top: 32px; border-top: 1px solid rgba(212,184,150,0.3); }
+.lux-hero .meta div .k { display: block; font-family: var(--caps); font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--sandstone); margin-bottom: 8px; }
+.lux-hero .meta div .v { font-family: var(--display); font-size: 22px; color: var(--cream); letter-spacing: 0.02em; }
+
+.lux-banner { background: var(--ivory-2); border-top: 1px solid var(--henna); border-bottom: 1px solid var(--henna); padding: 28px 0; text-align: center; }
+.lux-banner .pill { display: inline-block; font-family: var(--caps); font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--cream); background: var(--henna); padding: 6px 14px; margin-right: 16px; font-weight: 600; }
+.lux-banner span.txt { font-family: var(--serif); font-style: italic; font-size: 17px; color: var(--ink-soft); }
+
+/* Narrative arc */
+.arc { background: var(--cream); padding: 120px 0; }
+.arc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--gold); border: 1px solid var(--gold); margin-top: 56px; }
+.arc-cell { background: var(--cream); padding: 48px 36px; }
+.arc-cell .arc-num { font-family: var(--caps); font-size: 11px; letter-spacing: 0.36em; color: var(--gold-deep); font-weight: 600; margin-bottom: 18px; }
+.arc-cell h3 { font-family: var(--display); font-size: 26px; color: var(--ink); line-height: 1.2; margin-bottom: 8px; }
+.arc-cell h3 em { font-family: var(--serif); font-style: italic; color: var(--gold-deep); font-weight: 400; }
+.arc-cell .arc-where { font-family: var(--serif); font-style: italic; color: var(--gold-deep); font-size: 14px; margin-bottom: 14px; }
+.arc-cell p { color: var(--ink-soft); font-size: 14px; line-height: 1.65; }
+@media (max-width: 1000px) { .arc-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .arc-grid { grid-template-columns: 1fr; } }
+
+/* Day-by-day */
+.itin { background: var(--ivory); padding: 96px 0; }
+.day-stack { max-width: 940px; margin: 56px auto 0; }
+.day-card { background: var(--cream); padding: 40px 48px; margin-bottom: 4px; display: grid; grid-template-columns: 160px 1fr; gap: 40px; align-items: start; border-left: 2px solid var(--henna); }
+.day-card .day-num { font-family: var(--caps); font-size: 10px; letter-spacing: 0.32em; color: var(--henna); font-weight: 600; margin-bottom: 6px; }
+.day-card .day-where { font-family: var(--display); font-size: 24px; color: var(--ink); line-height: 1.2; }
+.day-card .day-hotel { font-family: var(--serif); font-style: italic; color: var(--gold-deep); font-size: 14px; margin-top: 6px; }
+.day-card .day-where .arrow { color: var(--gold); margin: 0 6px; }
+.day-card .day-body p { color: var(--ink-soft); margin-bottom: 12px; font-size: 16px; line-height: 1.7; }
+.day-card .day-body p:last-child { margin-bottom: 0; }
+.day-card .day-body .moment { display: inline-block; font-family: var(--serif); font-style: italic; color: var(--gold-deep); font-size: 15px; margin-top: 4px; border-left: 1px solid var(--gold); padding-left: 14px; }
+@media (max-width: 800px) { .day-card { grid-template-columns: 1fr; padding: 32px 24px; gap: 16px; } }
+
+/* Hotels gallery */
+.hotels { background: var(--ink); color: var(--cream); padding: 120px 0; }
+.hotels h2, .hotels .eyebrow { color: var(--cream); }
+.hotels .eyebrow { color: var(--sandstone); }
+.hotels .lede { color: rgba(251,247,238,0.85); }
+.hotel-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(212,184,150,0.18); margin-top: 56px; border: 1px solid rgba(212,184,150,0.18); }
+.hotel-cell { background: var(--ink); padding: 40px 32px; }
+.hotel-cell .hotel-city { font-family: var(--caps); font-size: 10px; letter-spacing: 0.36em; color: var(--sandstone); margin-bottom: 12px; font-weight: 600; }
+.hotel-cell h4 { font-family: var(--display); font-size: 22px; color: var(--cream); line-height: 1.25; margin-bottom: 10px; }
+.hotel-cell p { color: rgba(251,247,238,0.78); font-size: 14px; line-height: 1.65; }
+@media (max-width: 900px) { .hotel-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .hotel-grid { grid-template-columns: 1fr; } }
+
+/* Pricing */
+.pricing { background: var(--ivory); padding: 96px 0; }
+.price-card { max-width: 760px; margin: 56px auto 0; background: var(--cream); border: 1px solid var(--henna); padding: 56px; position: relative; }
+.price-card::before { content: "✦"; position: absolute; top: -16px; left: 50%; transform: translateX(-50%); background: var(--ivory); color: var(--henna); padding: 0 16px; font-size: 18px; }
+.price-card h3 { font-family: var(--display); font-size: 30px; color: var(--ink); margin-bottom: 8px; }
+.price-card .price-sub { font-family: var(--serif); font-style: italic; color: var(--gold-deep); margin-bottom: 32px; }
+.price-table { display: grid; grid-template-columns: 1fr auto; gap: 18px 24px; padding: 24px 0; border-top: 1px solid var(--ivory-2); border-bottom: 1px solid var(--ivory-2); margin-bottom: 28px; }
+.price-table .row-label { color: var(--ink-soft); font-size: 16px; }
+.price-table .row-val { font-family: var(--display); font-size: 18px; color: var(--ink); text-align: right; }
+.price-card .actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.price-card .actions a { flex: 1; min-width: 200px; text-align: center; }
+
+/* Departures */
+.departures { background: var(--cream); padding: 96px 0; }
+.dep-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--gold); margin-top: 56px; border: 1px solid var(--gold); max-width: 1100px; margin-left:auto; margin-right:auto; }
+.dep-cell { background: var(--cream); padding: 28px; }
+.dep-cell .dep-month { font-family: var(--caps); font-size: 11px; letter-spacing: 0.36em; color: var(--gold-deep); margin-bottom: 10px; font-weight: 600; }
+.dep-cell .dep-date { font-family: var(--display); font-size: 18px; color: var(--ink); margin-bottom: 4px; }
+.dep-cell .dep-note { font-family: var(--serif); font-style: italic; color: var(--ink-soft); font-size: 13px; }
+@media (max-width: 900px) { .dep-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .dep-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><div class="brand-mark">T</div><div><div class="brand-name">Travel Pals</div><span class="brand-tag">Curated Journeys</span></div></a>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('nav-links').classList.toggle('open')">☰</button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="tours.html" class="active">Group Tours</a></li>
+      <li><a href="private.html">Private Journeys</a></li>
+      <li><a href="india.html">About India</a></li>
+      <li><a href="about.html">Our Story</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="booking.html" class="nav-cta">Book Now</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="lux-hero">
+  <div class="container">
+    <div class="crumb">Group Tours · Five-Star · Guaranteed</div>
+    <h1>Exotic <em>Luxury,</em> end to end.</h1>
+    <p class="lede">Thirteen nights through five thousand years of India — from Lutyens' Delhi and Mughal Agra, into the wilderness of Ranthambore, the courts of Jaipur and Udaipur, and onward to colonial Bombay. An Oberoi or a Taj-tier landmark in every city, private guides at every stop, and the soft, slow pace of a journey nothing has been rushed for.</p>
+    <div class="meta">
+      <div><span class="k">Duration</span><span class="v">13 N / 14 D</span></div>
+      <div><span class="k">Tier</span><span class="v">Five-Star · Oberoi/Taj</span></div>
+      <div><span class="k">Style</span><span class="v">Private &amp; Escorted</span></div>
+      <div><span class="k">Departures</span><span class="v">Year-round</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="lux-banner">
+  <div class="container" style="display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:8px;">
+    <span class="pill">Luxury · Guaranteed</span>
+    <span class="txt">Confirmed year-round, two travellers minimum. Or run as a fully private journey on your own dates.</span>
+  </div>
+</div>
+
+<!-- NARRATIVE ARC -->
+<section class="arc">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">The Arc of the Journey</span>
+      <h2 style="margin-top:16px;">Four Indias, in five thousand years.</h2>
+      <div style="display:flex;justify-content:center;"><div class="hr-gold"></div></div>
+      <p class="lede">A chronological sweep — from the Rajput citadels that pre-date the Mughals, through the marble of Shah Jahan, into the Raj's Lutyens' Delhi, and out through Mumbai's colonial-modern waterfront.</p>
+    </div>
+
+    <div class="arc-grid">
+      <div class="arc-cell">
+        <div class="arc-num">— 01 · Pre-Mughal</div>
+        <h3>Rajput <em>Rajasthan</em></h3>
+        <div class="arc-where">Udaipur · Jaipur · Jodhpur</div>
+        <p>The lake palaces and hilltop forts of the Sisodia, Kachhwaha and Rathore kings — older than the Mughals, who never quite conquered them. Mewar, Marwar, the Pink City.</p>
+      </div>
+
+      <div class="arc-cell">
+        <div class="arc-num">— 02 · Mughal</div>
+        <h3>The Marble <em>Empire</em></h3>
+        <div class="arc-where">Agra · Fatehpur Sikri</div>
+        <p>The Taj at dawn, the red-sandstone fort, Akbar's abandoned capital. Five hundred years of Persian-Indian fusion in marble, sandstone and inlay.</p>
+      </div>
+
+      <div class="arc-cell">
+        <div class="arc-num">— 03 · The Raj</div>
+        <h3>Lutyens' <em>Delhi</em></h3>
+        <div class="arc-where">New Delhi · Old Delhi</div>
+        <p>The broad colonial sweep of Rajpath, Rashtrapati Bhawan, India Gate — laid against the Mughal monuments of Old Delhi: Humayun's Tomb, Jama Masjid, the lanes of Chandni Chowk.</p>
+      </div>
+
+      <div class="arc-cell">
+        <div class="arc-num">— 04 · Modern India</div>
+        <h3>Maximum <em>Mumbai</em></h3>
+        <div class="arc-where">Mumbai · Marine Drive</div>
+        <p>The Gateway of India, the rock-cut caves at Elephanta, dhobi ghats, Bollywood, and the curved necklace of Marine Drive at dusk. India as it is, and as it is becoming.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DAY-BY-DAY -->
+<section class="itin">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">The Itinerary · 14 Nights</span>
+      <h2 style="margin-top:16px;">A landmark hotel in every city.</h2>
+      <div style="display:flex;justify-content:center;"><div class="hr-gold"></div></div>
+      <p class="lede">Each stay is an Oberoi, a Taj, or a heritage palace of equivalent standing. A private guide and air-conditioned car at every stop.</p>
+    </div>
+
+    <div class="day-stack">
+      <div class="day-card">
+        <div>
+          <div class="day-num">Days 01 – 03</div>
+          <div class="day-where">Delhi</div>
+          <div class="day-hotel">The Imperial Delhi, on Janpath</div>
+        </div>
+        <div class="day-body">
+          <p>Marigold welcome at Indira Gandhi International. Three nights to take Delhi properly — Old Delhi by cycle-rickshaw through Chandni Chowk, the Mughal monuments of Humayun's Tomb and Jama Masjid, and Lutyens' broad sweep through Rajpath. The Crafts Museum, the Lodi Gardens at dusk, an evening at Khan Market, dinner at Indian Accent.</p>
+          <p class="moment">Tea at the Imperial's 1911 lounge — Art Deco mirrors, Raj-era prints, the city held at arm's length.</p>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div>
+          <div class="day-num">Days 04 – 05</div>
+          <div class="day-where">Delhi <span class="arrow">→</span> Agra</div>
+          <div class="day-hotel">The Oberoi Amarvilas, Taj-facing</div>
+        </div>
+        <div class="day-body">
+          <p>South down the Yamuna Expressway. Every room at Amarvilas faces the Taj — sunrise on marble that is six hundred metres away. The west gate at first light, two unhurried hours with the Taj before the crowds, then Agra Fort and Itmad-ud-Daula. Sunset from Mehtab Bagh, across the river.</p>
+          <p class="moment">A second dawn at the Taj from your terrace — chai in hand, the marble already warm.</p>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div>
+          <div class="day-num">Days 06 – 07</div>
+          <div class="day-where">Agra <span class="arrow">→</span> Ranthambore <span style="font-size:13px; color:var(--ink-soft); font-style:italic; font-family:var(--serif);">via Fatehpur Sikri</span></div>
+          <div class="day-hotel">The Oberoi Vanyavilas, tented luxury</div>
+        </div>
+        <div class="day-body">
+          <p>West through Akbar's abandoned red-sandstone capital at Fatehpur Sikri, then on to the Sawai Madhopur jungles. Two days of dawn and dusk safaris by open jeep through Ranthambore — sambar deer at the lake, langurs in the banyan, and if the rains have been kind, a tigress at the kill.</p>
+          <p class="moment">Returning to camp at dusk for a private dinner under the stars at Vanyavilas — embroidered tents, a brazier between you and the cold desert sky.</p>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div>
+          <div class="day-num">Days 08 – 09</div>
+          <div class="day-where">Ranthambore <span class="arrow">→</span> Jaipur</div>
+          <div class="day-hotel">The Rambagh Palace, gardens of the Kachhwahas</div>
+        </div>
+        <div class="day-body">
+          <p>The road north-west to the Pink City. Amber Fort by jeep, the City Palace's painted gates, Jantar Mantar's stone instruments, a photo stop at Hawa Mahal, and an evening of block-print and silver in Bapu Bazaar.</p>
+          <p class="moment">High tea at the Rambagh's verandah — peacocks on the lawns, the marble of the Suvarna Mahal behind you.</p>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div>
+          <div class="day-num">Days 10 – 11</div>
+          <div class="day-where">Jaipur <span class="arrow">→</span> Udaipur</div>
+          <div class="day-hotel">The Oberoi Udaivilas, lakefront</div>
+        </div>
+        <div class="day-body">
+          <p>Fly south-west to Mewar. The marble courtyards of the City Palace, Jagdish Temple at dawn, Sahelion ki Bari, and a sunset boat across Lake Pichola — past the Lake Palace, the Jag Mandir, the herons coming in to roost.</p>
+          <p class="moment">Breakfast at Udaivilas in your domed pavilion — the lake on three sides, mist still on the water.</p>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div>
+          <div class="day-num">Days 12 – 13</div>
+          <div class="day-where">Udaipur <span class="arrow">→</span> Mumbai</div>
+          <div class="day-hotel">The Taj Mahal Palace, sea-facing</div>
+        </div>
+        <div class="day-body">
+          <p>A short flight south to the Arabian Sea. The Gateway of India at dusk, the rock-cut Elephanta caves by ferry, the dhobi ghats, the Crawford Market, and the Asiatic Society's reading rooms.</p>
+          <p class="moment">Dinner at the Sea Lounge, watching the Gateway lights come on across the harbour.</p>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div>
+          <div class="day-num">Day 14</div>
+          <div class="day-where">Departure · Mumbai</div>
+          <div class="day-hotel">Day-use room at the Taj until your flight</div>
+        </div>
+        <div class="day-body">
+          <p>A late-day flight home, with day-use of your Heritage Wing room for showers, supper, and a slow goodbye to the harbour.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXTENSION: Jodhpur + Jaisalmer -->
+    <div class="sec-head" style="margin-top:120px;">
+      <span class="eyebrow">Optional Extension</span>
+      <h2 style="margin-top:16px;">The desert add-on — Jodhpur &amp; Jaisalmer.</h2>
+      <div style="display:flex;justify-content:center;"><div class="hr-gold"></div></div>
+      <p class="lede">Insert four nights between Jaipur and Udaipur — the Blue City of the Rathores, then on to the Golden City rising out of the Thar.</p>
+    </div>
+
+    <div class="day-stack">
+      <div class="day-card">
+        <div>
+          <div class="day-num">Extension · 02 nights</div>
+          <div class="day-where">Jaipur <span class="arrow">→</span> Jodhpur</div>
+          <div class="day-hotel">Umaid Bhawan Palace, the Maharaja's residence</div>
+        </div>
+        <div class="day-body">
+          <p>The road west through the Aravallis to the <em>Blue City</em> — Mehrangarh Fort towering above the indigo-washed havelis, the Jaswant Thada cenotaph in white marble, and the spice-and-bandhani bazaars of Sardar Market.</p>
+          <p class="moment">Two nights at Umaid Bhawan — the world's largest private residence, where one wing is still home to the Maharaja and the other is a hotel of unimaginable scale.</p>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div>
+          <div class="day-num">Extension · 02 nights</div>
+          <div class="day-where">Jodhpur <span class="arrow">→</span> Jaisalmer</div>
+          <div class="day-hotel">SUJÁN The Serai, on the desert edge</div>
+        </div>
+        <div class="day-body">
+          <p>Deeper west, into the Thar. Jaisalmer Fort rises like a sandcastle out of the dunes — a living fort, still inhabited, its honey-stone havelis carved like lace. Patwon Ki Haveli, the Jain temples within the walls, and an afternoon ride out to the Sam Sand Dunes for sunset on camelback.</p>
+          <p class="moment">Dinner at SUJÁN's open-air firepit, the Milky Way overhead, a Manganiyar musician singing in the dark.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOTELS GALLERY -->
+<section class="hotels">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow" style="color:var(--sandstone);">Where You Stay</span>
+      <h2 style="margin-top:16px;">Landmark hotels, end to end.</h2>
+      <div style="display:flex;justify-content:center;"><div class="hr-gold" style="background:var(--sandstone);"></div></div>
+    </div>
+
+    <div class="hotel-grid">
+      <div class="hotel-cell">
+        <div class="hotel-city">Delhi</div>
+        <h4>The Imperial Delhi</h4>
+        <p>Janpath · 1936. Art Deco and Raj-era prints, the 1911 lounge, palms in the courtyard. The capital's grand dame, around the corner from Connaught Place.</p>
+      </div>
+      <div class="hotel-cell">
+        <div class="hotel-city">Delhi · alt.</div>
+        <h4>The Leela Palace, New Delhi</h4>
+        <p>Diplomatic Enclave · a modern palace in the Lutyens' tradition. Hand-painted murals, an indoor pool, the rooftop's views to Rashtrapati Bhavan.</p>
+      </div>
+      <div class="hotel-cell">
+        <div class="hotel-city">Agra</div>
+        <h4>The Oberoi Amarvilas</h4>
+        <p>Six hundred metres from the Taj, every room directly faces the monument. Step pools, fountains, marble pavilions — the Mughals would approve.</p>
+      </div>
+      <div class="hotel-cell">
+        <div class="hotel-city">Ranthambore</div>
+        <h4>The Oberoi Vanyavilas</h4>
+        <p>Embroidered jungle tents on private decks, a watchtower, an open-air dinner pavilion. The closest luxury camp to the park gate.</p>
+      </div>
+      <div class="hotel-cell">
+        <div class="hotel-city">Ranthambore · alt.</div>
+        <h4>Aman-i-Khas</h4>
+        <p>Ten muslin tents in a wilderness clearing. A camp-fire dinner under fig trees, butler-led safaris, and the deepest hush you can find in India.</p>
+      </div>
+      <div class="hotel-cell">
+        <div class="hotel-city">Jaipur</div>
+        <h4>The Rambagh Palace</h4>
+        <p>The Kachhwaha princes' garden palace, now a Taj hotel. Forty-seven acres of lawns, peacocks, and the suite where the last Maharani lived.</p>
+      </div>
+      <div class="hotel-cell">
+        <div class="hotel-city">Udaipur</div>
+        <h4>The Oberoi Udaivilas</h4>
+        <p>Domed pavilions on Lake Pichola, three pools, white marble, peacocks. Repeatedly voted the best hotel in the world.</p>
+      </div>
+      <div class="hotel-cell">
+        <div class="hotel-city">Mumbai</div>
+        <h4>The Taj Mahal Palace</h4>
+        <p>The grand dame of Bombay, opened in 1903. Sea-facing rooms in the Heritage Wing, the Gateway of India framed in your window.</p>
+      </div>
+      <div class="hotel-cell" style="border-top: 1px dashed rgba(245,201,154,0.3); padding-top:24px;">
+        <div class="hotel-city">Extension · Jodhpur</div>
+        <h4>Umaid Bhawan Palace</h4>
+        <p>The Maharaja's working residence, with the world's largest private dome. Royal Suites, Indo-Saracenic gardens, and high tea on the marble terrace.</p>
+      </div>
+      <div class="hotel-cell" style="border-top: 1px dashed rgba(245,201,154,0.3); padding-top:24px;">
+        <div class="hotel-city">Extension · Jaisalmer</div>
+        <h4>SUJÁN The Serai</h4>
+        <p>Tented suites on the desert edge, Bedouin-grand. Private plunge pools, a pillared central tent, and Manganiyar musicians at the firepit.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPARTURES -->
+<section class="departures">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">2026 – 2027 Departures</span>
+      <h2 style="margin-top:16px;">Year-round, with a guaranteed monthly date.</h2>
+      <div style="display:flex;justify-content:center;"><div class="hr-gold"></div></div>
+      <p class="lede">A confirmed monthly departure throughout the year, plus the option to run any other date privately for parties of two or more.</p>
+    </div>
+
+    <div class="dep-grid">
+      <div class="dep-cell"><div class="dep-month">October 2026</div><div class="dep-date">10 Oct</div><div class="dep-note">cool season opens</div></div>
+      <div class="dep-cell"><div class="dep-month">November 2026</div><div class="dep-date">14 Nov</div><div class="dep-note">peak season</div></div>
+      <div class="dep-cell"><div class="dep-month">December 2026</div><div class="dep-date">5 Dec</div><div class="dep-note">crisp &amp; clear</div></div>
+      <div class="dep-cell"><div class="dep-month">January 2027</div><div class="dep-date">16 Jan</div><div class="dep-note">post-holiday calm</div></div>
+      <div class="dep-cell"><div class="dep-month">February 2027</div><div class="dep-date">13 Feb</div><div class="dep-note">cool &amp; clear</div></div>
+      <div class="dep-cell"><div class="dep-month">March 2027</div><div class="dep-date">6 Mar</div><div class="dep-note">Holi: 13 Mar</div></div>
+      <div class="dep-cell"><div class="dep-month">April 2027</div><div class="dep-date">10 Apr</div><div class="dep-note">last of the cool</div></div>
+      <div class="dep-cell"><div class="dep-month">September 2027</div><div class="dep-date">25 Sep</div><div class="dep-note">post-monsoon green</div></div>
+      <div class="dep-cell"><div class="dep-month">Other dates</div><div class="dep-date">Any week</div><div class="dep-note">runs privately, two travellers minimum</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BEGIN THE CONVERSATION -->
+<section class="bleed" style="background-image: linear-gradient(90deg, rgba(26,31,58,0.85) 0%, rgba(26,31,58,0.4) 100%), url('https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=2400&q=80'); padding:120px 0; color:var(--cream);">
+  <div class="container">
+    <span class="eyebrow" style="color:var(--sandstone);">Begin the Conversation</span>
+    <h2 style="margin-top:16px; max-width:22ch; color:var(--cream);">Half the joy is the planning.</h2>
+    <p class="lede" style="margin-top:24px; max-width:62ch; color:rgba(251,247,238,0.92);">Send us a note and one of our travel curators will pick up the thread. Expect to learn the small things \u2014 which week the jacarandas flower in Delhi, why the Mehrangarh walls are blue, where to find the best <em>jalebi</em> in Old Jaipur \u2014 and to feel the journey come alive long before you board the plane.</p>
+    <p class="lede" style="margin-top:16px; max-width:62ch; color:rgba(251,247,238,0.85); font-style:italic; font-family:var(--serif);">Hotels are tailored to your taste, the days are paced to your rhythm, and the whole itinerary is yours to shape. By the time the marigold garland goes around your neck at the airport, you'll already know the country a little.</p>
+    <div style="margin-top:36px; display:flex; gap:16px; flex-wrap:wrap;">
+      <a href="contact.html" class="btn">Start Planning</a>
+      <a href="tours.html" class="btn btn-ghost">All Tours</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div><div class="brand" style="margin-bottom:20px;"><div class="brand-mark" style="border-color: var(--sandstone); color: var(--sandstone);">T</div><div><div class="brand-name" style="color:var(--cream);">Travel Pals</div><span class="brand-tag" style="color: var(--sandstone);">Curated Journeys</span></div></div><p>Bespoke and small-group journeys through Incredible India.</p></div>
+    <div><h4>Journeys</h4><ul><li><a href="tour-nov-2026.html">North India · Nov 2026</a></li><li><a href="tour-nov-2026-rail.html">Rail on All Gauges · Nov 2026</a></li><li><a href="tour-feb-2027.html">Nagaur Cattle Fair · Feb 2027</a></li><li><a href="tour-feb-2027-stitching.html">Stitching Tracks · Feb 2027</a></li><li><a href="private.html">Private Journeys</a></li></ul></div>
+    <div><h4>Discover</h4><ul><li><a href="india.html">About India</a></li><li><a href="about.html">Our Story</a></li><li><a href="booking.html">Booking</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div><h4>Connect</h4><ul><li><a href="/cdn-cgi/l/email-protection#a6d2c9d3d4d5e6d2d4c7d0c3cad6c7cad588d3d5"><span class="__cf_email__" data-cfemail="c8bca7bdbabb88bcbaa9beada4b8a9a4bbe6bdbb">[email&#160;protected]</span></a></li><li><a href="tel:+15875865189">+1 587 586 5189</a></li></ul></div>
+  </div>
+  <div class="container footer-bottom"><span>© 2026 Travel Pals · Atithi Devo Bhava</span><span>Curated with care</span></div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>

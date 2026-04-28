@@ -219,12 +219,12 @@ header.nav {
   letter-spacing: 0.22em;
   text-transform: uppercase;
   padding: 12px 22px;
-  background: var(--ink);
-  color: var(--cream);
+  background: var(--ink) !important;
+  color: var(--cream) !important;
   border: 1px solid var(--ink);
   transition: all .2s ease;
 }
-.nav-cta:hover { background: var(--henna); border-color: var(--henna); }
+.nav-cta:hover { background: var(--henna) !important; border-color: var(--henna); color: var(--cream) !important; }
 
 .nav-toggle { display: none; background: none; border: 0; cursor: pointer; font-size: 22px; color: var(--ink); }
 
@@ -643,6 +643,9 @@ footer.site-footer a:hover { color: var(--gold); }
   content: "";
   position: absolute; inset: 0;
   background: linear-gradient(180deg, rgba(26,31,58,0.2) 0%, rgba(26,31,58,0.35) 50%, rgba(26,31,58,0.85) 100%);
+}
+.rail-hero::after {
+  background: linear-gradient(180deg, rgba(15,12,8,0.65) 0%, rgba(15,12,8,0.55) 35%, rgba(15,12,8,0.85) 100%) !important;
 }
 .tour-hero .container {
   position: relative; z-index: 2;
