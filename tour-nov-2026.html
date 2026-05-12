@@ -7,7 +7,18 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,30..100;1,9..144,300..700,30..100&family=Inter+Tight:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=4">
+<template id="__bundler_thumbnail">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="200" height="200" fill="#14213d"/>
+  <g transform="translate(60,60)" fill="none" stroke="#D97757" stroke-width="3">
+    <path d="M0 60 L40 20 L80 60 Z"/>
+    <rect x="20" y="50" width="40" height="30"/>
+    <circle cx="40" cy="65" r="4" fill="#D97757"/>
+  </g>
+  <text x="100" y="160" text-anchor="middle" fill="#F4F0E6" font-family="Georgia,serif" font-style="italic" font-size="18">North India</text>
+</svg>
+</template>
 </head>
 <body>
 
@@ -228,7 +239,7 @@
     <div class="sec-head"><span class="eyebrow">In Pictures</span><h2 style="margin-top:16px;">Glimpses along the way.</h2></div>
     <div class="gallery">
       <div class="g tall" style="background-image:url('https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=1600&q=80');"></div>
-      <div class="g" style="background-image:url('https://images.unsplash.com/photo-1591777334841-2a0d099e26ee?auto=format&fit=crop&w=1200&q=80');"></div>
+      <div class="g" style="background-image:url('images/udaipur-lake-night.jpg');"></div>
       <div class="g" style="background-image:url('https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=1200&q=80');"></div>
       <div class="g wide" style="background-image:url('images/nagaur-cattle-fair.jpg');"></div>
     </div>
@@ -237,80 +248,397 @@
 <div class="section-divider"><span class="ornament"><span class="dot"></span><span class="stroke"></span><span class="dot center"></span><span class="stroke"></span><span class="dot"></span></span></div>
 
 
-<!-- HOTELS -->
-<section>
-  <div class="container">
-    <div class="sec-head left">
-      <span class="eyebrow">Where We Stay</span>
-      <h2 style="margin-top:16px;">Hotels Envisaged</h2>
-      <p class="lede">We stay in boutique hotels — chosen for character, not chain. The list below is subject to availability and may be substituted with comparable properties.</p>
-    </div>
-    <table class="hotels">
-      <thead>
-        <tr><th>City</th><th>Check-in / out</th><th>Hotel</th><th>Room Category</th></tr>
-      </thead>
-      <tbody>
-        <tr><td class="city">Delhi</td><td>08 / 10 Nov</td><td>The Lalit / Le Meridien</td><td>Deluxe</td></tr>
-        <tr><td class="city">Agra</td><td>10 / 11 Nov</td><td>Da Bungalow</td><td>Standard</td></tr>
-        <tr><td class="city">Jaipur</td><td>11 / 13 Nov</td><td>Alsisar Haveli</td><td>Standard Heritage</td></tr>
-        <tr><td class="city">Pushkar</td><td>13 / 14 Nov</td><td>Atithi Luxury Resort / Camp Land's End</td><td>Luxury Tent</td></tr>
-        <tr><td class="city">Jodhpur</td><td>14 / 16 Nov</td><td>Bungalow 2</td><td>Heritage Room</td></tr>
-        <tr><td class="city">Ghanerao</td><td>16 / 17 Nov</td><td>Aloof The Jungle Lodge</td><td>Heritage</td></tr>
-        <tr><td class="city">Udaipur</td><td>17 / 19 Nov</td><td>Amet Haveli / Jagat Niwas Palace</td><td>Super Deluxe Lake-facing</td></tr>
-        <tr><td class="city">Mumbai</td><td>19 / 20 Nov</td><td>Fariyas</td><td>Superior</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-<div class="section-divider"><span class="ornament"><span class="dot"></span><span class="stroke"></span><span class="dot center"></span><span class="stroke"></span><span class="dot"></span></span></div>
+<!-- EXTENSIONS -->
+<style>
+  .ext-intro { display:grid; grid-template-columns: 1.1fr 1fr; gap:48px; align-items:end; margin-bottom:40px; }
+  @media (max-width: 820px) { .ext-intro { grid-template-columns: 1fr; gap:20px; } }
+  .ext-intro .eyebrow { display:block; margin-bottom:14px; }
+  .ext-intro h2 { max-width: 14ch; }
+  .ext-intro p { color: var(--ink-soft); max-width: 52ch; }
 
+  .ext-list { display: flex; flex-direction: column; gap: 14px; }
+  .ext { background: var(--paper); border: 1px solid rgba(20,33,61,0.10); border-radius: 4px; overflow: hidden; transition: border-color .25s ease, box-shadow .25s ease; }
+  .ext[open] { border-color: rgba(20,33,61,0.28); box-shadow: 0 14px 40px -28px rgba(20,33,61,0.45); }
+  .ext > summary {
+    list-style: none; cursor: pointer;
+    display: grid; grid-template-columns: 64px 1fr auto; align-items: center;
+    gap: 28px; padding: 26px 32px;
+  }
+  .ext > summary::-webkit-details-marker { display:none; }
+  .ext .ext-num {
+    font-family: var(--display); font-style: italic; font-weight: 400;
+    font-size: 34px; color: var(--terracotta); line-height: 1;
+  }
+  .ext .ext-meta { display:flex; flex-direction:column; gap:6px; min-width: 0; }
+  .ext .ext-tag { font-family: var(--caps); font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+  .ext .ext-title { font-family: var(--display); font-weight: 400; font-size: clamp(20px, 1.7vw, 26px); line-height: 1.2; color: var(--ink); letter-spacing: -0.015em; }
+  .ext .ext-title em { font-family: var(--serif); font-style: italic; color: var(--muted); font-weight: 400; }
+  .ext .ext-chev {
+    width: 38px; height: 38px; border-radius: 50%;
+    border: 1px solid var(--ink); color: var(--ink);
+    display: grid; place-items: center; font-size: 14px;
+    transition: transform .3s ease, background .25s ease, color .25s ease;
+    flex-shrink: 0;
+  }
+  .ext[open] .ext-chev { transform: rotate(45deg); background: var(--ink); color: var(--linen); }
 
-<!-- INCLUSIONS -->
-<section style="background:var(--ivory);">
+  .ext-body { padding: 4px 32px 36px; border-top: 1px solid rgba(20,33,61,0.08); margin-top: 4px; }
+  .ext-body .ext-lede {
+    font-family: var(--display); font-style: italic; font-weight: 400;
+    font-size: clamp(18px, 1.5vw, 22px); line-height: 1.45; color: var(--ink-soft);
+    max-width: 60ch; margin: 26px 0 32px;
+  }
+
+  /* Hero photo strip across the top of the open body */
+  .ext-hero {
+    display: grid; gap: 8px; margin: 26px 0 32px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 220px;
+  }
+  .ext-hero .g {
+    background-size: cover; background-position: center;
+    position: relative; border-radius: 2px; overflow: hidden;
+  }
+  .ext-hero .g.feature { grid-column: span 2; grid-row: span 2; }
+  .ext-hero .g .caption {
+    position: absolute; left: 10px; bottom: 10px;
+    font-family: var(--caps); font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--linen); background: rgba(20,33,61,0.72); padding: 4px 8px; border-radius: 2px;
+    font-weight: 500;
+  }
+  /* Variant: 2 hero images (option 1, 4) */
+  .ext-hero.two { grid-template-columns: 1.4fr 1fr; grid-auto-rows: 360px; }
+  .ext-hero.two .g.feature { grid-column: auto; grid-row: auto; }
+  /* Variant: 5 images, 4 cols (option 2, 3) — feature spans 2×2, 4 small fill the rest */
+  .ext-hero.mosaic { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 200px; }
+  .ext-hero.mosaic .g.feature { grid-column: span 2; grid-row: span 2; }
+  @media (max-width: 820px) {
+    .ext-hero, .ext-hero.two, .ext-hero.mosaic { grid-template-columns: 1fr 1fr; grid-auto-rows: 160px; }
+    .ext-hero .g.feature { grid-column: span 2; grid-row: span 1; }
+  }
+
+  /* Days grid — full width, 2 columns on desktop */
+  .ext-days { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 48px; }
+  @media (max-width: 820px) { .ext-days { grid-template-columns: 1fr; gap: 22px; } }
+  .ext-day { display: grid; grid-template-columns: 90px 1fr; gap: 18px; padding-bottom: 22px; border-bottom: 1px dashed rgba(20,33,61,0.15); }
+  .ext-day:last-child { border-bottom: 0; padding-bottom: 0; }
+  .ext-day .d-num { font-family: var(--caps); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--terracotta); font-weight: 600; padding-top: 4px; }
+  .ext-day .d-num strong { display:block; font-family: var(--display); font-style: italic; font-weight: 400; font-size: 22px; color: var(--ink); letter-spacing: 0; text-transform: none; margin-bottom: 4px; }
+  .ext-day h4 { font-family: var(--display); font-weight: 400; font-size: 19px; color: var(--ink); margin-bottom: 6px; letter-spacing: -0.01em; }
+  .ext-day .d-route { font-family: var(--caps); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .ext-day p { font-size: 14.5px; color: var(--ink-soft); line-height: 1.65; }
+
+  .ext-foot { display:flex; flex-wrap:wrap; gap:18px; align-items:center; justify-content:space-between; margin-top: 28px; padding-top: 22px; border-top: 1px solid rgba(20,33,61,0.10); }
+  .ext-foot .ext-stats { display:flex; gap: 28px; flex-wrap: wrap; }
+  .ext-foot .ext-stats div { font-family: var(--caps); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+  .ext-foot .ext-stats strong { display:block; font-family: var(--display); font-style: normal; font-weight: 400; font-size: 16px; letter-spacing: 0; color: var(--ink); text-transform: none; margin-top: 4px; }
+
+  .ext-summary-stats { display: flex; gap: 22px; flex-wrap: wrap; align-items: center; }
+  .ext-summary-stats span { font-family: var(--caps); font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .ext-summary-stats span strong { color: var(--ink); font-weight: 600; margin-left: 6px; }
+  @media (max-width: 720px) {
+    .ext > summary { grid-template-columns: 44px 1fr; gap: 16px; padding: 22px 20px; }
+    .ext .ext-num { font-size: 26px; }
+    .ext .ext-chev { display: none; }
+    .ext-body { padding: 4px 20px 28px; }
+    .ext-day { grid-template-columns: 1fr; gap: 6px; }
+  }
+</style>
+
+<section style="background: var(--linen-2);">
   <div class="container">
-    <div class="sec-head left">
-      <span class="eyebrow">Investment</span>
-      <h2 style="margin-top:16px;">What's Included.</h2>
-    </div>
-    <div class="inex">
-      <div class="col yes">
-        <h4>Cost Includes</h4>
-        <ul>
-          <li>12 nights' accommodation in boutique heritage hotels on twin-sharing</li>
-          <li>Daily buffet breakfast in all hotels</li>
-          <li>Two dinners — at Pushkar and the Ghanerao jungle resort</li>
-          <li>Exclusive air-conditioned mini-coach throughout the tour</li>
-          <li>Accompanying English-speaking guide (Narjee Singh)</li>
-          <li>Marigold welcome and airport transfers in Delhi &amp; Mumbai</li>
-          <li>Cycle-rickshaw ride in Old Delhi · Metro train fare</li>
-          <li>Open-jeep ride at Amber Fort, Jaipur</li>
-          <li>Home cooking demonstration &amp; dinner in Jaipur</li>
-          <li>Astrologer-led walk at Jantar Mantar</li>
-          <li>Farm visit with lunch (wine &amp; beer included)</li>
-          <li>Jungle jeep safari at Kumbhalgarh National Park</li>
-          <li>Village walk &amp; high tea at Ghanerao</li>
-          <li>Exclusive boat ride on Lake Pichola</li>
-          <li>Regular ferry to Elephanta Caves, Mumbai</li>
-          <li>All entrance fees to monuments &amp; museums</li>
-          <li>Udaipur–Mumbai economy airfare (20 kg baggage)</li>
-          <li>Mineral water during drives &amp; sightseeing</li>
-          <li>All applicable Goods &amp; Services Tax (5%)</li>
-        </ul>
+    <div class="ext-intro">
+      <div>
+        <span class="eyebrow">Extend Your Journey</span>
+        <h2>Four ways to keep going.</h2>
       </div>
-      <div class="col no">
-        <h4>Cost Does Not Include</h4>
-        <ul>
-          <li>Travel insurance (we can arrange at your expense)</li>
-          <li>Meals other than those mentioned above</li>
-          <li>Optional tours, if any</li>
-          <li>Camera charges levied by certain monuments</li>
-          <li>Personal expenses — drinks, laundry, telephone</li>
-          <li>Tips and gratuities (guide, driver, porters, bell-boy)</li>
-          <li>Indian visa fees · International airfare</li>
-          <li>Early arrival or late-departure hotel costs</li>
-        </ul>
-      </div>
+      <p>The main tour ends in Mumbai on 20 November. For travellers who have flown halfway round the world, we offer four ways to stretch the trip — a slow day in Bombay, the backwaters of Kerala, or both. Open any option below for the day-by-day itinerary.</p>
     </div>
+
+    <div class="ext-list">
+
+      <!-- OPTION 1 -->
+      <details class="ext" id="ext-1">
+        <summary>
+          <div class="ext-num">01</div>
+          <div class="ext-meta">
+            <span class="ext-tag">20 – 21 Nov 2026 · 1 Night · Mumbai</span>
+            <span class="ext-title">A slow Bombay weekend — <em>Gateway, Elephanta, home.</em></span>
+          </div>
+          <div class="ext-chev">+</div>
+        </summary>
+        <div class="ext-body">
+          <p class="ext-lede">An unhurried extra night in Mumbai after the group disperses — Gateway of India at the harbour's edge, a ferry across to the rock-cut caves of Elephanta, and an evening departure for home.</p>
+          <div class="ext-hero two">
+            <div class="g feature" style="background-image:url('images/extensions/mumbai-gateway-taj.jpg');"><span class="caption">Gateway of India &amp; the Taj</span></div>
+            <div class="g" style="background-image:url('images/extensions/mumbai-elephanta.jpg');"><span class="caption">Trimurti, Elephanta Caves</span></div>
+          </div>
+          <div class="ext-days">
+              <div class="ext-day">
+                <div class="d-num"><strong>Day 1</strong>Fri · 20 Nov</div>
+                <div>
+                  <h4>Mumbai, at your own pace.</h4>
+                  <div class="d-route">Mumbai</div>
+                  <p>After the closing day of group sightseeing, return to the hotel for an overnight stay. Dinner on your own — Colaba is a short stroll away.</p>
+                </div>
+              </div>
+              <div class="ext-day">
+                <div class="d-num"><strong>Day 2</strong>Sat · 21 Nov</div>
+                <div>
+                  <h4>Gateway of India &amp; the Elephanta Caves.</h4>
+                  <div class="d-route">Mumbai · Elephanta · ✈ Home</div>
+                  <p>After breakfast, a guided walk or short drive to the Gateway of India — built to commemorate the 1911 visit of King George V and Queen Mary, opened in 1924. From there, the regular ferry to Elephanta Caves (≈1.5 hrs each way) — rock-cut shrines so impressive that UNESCO inscribed them as a World Heritage Site.</p>
+                  <p>Afternoon optional add-ons: Gandhi's home at Mani Bhavan, or Sanjay Gandhi National Park. Late evening transfer to Mumbai airport for the early-Sunday flight home.</p>
+                </div>
+              </div>
+          </div>
+          <div class="ext-foot">
+            <div class="ext-stats">
+              <div>Nights<strong>1</strong></div>
+              <div>Pace<strong>Easy</strong></div>
+              <div>Departs From<strong>Mumbai</strong></div>
+              <div>Highlight<strong>Elephanta Caves ferry</strong></div>
+            </div>
+            <a href="contact.html" class="btn-text">Enquire about this extension →</a>
+          </div>
+        </div>
+      </details>
+
+      <!-- OPTION 2 -->
+      <details class="ext" id="ext-2">
+        <summary>
+          <div class="ext-num">02</div>
+          <div class="ext-meta">
+            <span class="ext-tag">20 – 25/26 Nov 2026 · 5 Nights + Optional Mumbai · Kerala</span>
+            <span class="ext-title">Cochin, Munnar, Thekkady &amp; an overnight houseboat — <em>God's Own Country.</em></span>
+          </div>
+          <div class="ext-chev">+</div>
+        </summary>
+        <div class="ext-body">
+          <p class="ext-lede">Five nights south — colonial Cochin, the tea hills of Munnar, the spice forests of Thekkady, and a single, slow night on the Kumarakom backwaters aboard a traditional kettuvallom houseboat. An optional sixth night in Mumbai for travellers who'd rather not rush the return.</p>
+          <div class="ext-hero mosaic">
+            <div class="g feature" style="background-image:url('images/extensions/kerala-backwater-palms.jpg');"><span class="caption">Kumarakom backwaters</span></div>
+            <div class="g" style="background-image:url('images/extensions/munnar-tea-hills.jpg');"><span class="caption">Fruit vendor, Kerala</span></div>
+            <div class="g" style="background-image:url('images/extensions/kerala-village-boat.jpg');"><span class="caption">Canal boat, Kerala</span></div>
+            <div class="g" style="background-image:url('images/extensions/kerala-elephants.jpg');"><span class="caption">Wild elephants, Periyar</span></div>
+            <div class="g" style="background-image:url('images/extensions/kerala-coconut-climber.jpg');"><span class="caption">Coconut climber</span></div>
+          </div>
+          <div class="ext-days">
+              <div class="ext-day">
+                <div class="d-num"><strong>Day 1</strong>Fri · 20 Nov</div>
+                <div>
+                  <h4>Mumbai → Cochin.</h4>
+                  <div class="d-route">✈ AI 681 · 1720 / 1915</div>
+                  <p>Evening direct flight from Mumbai. Met on arrival at Cochin airport and transferred by air-conditioned vehicle to your hotel for overnight.</p>
+                </div>
+              </div>
+              <div class="ext-day">
+                <div class="d-num"><strong>Day 2</strong>Sat · 21 Nov</div>
+                <div>
+                  <h4>Cochin → Munnar.</h4>
+                  <div class="d-route">130 km · 4 hrs</div>
+                  <p>Guided morning in Fort Kochi — Mattancherry (Dutch) Palace, St. Francis Church and the Jewish Synagogue, then the great Chinese fishing nets being lowered on Vasco Da Gama Square. Afternoon drive eastward to the tea hills of Munnar; two nights at altitude.</p>
+                </div>
+              </div>
+              <div class="ext-day">
+                <div class="d-num"><strong>Day 3</strong>Sun · 22 Nov</div>
+                <div>
+                  <h4>Munnar — tea estates &amp; Tahr.</h4>
+                  <div class="d-route">Munnar</div>
+                  <p>The sprawling tea estates, Eravikulam National Park (home of the Nilgiri Tahr mountain goat), the Tata Tea Museum, Mattupetty Dam and Echo Point. Afternoon at leisure.</p>
+                </div>
+              </div>
+              <div class="ext-day">
+                <div class="d-num"><strong>Day 4</strong>Mon · 23 Nov</div>
+                <div>
+                  <h4>Munnar → Thekkady.</h4>
+                  <div class="d-route">95 km · 3.5 hrs</div>
+                  <p>Drive to the cardamom country of Thekkady. A walking tour of the spice plantations — cardamom thrives at 600–1200 m — followed by a Kalaripayattu martial-art performance, a Keralan tradition dating to 1362 BCE.</p>
+                </div>
+              </div>
+              <div class="ext-day">
+                <div class="d-num"><strong>Day 5</strong>Tue · 24 Nov</div>
+                <div>
+                  <h4>Thekkady → Kumarakom houseboat.</h4>
+                  <div class="d-route">130 km · 4 hrs</div>
+                  <p>Early boat ride on Periyar Lake — wild elephants come down to play in the water at dawn. After breakfast, drive to Kumarakom jetty and board your reserved kettuvallom. A snake-boat run through the narrow canals, then lunch and dinner cooked on deck; the boat moors at sunset.</p>
+                </div>
+              </div>
+              <div class="ext-day">
+                <div class="d-num"><strong>Day 6</strong>Wed · 25 Nov</div>
+                <div>
+                  <h4>Kumarakom → Cochin → Mumbai.</h4>
+                  <div class="d-route">80 km · 2.5 hrs · ✈</div>
+                  <p>Breakfast aboard, then a tuktuk and a small canal-boat to Lata's house — coir making and coconut-tree climbing, toddy tapping, a President's-awardee bamboo-and-cane basket maker. Afternoon flight to Mumbai; you may stay airside for an early-morning departure on the 26th.</p>
+                </div>
+              </div>
+              <div class="ext-day">
+                <div class="d-num"><strong>Day 7</strong>Thu · 26 Nov</div>
+                <div>
+                  <h4>Optional Mumbai night.</h4>
+                  <div class="d-route">Mumbai · ✈ Home</div>
+                  <p>If you'd rather not sleep in transit, an optional hotel stay near the airport. Breakfast, a free day for Mumbai sights not covered on the main tour (Gandhi's home, Sanjay Gandhi National Park), and a late-evening transfer for the flight home.</p>
+                </div>
+              </div>
+          </div>
+          <div class="ext-foot">
+            <div class="ext-stats">
+              <div>Nights<strong>5 (+1 optional)</strong></div>
+              <div>Cities<strong>Cochin · Munnar · Thekkady · Kumarakom</strong></div>
+              <div>Departs From<strong>Mumbai (by air)</strong></div>
+              <div>Highlight<strong>Overnight kettuvallom</strong></div>
+            </div>
+            <a href="contact.html" class="btn-text">Enquire about this extension →</a>
+          </div>
+        </div>
+      </details>
+
+      <!-- OPTION 3 -->
+      <details class="ext" id="ext-3">
+        <summary>
+          <div class="ext-num">03</div>
+          <div class="ext-meta">
+            <span class="ext-tag">20 – 27 Nov 2026 · 7 Nights · Kerala with Gavi</span>
+            <span class="ext-title">A longer Kerala, with a full-day jeep safari at Gavi — <em>deeper into the green.</em></span>
+          </div>
+          <div class="ext-chev">+</div>
+        </summary>
+        <div class="ext-body">
+          <p class="ext-lede">Two unhurried nights each in Cochin, Munnar and Thekkady — Kathakali by lamplight, the world's highest tea estates, and a full day in the wilderness of Gavi where the Pamba reservoir, the lion-tailed macaque and the Nilgiri Tahr share a single quiet road.</p>
+          <div class="ext-hero mosaic">
+            <div class="g feature" style="background-image:url('images/extensions/kerala-tea-pickers.jpg');"><span class="caption">Village walk</span></div>
+            <div class="g" style="background-image:url('images/extensions/kerala-elephants.jpg');"><span class="caption">Wild elephants, Periyar</span></div>
+            <div class="g" style="background-image:url('images/extensions/kerala-village-walk.jpg');"><span class="caption">Tea pickers, Munnar</span></div>
+            <div class="g" style="background-image:url('images/extensions/kerala-bananas.jpg');"><span class="caption">Tea Estates, Munnar</span></div>
+            <div class="g" style="background-image:url('images/extensions/kerala-backwater-palms.jpg');"><span class="caption">Kumarakom backwaters</span></div>
+          </div>
+          <div class="ext-days">
+              <div class="ext-day">
+                <div class="d-num"><strong>Day 1</strong>Fri · 20 Nov</div>
+                <div>
+                  <h4>Mumbai → Cochin.</h4>
+                  <div class="d-route">✈ AI 681 · 1720 / 1915</div>
+                  <p>Evening flight from Mumbai. Welcomed at Cochin airport, transferred to your hotel for the first of two nights.</p>
+                </div>
+              </div>
+              <div class="ext-day">
+                <div class="d-num"><strong>Day 2</strong>Sat · 21 Nov</div>
+                <div>
+                  <h4>Fort Kochi &amp; Kathakali.</h4>
+                  <div class="d-route">Cochin</div>
+                  <p>Guided morning at the Dutch Palace, St. Francis Church, the Jewish Synagogue and the Chinese fishing nets. Early-evening performance of Kathakali — vivid storytelling in paint, gesture and music; a must-see Keralan classical form.</p>
+                </div>
+              </div>
+              <div class="ext-day">
+                <div class="d-num"><strong>Day 3</strong>Sun · 22 Nov</div>
+                <div>
+                  <h4>Cochin → Munnar.</h4>
+                  <div class="d-route">130 km · 4 hrs</div>
+                  <p>Drive eastward to the hills of Munnar — once the British government's summer retreat, named for the confluence of three rivers. Afternoon free or explore the town with your driver.</p>
+                </div>
+              </div>
+              <div class="ext-day">
+                <div class="d-num"><strong>Day 4</strong>Mon · 23 Nov</div>
+                <div>
+                  <h4>Munnar — tea estates &amp; Tahr.</h4>
+                  <div class="d-route">Munnar</div>
+                  <p>A leisurely day across the tea estates, Eravikulam National Park, Tata Tea Museum, Mattupetty Dam and Echo Point.</p>
+                </div>
+              </div>
+              <div class="ext-day">
+                <div class="d-num"><strong>Day 5</strong>Tue · 24 Nov</div>
+                <div>
+                  <h4>Munnar → Thekkady.</h4>
+                  <div class="d-route">95 km · 3.5 hrs</div>
+                  <p>Down to the cardamom country. Late-afternoon Kalaripayattu martial-art performance at a nearby cultural centre.</p>
+                </div>
+              </div>
+              <div class="ext-day">
+                <div class="d-num"><strong>Day 6</strong>Wed · 25 Nov</div>
+                <div>
+                  <h4>Gavi — a full-day safari.</h4>
+                  <div class="d-route">Periyar Tiger Reserve</div>
+                  <p>Leave the hotel at 0530 in a purpose-built safari jeep. A 40-km road blanketed in tea, then hills and valleys, tropical forest, cascading waterfalls and cardamom plantations along the edge of the Periyar Tiger Reserve. Pamba Reservoir, lion-tailed macaque, Nilgiri Tahr. Packed breakfast and lunch on the trail; back by 1600.</p>
+                </div>
+              </div>
+              <div class="ext-day">
+                <div class="d-num"><strong>Day 7</strong>Thu · 26 Nov</div>
+                <div>
+                  <h4>Thekkady → Kumarakom houseboat.</h4>
+                  <div class="d-route">130 km · 4 hrs</div>
+                  <p>Early boat ride on Periyar Lake at dawn, breakfast at the resort, then a leisurely drive to Kumarakom. Board your reserved kettuvallom; a snake-boat run through the narrow canals; lunch and dinner cooked on deck; the boat moors at sunset.</p>
+                </div>
+              </div>
+              <div class="ext-day">
+                <div class="d-num"><strong>Day 8</strong>Fri · 27 Nov</div>
+                <div>
+                  <h4>Kumarakom → Cochin → Home.</h4>
+                  <div class="d-route">80 km · 2.5 hrs · ✈</div>
+                  <p>Breakfast aboard, tuktuk and a canal-boat to Lata's house for coir making, coconut-tree climbing, toddy tapping and a President's-awardee bamboo-and-cane basket maker. Transfer to Cochin airport for the onward flight home with sweet memories.</p>
+                </div>
+              </div>
+          </div>
+          <div class="ext-foot">
+            <div class="ext-stats">
+              <div>Nights<strong>7</strong></div>
+              <div>Cities<strong>Cochin · Munnar · Thekkady · Kumarakom</strong></div>
+              <div>Departs From<strong>Mumbai (by air)</strong></div>
+              <div>Highlight<strong>Full-day Gavi safari</strong></div>
+            </div>
+            <a href="contact.html" class="btn-text">Enquire about this extension →</a>
+          </div>
+        </div>
+      </details>
+
+      <!-- OPTION 4 -->
+      <details class="ext" id="ext-4">
+        <summary>
+          <div class="ext-num">04</div>
+          <div class="ext-meta">
+            <span class="ext-tag">After Kerala · 1 Night · Mumbai</span>
+            <span class="ext-title">A Mumbai layover, after Kerala — <em>before you fly.</em></span>
+          </div>
+          <div class="ext-chev">+</div>
+        </summary>
+        <div class="ext-body">
+          <p class="ext-lede">For travellers returning north from Kerala on the 26th or 27th of November, an unhurried overnight in Mumbai — a half-day to choose from the city sights you missed on the main tour, then a late-evening transfer to the airport.</p>
+          <div class="ext-hero two">
+            <div class="g feature" style="background-image:url('images/extensions/mumbai-cstm-night.jpg');"><span class="caption">CST at night</span></div>
+            <div class="g" style="background-image:url('images/extensions/mumbai-bmc.jpg');"><span class="caption">BMC headquarters</span></div>
+          </div>
+          <div class="ext-days">
+              <div class="ext-day">
+                <div class="d-num"><strong>Day 1</strong>Thu 26 / Fri 27 Nov</div>
+                <div>
+                  <h4>Cochin → Mumbai.</h4>
+                  <div class="d-route">✈ Cochin · Mumbai</div>
+                  <p>Met on arrival at Mumbai airport. Transfer to your hotel for the overnight stay — a chance to unwind before the long flight home.</p>
+                </div>
+              </div>
+              <div class="ext-day">
+                <div class="d-num"><strong>Day 2</strong>Fri 27 / Sat 28 Nov</div>
+                <div>
+                  <h4>A Mumbai day, your way.</h4>
+                  <div class="d-route">Mumbai · ✈ Home</div>
+                  <p>Breakfast at hotel; general check-out by noon. Choose any of the Mumbai sights not covered on the main tour — Elephanta Caves, Gandhi's home at Mani Bhavan, Sanjay Gandhi National Park, or simply a longer linger at the Gateway of India. Late-evening transfer to the airport for the international flight home.</p>
+                </div>
+              </div>
+          </div>
+          <div class="ext-foot">
+            <div class="ext-stats">
+              <div>Nights<strong>1</strong></div>
+              <div>Pairs With<strong>Kerala (Option 02 or 03)</strong></div>
+              <div>Departs From<strong>Mumbai</strong></div>
+              <div>Highlight<strong>A buffer day before flying</strong></div>
+            </div>
+            <a href="contact.html" class="btn-text">Enquire about this extension →</a>
+          </div>
+        </div>
+      </details>
+
+    </div>
+
+    <p style="margin-top:32px; font-size:13px; color:var(--muted); text-align:center; max-width:64ch; margin-left:auto; margin-right:auto;">Detailed itineraries above. Pricing, hotels and inclusions are shared on enquiry — please <a href="contact.html" style="color:var(--terracotta);">get in touch</a> to confirm dates and tailor any of these extensions to your group.</p>
   </div>
 </section>
 <div class="section-divider"><span class="ornament"><span class="dot"></span><span class="stroke"></span><span class="dot center"></span><span class="stroke"></span><span class="dot"></span></span></div>
