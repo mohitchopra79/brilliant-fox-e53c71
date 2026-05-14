@@ -54,11 +54,12 @@
 
     <div class="split" style="align-items:flex-start; margin-top:64px;">
       <div>
-        <form class="form-card" action="https://formsubmit.co/mohit@travelpals.in" method="POST">
+        <form class="form-card" action="https://formsubmit.co/mohit@travelpals.in" method="POST" onsubmit="return prepareSubmit();">
           <input type="hidden" name="_subject" value="Query from travelpals.us" />
           <input type="hidden" name="_template" value="table" />
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_next" value="https://travelpals.us/contact.html?sent=1" />
+          <input type="hidden" name="Selected Extensions" id="selected-extensions-summary" value="" />
           <div class="field">
             <label>Your Name</label>
             <input type="text" name="Name" placeholder="Full name" required />
@@ -87,10 +88,10 @@
           <div class="field" id="ext-nov2026" style="display:block;">
             <label>Add Extensions <span class="ext-label-hint">— select any that interest you</span></label>
             <div class="ext-picker">
-              <label class="ext-row"><input type="checkbox" name="Extensions" value="Mumbai stopover (1 night, pre-tour)" /><span class="ext-row-text"><span class="ext-row-head"><span class="ext-row-title">Mumbai stopover</span><span class="ext-row-nights">1 night · pre-tour</span></span><span class="ext-row-desc">An unhurried evening in Bombay before the group convenes — Marine Drive at dusk, a Colaba dinner.</span></span></label>
-              <label class="ext-row"><input type="checkbox" name="Extensions" value="Kerala — Cochin, Munnar, Thekkady &amp; houseboat (5 nights)" /><span class="ext-row-text"><span class="ext-row-head"><span class="ext-row-title">Kerala — Cochin, Munnar, Thekkady &amp; houseboat</span><span class="ext-row-nights">5 nights</span></span><span class="ext-row-desc">God's Own Country — colonial Cochin, the tea hills, the spice forests, and an overnight kettuvallam.</span></span></label>
-              <label class="ext-row"><input type="checkbox" name="Extensions" value="Kerala with Gavi safari (7 nights)" /><span class="ext-row-text"><span class="ext-row-head"><span class="ext-row-title">Kerala with Gavi safari</span><span class="ext-row-nights">7 nights</span></span><span class="ext-row-desc">The longer Kerala — Cochin, Munnar, Thekkady plus a full-day jeep safari at Gavi for elephants and gaur.</span></span></label>
-              <label class="ext-row"><input type="checkbox" name="Extensions" value="Mumbai layover after Kerala (1 night)" /><span class="ext-row-text"><span class="ext-row-head"><span class="ext-row-title">Mumbai layover after Kerala</span><span class="ext-row-nights">1 night · pre-flight</span></span><span class="ext-row-desc">A buffer night in Bombay before the long flight home — Chhatrapati Shivaji Terminus by night.</span></span></label>
+              <label class="ext-row"><input type="checkbox" name="Extensions" value="Varanasi for Diwali (2 nights, pre-tour, Nov 6–8)" /><span class="ext-row-text"><span class="ext-row-head"><span class="ext-row-title">Varanasi for Diwali</span><span class="ext-row-nights">2 nights · Nov 6–8 · pre-tour</span></span><span class="ext-row-desc">The oldest living city on the Ganges — dawn boats, evening aarti, Sarnath. Arriving on Diwali itself (Nov 8).</span></span></label>
+              <label class="ext-row"><input type="checkbox" name="Extensions" value="A slow Bombay weekend (1 night, post-tour, Nov 20–21)" /><span class="ext-row-text"><span class="ext-row-head"><span class="ext-row-title">A slow Bombay weekend</span><span class="ext-row-nights">1 night · Nov 20–21 · post-tour</span></span><span class="ext-row-desc">Gateway of India, Elephanta Caves by ferry, an evening at Marine Drive before the flight home.</span></span></label>
+              <label class="ext-row"><input type="checkbox" name="Extensions" value="Kerala 5N + Mumbai 2N (7 nights total, post-tour, Nov 20–27)" /><span class="ext-row-text"><span class="ext-row-head"><span class="ext-row-title">Kerala + Mumbai</span><span class="ext-row-nights">7 nights · Nov 20–27</span></span><span class="ext-row-desc">Cochin, Munnar, Thekkady, a Kumarakom houseboat — then 2 nights in Mumbai with Elephanta Caves.</span></span></label>
+              <label class="ext-row"><input type="checkbox" name="Extensions" value="Kerala with Gavi safari 7N + Mumbai 1N (8 nights total, post-tour, Nov 20–28)" /><span class="ext-row-text"><span class="ext-row-head"><span class="ext-row-title">Kerala with Gavi safari + Mumbai</span><span class="ext-row-nights">8 nights · Nov 20–28</span></span><span class="ext-row-desc">The longer Kerala — Cochin, Munnar, Thekkady, a full-day Gavi safari, houseboat — closing with Mumbai &amp; Elephanta.</span></span></label>
               <label class="ext-row"><input type="checkbox" name="Extensions" value="Extra nights at Delhi hotel" id="ext-extra-delhi" onchange="document.getElementById('ext-extra-details').style.display=(document.getElementById('ext-extra-delhi').checked||document.getElementById('ext-extra-mumbai').checked)?'block':'none';" /><span class="ext-row-text"><span class="ext-row-head"><span class="ext-row-title">Extra nights at Delhi hotel</span><span class="ext-row-nights">specify below</span></span><span class="ext-row-desc">Arrive early or linger after. Tell us the room type and dates in the note below.</span></span></label>
               <label class="ext-row"><input type="checkbox" name="Extensions" value="Extra nights at Mumbai hotel" id="ext-extra-mumbai" onchange="document.getElementById('ext-extra-details').style.display=(document.getElementById('ext-extra-delhi').checked||document.getElementById('ext-extra-mumbai').checked)?'block':'none';" /><span class="ext-row-text"><span class="ext-row-head"><span class="ext-row-title">Extra nights at Mumbai hotel</span><span class="ext-row-nights">specify below</span></span><span class="ext-row-desc">Bookend the journey with extra Bombay nights. Tell us the room type and dates in the note below.</span></span></label>
             </div>
@@ -123,8 +124,28 @@
             <textarea name="Message" rows="5" placeholder="Travel dates, who's joining you, what moves you about India…" required></textarea>
           </div>
           <button type="submit" class="btn">Send Message →</button>
-          <p style="margin-top:16px; font-size:13px; color:var(--muted);">Or write to us directly — <a href="/cdn-cgi/l/email-protection#c8bca7bdbabb88bcbaa9beada4b8a9a4bbe6bdbb" style="color:var(--gold-deep); border-bottom:1px solid var(--terracotta-deep);"><span class="__cf_email__" data-cfemail="25514a50575665515744534049554449560b5056">[email&#160;protected]</span></a></p>
+          <p style="margin-top:16px; font-size:13px; color:var(--muted);">Or write to us directly — <a href="/cdn-cgi/l/email-protection#7c0813090e0f3c080e1d0a19100c1d100f52090f" style="color:var(--gold-deep); border-bottom:1px solid var(--terracotta-deep);"><span class="__cf_email__" data-cfemail="23574c5651506357514255464f53424f500d5650">[email&#160;protected]</span></a></p>
         </form>
+        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+          function prepareSubmit(){
+            try {
+              var form = document.querySelector('form.form-card');
+              var visibleField = null;
+              ['ext-nov2026','ext-gt','ext-exotic'].forEach(function(id){
+                var el = document.getElementById(id);
+                if (el && el.style.display !== 'none') visibleField = el;
+              });
+              var picked = [];
+              if (visibleField) {
+                visibleField.querySelectorAll('input[type="checkbox"]:checked').forEach(function(cb){
+                  picked.push(cb.value);
+                });
+              }
+              document.getElementById('selected-extensions-summary').value = picked.length ? picked.join(' · ') : 'None selected';
+              return true;
+            } catch(e){ return true; }
+          }
+        </script>
       </div>
 
       <div>
@@ -134,7 +155,7 @@
 
         <div style="margin-bottom:32px;">
           <div style="font-family: var(--caps); font-size:10px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold-deep); font-weight:600; margin-bottom:8px;">Email</div>
-          <div style="font-family: var(--display); font-size:22px;"><a href="/cdn-cgi/l/email-protection#dda9b2a8afae9da9afbcabb8b1adbcb1aef3a8ae"><span class="__cf_email__" data-cfemail="e79388929594a793958691828b97868b94c99294">[email&#160;protected]</span></a></div>
+          <div style="font-family: var(--display); font-size:22px;"><a href="/cdn-cgi/l/email-protection#2c5843595e5f6c585e4d5a49405c4d405f02595f"><span class="__cf_email__" data-cfemail="75011a00070635010714031019051419065b0006">[email&#160;protected]</span></a></div>
         </div>
 
         <div style="margin-bottom:32px;">
@@ -185,7 +206,7 @@
     <div><div class="brand" style="margin-bottom:20px;"><div class="brand-mark" style="border-color: var(--linen-2); color: var(--linen-2);">T</div><div><div class="brand-name" style="color:var(--linen);">Travel Pals</div><span class="brand-tag" style="color: var(--linen-2);">Curated Journeys</span></div></div><p>Bespoke and small-group journeys through Incredible India.</p></div>
     <div><h4>Journeys</h4><ul><li><a href="tour-nov-2026.html">North India · Nov 2026</a></li><li><a href="tour-nov-2026-rail.html">Rail on All Gauges · Nov 2026</a></li><li><a href="tour-feb-2027.html">Nagaur Cattle Fair · Feb 2027</a></li><li><a href="tour-feb-2027-stitching.html">Stitching Tracks · Feb 2027</a></li><li><a href="private.html">Private Journeys</a></li></ul></div>
     <div><h4>Discover</h4><ul><li><a href="india.html">About India</a></li><li><a href="about.html">Our Story</a></li><li><a href="booking.html">Booking</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-    <div><h4>Connect</h4><ul><li><a href="/cdn-cgi/l/email-protection#4b3f243e39380b3f392a3d2e273b2a2738653e38"><span class="__cf_email__" data-cfemail="2f5b405a5d5c6f5b5d4e594a435f4e435c015a5c">[email&#160;protected]</span></a></li><li><a href="tel:+15875865189">+1 587 586 5189</a></li><li><a href="https://instagram.com/travelpalsindia" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px; margin-right:6px;"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg>@travelpalsindia</a></li></ul></div>
+    <div><h4>Connect</h4><ul><li><a href="/cdn-cgi/l/email-protection#1f6b706a6d6c5f6b6d7e697a736f7e736c316a6c"><span class="__cf_email__" data-cfemail="9beff4eee9e8dbefe9faedfef7ebfaf7e8b5eee8">[email&#160;protected]</span></a></li><li><a href="tel:+15875865189">+1 587 586 5189</a></li><li><a href="https://instagram.com/travelpalsindia" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px; margin-right:6px;"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg>@travelpalsindia</a></li></ul></div>
   </div>
   <div class="container footer-bottom"><span>© 2026 Travel Pals · Atithi Devo Bhava</span><span>Curated with care</span></div>
 </footer>
