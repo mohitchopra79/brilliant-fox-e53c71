@@ -68,75 +68,92 @@
     .host-frame { width: 220px; height: 220px; }
   }
 
-  /* Itinerary header — two-column with route-map thumbnail */
-  .itinerary-head {
+  /* Itinerary — two-column: days left, sticky map right */
+  .itinerary-layout {
     display: grid;
-    grid-template-columns: 1fr 320px;
+    grid-template-columns: 1fr 280px;
     gap: 56px;
     align-items: start;
-    margin-bottom: 40px;
   }
-  .itinerary-head-text .hr-gold { margin-top: 18px; margin-bottom: 18px; }
+  .itinerary-days { min-width: 0; }
+  .itinerary-days .sec-intro { margin-bottom: 8px; }
+  .itinerary-days .sec-intro .hr-gold { margin-top: 18px; margin-bottom: 20px; }
 
+  /* Sticky map sidebar */
+  .itinerary-map-col {
+    position: sticky;
+    top: 88px;
+  }
   .route-map-card { margin: 0; }
   .route-map-link {
     display: block;
     position: relative;
-    padding: 12px;
-    background: #FBF8F0;
-    border: 1px solid rgba(184,134,11,0.35);
+    overflow: hidden;
+    border: 1px solid rgba(184,134,11,0.4);
     box-shadow:
-      0 0 0 1px rgba(184,134,11,0.18) inset,
-      0 18px 40px -22px rgba(20,33,61,0.28),
-      0 8px 18px -12px rgba(20,33,61,0.15);
+      0 0 0 4px rgba(184,134,11,0.10),
+      0 20px 48px -18px rgba(20,33,61,0.32),
+      0 8px 20px -10px rgba(20,33,61,0.16);
     cursor: zoom-in;
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-decoration: none;
+    /* crop the blank right margin in the source image */
+    aspect-ratio: 3 / 4;
   }
   .route-map-link:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
     box-shadow:
-      0 0 0 1px rgba(184,134,11,0.30) inset,
-      0 26px 50px -22px rgba(20,33,61,0.36),
-      0 12px 22px -12px rgba(20,33,61,0.20);
+      0 0 0 4px rgba(184,134,11,0.18),
+      0 28px 56px -18px rgba(20,33,61,0.38),
+      0 12px 24px -10px rgba(20,33,61,0.22);
   }
   .route-map-link img {
     display: block;
-    width: 100%;
-    height: auto;
-    border: 1px solid rgba(20,33,61,0.08);
+    width: 108%;           /* slightly wider to push blank right edge out of frame */
+    height: 100%;
+    object-fit: cover;
+    object-position: left center;
+    border: none;
+    margin: 0;
   }
   .route-map-zoom {
     position: absolute;
-    right: 18px;
-    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 14px;
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 6px 10px;
-    background: rgba(20,33,61,0.82);
+    padding: 7px 14px;
+    background: rgba(20,33,61,0.80);
     color: #FBF8F0;
     font-family: var(--caps);
     font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     border-radius: 999px;
-    backdrop-filter: blur(2px);
+    white-space: nowrap;
+    backdrop-filter: blur(4px);
   }
   .route-map-card figcaption {
     font-family: var(--serif);
     font-style: italic;
     color: var(--ink-soft);
-    font-size: 13.5px;
-    line-height: 1.55;
-    margin-top: 14px;
+    font-size: 12.5px;
+    line-height: 1.5;
+    margin-top: 12px;
     text-align: center;
-    opacity: 0.85;
+    opacity: 0.8;
   }
 
-  @media (max-width: 900px) {
-    .itinerary-head { grid-template-columns: 1fr; gap: 36px; }
-    .route-map-card { max-width: 360px; margin: 0 auto; }
+  @media (max-width: 960px) {
+    .itinerary-layout { grid-template-columns: 1fr; gap: 0; }
+    .itinerary-map-col {
+      position: static;
+      max-width: 320px;
+      margin: 0 auto 40px;
+    }
+    .route-map-link { aspect-ratio: 3 / 4; }
   }
 
   /* Lightbox — pure-CSS :target modal */
@@ -295,26 +312,16 @@
 <!-- ITINERARY -->
 <section id="itinerary">
   <div class="container">
-    <div class="itinerary-head">
-      <div class="itinerary-head-text">
-        <span class="eyebrow">Day by Day</span>
-        <h2 style="margin-top:16px;">The Itinerary</h2>
-        <div class="hr-gold"></div>
-        <p style="color:var(--ink-soft); font-size:16px; line-height:1.7; max-width:42ch;">Fourteen days across nine stops — from the marigolds of Delhi, west through Rajasthan to the Fair at Nagaur, then south by air to Mumbai for the curtain.</p>
-      </div>
-      <figure class="route-map-card">
-        <a href="#routemap-lightbox" class="route-map-link" aria-label="Enlarge route map">
-          <img src="images/feb2027routemap.jpg"
-               alt="Route map: Delhi, Agra, Jaipur, Nagaur, Jodhpur, Ghanerao, Ranakpur, Udaipur and Mumbai"
-               loading="lazy" />
-          <span class="route-map-zoom" aria-hidden="true">
-            <svg viewBox="0 0 20 20" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="6"/><path d="m17 17-3.5-3.5"/><path d="M9 6v6M6 9h6"/></svg>
-            <span>Tap to enlarge</span>
-          </span>
-        </a>
-        <figcaption>By road through Rajasthan · by air to Mumbai</figcaption>
-      </figure>
-    </div>
+    <div class="itinerary-layout">
+
+      <!-- Day cards -->
+      <div class="itinerary-days">
+        <div class="sec-intro">
+          <span class="eyebrow">Day by Day</span>
+          <h2 style="margin-top:16px;">The Itinerary</h2>
+          <div class="hr-gold"></div>
+          <p style="color:var(--ink-soft); font-size:16px; line-height:1.7; max-width:44ch; margin-bottom:8px;">Fourteen days across nine stops — from the marigolds of Delhi, west through Rajasthan to the Fair at Nagaur, then south by air to Mumbai for the curtain.</p>
+        </div>
 
     <div class="day"><div class="num"><strong>01</strong>Mon · 8 Feb</div><div>
       <div class="place">Arrive Delhi</div>
@@ -401,6 +408,26 @@
       <h3>Bombay by Dawn — and home.</h3>
       <p>Pre-dawn drive into the working Mumbai. Chhatrapati Shivaji Terminus, newspaper and milk distribution, fresh pav at a bakery, the Dadar Flower Market, and Sassoon Dock with the fisher-folk. The Dabbawala route, Dhobi Ghat (the open-air laundry), and Victoria Terminus. Late evening transfer for flights home.</p>
     </div></div>
+
+      </div><!-- /itinerary-days -->
+
+      <!-- Sticky map sidebar -->
+      <div class="itinerary-map-col">
+        <figure class="route-map-card">
+          <a href="#routemap-lightbox" class="route-map-link" aria-label="Enlarge route map">
+            <img src="images/feb2027routemap.jpg"
+                 alt="Route map: Delhi, Agra, Jaipur, Nagaur, Jodhpur, Ghanerao, Ranakpur, Udaipur and Mumbai"
+                 loading="lazy" />
+            <span class="route-map-zoom" aria-hidden="true">
+              <svg viewBox="0 0 20 20" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="6"/><path d="m17 17-3.5-3.5"/><path d="M9 6v6M6 9h6"/></svg>
+              <span>Tap to enlarge</span>
+            </span>
+          </a>
+          <figcaption>By road through Rajasthan · by air to Mumbai</figcaption>
+        </figure>
+      </div><!-- /itinerary-map-col -->
+
+    </div><!-- /itinerary-layout -->
   </div>
 </section>
 <div class="section-divider"><span class="ornament"><span class="dot"></span><span class="stroke"></span><span class="dot center"></span><span class="stroke"></span><span class="dot"></span></span></div>
