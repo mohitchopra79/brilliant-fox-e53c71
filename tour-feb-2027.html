@@ -173,18 +173,24 @@
   }
   .lightbox-figure {
     position: relative;
-    max-width: min(92vw, 760px);
-    max-height: 92vh;
+    width: min(92vw, 560px);
     margin: 0;
     display: flex; flex-direction: column; align-items: center;
   }
-  .lightbox-figure img {
-    display: block;
-    max-width: 100%;
-    max-height: 84vh;
-    width: auto; height: auto;
+  .lightbox-img-wrap {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
     box-shadow: 0 30px 80px rgba(0,0,0,0.5);
     border: 1px solid rgba(251,248,240,0.15);
+  }
+  .lightbox-figure img {
+    display: block;
+    width: 108%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    margin-left: -4%;
   }
   .lightbox-close {
     position: absolute;
@@ -474,8 +480,10 @@
   <a href="#itinerary" class="lightbox-backdrop" aria-label="Close"></a>
   <figure class="lightbox-figure">
     <a href="#itinerary" class="lightbox-close" aria-label="Close">×</a>
-    <img src="images/feb2027routemap.jpg"
-         alt="Route map: Delhi, Agra, Jaipur, Nagaur, Jodhpur, Ghanerao, Ranakpur, Udaipur and Mumbai" />
+    <div class="lightbox-img-wrap">
+      <img src="images/feb2027routemap.jpg"
+           alt="Route map: Delhi, Agra, Jaipur, Nagaur, Jodhpur, Ghanerao, Ranakpur, Udaipur and Mumbai" />
+    </div>
     <figcaption class="lightbox-caption">Spirit of Rajasthan &amp; the Nagaur Cattle Fair · 13 nights, 14 days</figcaption>
   </figure>
 </div>
