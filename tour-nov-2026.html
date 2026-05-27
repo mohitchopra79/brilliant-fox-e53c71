@@ -586,6 +586,11 @@
     background: #FBF8F0;
     position: relative;
   }
+  .ext-route-map.tall {
+    max-width: 380px;
+    margin: 0 auto 32px;
+    aspect-ratio: 380 / 550;
+  }
   .ext-route-map svg {
     display: block;
     width: 100%;
@@ -791,6 +796,61 @@
             <div class="g" style="background-image:url('images/extensions/kerala-elephants.jpg');"><span class="caption">Wild elephants, Periyar</span></div>
             <div class="g" style="background-image:url('images/extensions/kerala-coconut-climber.jpg');"><span class="caption">Coconut climber</span></div>
           </div>
+          <figure class="ext-route-map tall" aria-label="Route map: Mumbai to Kerala loop and back">
+            <svg viewBox="0 0 380 550" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img">
+              <image href="images/kerala-extension-base.jpg" x="0" y="0" width="380" height="550" preserveAspectRatio="xMidYMid slice"/>
+
+              <!-- Title card top-right -->
+              <g transform="translate(208,10)">
+                <rect width="162" height="98" fill="rgba(251,248,240,0.94)" stroke="#9E532B" stroke-width="1"/>
+                <text x="11" y="20" font-family="Inter Tight, sans-serif" font-size="8" letter-spacing="1.8" fill="#9E532B" font-weight="600">POST-TOUR EXTENSION</text>
+                <text x="11" y="40" font-family="Fraunces, Georgia, serif" font-size="14" font-weight="600" fill="#14213D">Five days in Kerala</text>
+                <text x="11" y="56" font-family="Cormorant Garamond, Georgia, serif" font-style="italic" font-size="11" fill="#2D3654">backwaters &amp; spice hills</text>
+                <text x="11" y="74" font-family="Inter Tight, sans-serif" font-size="9" fill="#14213D">20 – 27 November 2026 · 7 nights</text>
+                <line x1="11" y1="84" x2="29" y2="84" stroke="#9E532B" stroke-width="2.2"/>
+                <text x="34" y="87" font-family="Inter Tight, sans-serif" font-size="8" fill="#14213D">By road</text>
+                <line x1="80" y1="84" x2="98" y2="84" stroke="#9E532B" stroke-width="2.2" stroke-dasharray="3 3"/>
+                <text x="103" y="87" font-family="Inter Tight, sans-serif" font-size="8" fill="#14213D">By air</text>
+              </g>
+
+              <!-- Flight path halo (Mumbai ↔ Cochin) -->
+              <g stroke="#FBF8F0" stroke-width="10" fill="none" stroke-linecap="round" opacity="0.85">
+                <path d="M 122 75 Q 110 250, 222 432"/>
+              </g>
+              <!-- Flight path dashed -->
+              <path d="M 122 75 Q 110 250, 222 432" stroke="#9E532B" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-dasharray="6 6"/>
+              <!-- Outbound arrow (Mumbai → Cochin) -->
+              <g transform="translate(112, 230) rotate(95)"><path d="M -5 -4 L 4 0 L -5 4 Z" fill="#9E532B"/></g>
+              <!-- Return arrow (Cochin → Mumbai) -->
+              <g transform="translate(135, 130) rotate(280)"><path d="M -5 -4 L 4 0 L -5 4 Z" fill="#9E532B"/></g>
+
+              <!-- Kerala road loop halo -->
+              <g stroke="#FBF8F0" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.85">
+                <path d="M 225 440 L 280 425 L 295 478 L 220 495 Z"/>
+              </g>
+              <!-- Kerala road loop solid -->
+              <path d="M 225 440 L 280 425 L 295 478 L 220 495 Z"
+                    stroke="#9E532B" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+              <!-- Markers -->
+              <g font-family="Inter Tight, sans-serif" font-weight="600" font-size="11" text-anchor="middle">
+                <g transform="translate(115,70)"><circle r="13" fill="#FBF8F0" stroke="#9E532B" stroke-width="2.2"/><text y="4" fill="#9E532B">1</text></g>
+                <g transform="translate(225,440)"><circle r="12" fill="#FBF8F0" stroke="#9E532B" stroke-width="2.2"/><text y="4" fill="#9E532B" font-size="10">2</text></g>
+                <g transform="translate(280,425)"><circle r="12" fill="#FBF8F0" stroke="#9E532B" stroke-width="2.2"/><text y="4" fill="#9E532B" font-size="10">3</text></g>
+                <g transform="translate(295,478)"><circle r="12" fill="#FBF8F0" stroke="#9E532B" stroke-width="2.2"/><text y="4" fill="#9E532B" font-size="10">4</text></g>
+                <g transform="translate(220,495)"><circle r="12" fill="#FBF8F0" stroke="#9E532B" stroke-width="2.2"/><text y="4" fill="#9E532B" font-size="10">5</text></g>
+              </g>
+
+              <!-- City labels -->
+              <g font-family="Fraunces, Georgia, serif" font-weight="600" font-size="13" fill="#14213D">
+                <text x="133" y="74" text-anchor="start">Mumbai</text>
+                <text x="208" y="444" text-anchor="end">Cochin</text>
+                <text x="294" y="418" text-anchor="middle">Munnar</text>
+                <text x="295" y="498" text-anchor="middle">Thekkady</text>
+                <text x="203" y="499" text-anchor="end">Kumarakom</text>
+              </g>
+            </svg>
+          </figure>
           <div class="ext-days">
               <div class="ext-day">
                 <div class="d-num"><strong>Day 1</strong>Fri · 20 Nov</div>
