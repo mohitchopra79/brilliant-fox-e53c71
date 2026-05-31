@@ -199,6 +199,19 @@ header.nav {
 }
 .nav-cta:hover { background: var(--terracotta) !important; border-color: var(--terracotta); color: #fff !important; }
 .nav-cta::after { display: none !important; }
+.nav-login {
+  font-family: var(--caps);
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  padding: 9px 18px !important;
+  background: transparent !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--ivory-2);
+  border-radius: 100px;
+  transition: all .2s ease;
+}
+.nav-login:hover { border-color: var(--ink); color: var(--ink) !important; }
+.nav-login::after { display: none !important; }
 .nav-toggle { display: none; background: none; border: 0; cursor: pointer; font-size: 22px; color: var(--ink); }
 
 /* ---------- Buttons ---------- */

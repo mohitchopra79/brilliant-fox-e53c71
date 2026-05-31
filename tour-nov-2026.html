@@ -8,144 +8,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,30..100;1,9..144,300..700,30..100&family=Inter+Tight:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap">
 <link rel="stylesheet" href="styles.css?v=4">
-<style>
-  /* Itinerary — two-column: days left, sticky map right */
-  .itinerary-layout {
-    display: grid;
-    grid-template-columns: 1fr 280px;
-    gap: 56px;
-    align-items: start;
-  }
-  .itinerary-days { min-width: 0; }
-  .itinerary-days .sec-intro { margin-bottom: 8px; }
-  .itinerary-days .sec-intro .hr-gold { margin-top: 18px; margin-bottom: 20px; }
-
-  /* Sticky map sidebar */
-  .itinerary-map-col { position: sticky; top: 88px; }
-  .route-map-card { margin: 0; }
-  .route-map-link {
-    display: block;
-    position: relative;
-    overflow: hidden;
-    border: 1px solid rgba(184,134,11,0.4);
-    box-shadow:
-      0 0 0 4px rgba(184,134,11,0.10),
-      0 20px 48px -18px rgba(20,33,61,0.32),
-      0 8px 20px -10px rgba(20,33,61,0.16);
-    cursor: zoom-in;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-decoration: none;
-    aspect-ratio: 620 / 820;
-    background: #FBF8F0;
-  }
-  .route-map-link:hover {
-    transform: translateY(-3px);
-    box-shadow:
-      0 0 0 4px rgba(184,134,11,0.18),
-      0 28px 56px -18px rgba(20,33,61,0.38),
-      0 12px 24px -10px rgba(20,33,61,0.22);
-  }
-  .route-map-link svg.route-map-svg {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-  .route-map-zoom {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 14px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 7px 14px;
-    background: rgba(20,33,61,0.80);
-    color: #FBF8F0;
-    font-family: var(--caps);
-    font-size: 10px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    border-radius: 999px;
-    white-space: nowrap;
-    backdrop-filter: blur(4px);
-    z-index: 2;
-  }
-  .route-map-card figcaption {
-    font-family: var(--serif);
-    font-style: italic;
-    color: var(--ink-soft);
-    font-size: 12.5px;
-    line-height: 1.5;
-    margin-top: 12px;
-    text-align: center;
-    opacity: 0.8;
-  }
-
-  @media (max-width: 960px) {
-    .itinerary-layout { grid-template-columns: 1fr; gap: 0; }
-    .itinerary-map-col {
-      position: static;
-      max-width: 320px;
-      margin: 0 auto 40px;
-    }
-  }
-
-  /* Lightbox — pure-CSS :target modal */
-  .lightbox {
-    position: fixed; inset: 0;
-    background: rgba(20,33,61,0.92);
-    display: flex; align-items: center; justify-content: center;
-    padding: 32px;
-    opacity: 0; pointer-events: none;
-    transition: opacity 0.25s ease;
-    z-index: 9999;
-  }
-  .lightbox:target { opacity: 1; pointer-events: auto; }
-  .lightbox-backdrop { position: absolute; inset: 0; cursor: zoom-out; }
-  .lightbox-figure {
-    position: relative;
-    width: min(92vw, 560px);
-    margin: 0;
-    display: flex; flex-direction: column; align-items: center;
-  }
-  .lightbox-img-wrap {
-    width: 100%;
-    aspect-ratio: 620 / 820;
-    overflow: hidden;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
-    border: 1px solid rgba(251,248,240,0.15);
-    background: #FBF8F0;
-  }
-  .lightbox-figure svg.route-map-svg {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-  .lightbox-close {
-    position: absolute;
-    top: -44px; right: -4px;
-    width: 36px; height: 36px;
-    display: inline-flex; align-items: center; justify-content: center;
-    color: #FBF8F0;
-    background: rgba(251,248,240,0.08);
-    border: 1px solid rgba(251,248,240,0.4);
-    border-radius: 50%;
-    text-decoration: none;
-    font-family: var(--sans);
-    font-size: 18px; line-height: 1;
-    transition: background 0.2s ease;
-  }
-  .lightbox-close:hover { background: rgba(251,248,240,0.18); }
-  .lightbox-caption {
-    margin-top: 14px;
-    font-family: var(--serif);
-    font-style: italic;
-    color: rgba(251,248,240,0.78);
-    font-size: 14px;
-    letter-spacing: 0.02em;
-    text-align: center;
-  }
-</style>
 <template id="__bundler_thumbnail">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
   <rect width="200" height="200" fill="#14213d"/>
@@ -177,6 +39,7 @@
       <li><a href="india.html">About India</a></li>
       <li><a href="about.html">Our Story</a></li>
       <li><a href="contact.html">Contact</a></li>
+      <li><a href="https://app.travelpals.us" class="nav-login">Login</a></li>
       <li><a href="booking.html" class="nav-cta">Book Now</a></li>
     </ul>
   </div>
@@ -231,18 +94,12 @@
 
 
 <!-- ITINERARY -->
-<section id="itinerary">
+<section>
   <div class="container">
-    <div class="itinerary-layout">
-
-      <!-- Day cards -->
-      <div class="itinerary-days">
-        <div class="sec-intro">
-          <span class="eyebrow">Day by Day</span>
-          <h2 style="margin-top:16px;">The Itinerary</h2>
-          <div class="hr-gold"></div>
-          <p style="color:var(--ink-soft); font-size:16px; line-height:1.7; max-width:44ch; margin-bottom:8px;">Thirteen days across nine stops — from the marigolds of Delhi, west through Rajasthan to the holy lake at Pushkar, south to the City of Lakes, and on by air to Mumbai for the curtain.</p>
-        </div>
+    <div class="sec-head left" style="margin-bottom:32px;">
+      <span class="eyebrow">Day by Day</span>
+      <h2 style="margin-top:16px;">The Itinerary</h2>
+    </div>
 
     <div class="day">
       <div class="num"><strong>01</strong>Sun · 8 Nov</div>
@@ -372,115 +229,6 @@
         <p>The Dabbawala route, Dhobi Ghat — the open-air laundry — and Victoria Terminus, the UNESCO-listed Italianate-Gothic-Mughal-Hindu hybrid railway station. Late evening transfer for flights home, with sweet memories of Incredible India.</p>
       </div>
     </div>
-
-      </div><!-- /itinerary-days -->
-
-      <!-- Sticky route map sidebar -->
-      <div class="itinerary-map-col">
-        <figure class="route-map-card">
-          <a href="#routemap-lightbox" class="route-map-link" aria-label="Enlarge route map">
-            <svg class="route-map-svg" viewBox="0 0 620 820" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Route map of North India tour">
-              <image href="images/nov2026routemap-base.jpg" x="0" y="0" width="620" height="820" preserveAspectRatio="xMidYMid slice"/>
-
-              <!-- Title card top-right -->
-              <g transform="translate(360,30)">
-                <rect width="240" height="115" fill="rgba(251,248,240,0.94)" stroke="#9E532B" stroke-width="1"/>
-                <text x="14" y="22" font-family="Inter Tight, sans-serif" font-size="9" letter-spacing="2" fill="#9E532B" font-weight="600">TOUR ROUTE</text>
-                <text x="14" y="48" font-family="Fraunces, Georgia, serif" font-size="18" font-weight="600" fill="#14213D">North India</text>
-                <text x="14" y="68" font-family="Cormorant Garamond, Georgia, serif" font-style="italic" font-size="14" fill="#2D3654">Delhi to Mumbai</text>
-                <text x="14" y="88" font-family="Inter Tight, sans-serif" font-size="10" fill="#14213D">8 – 20 November 2026</text>
-                <text x="14" y="102" font-family="Inter Tight, sans-serif" font-size="10" fill="#2D3654">12 nights / 13 days</text>
-                <line x1="138" y1="92" x2="158" y2="92" stroke="#9E532B" stroke-width="2.4"/>
-                <text x="163" y="95" font-family="Inter Tight, sans-serif" font-size="8.5" fill="#14213D">By road</text>
-                <line x1="138" y1="105" x2="158" y2="105" stroke="#9E532B" stroke-width="2.4" stroke-dasharray="3 3"/>
-                <text x="163" y="108" font-family="Inter Tight, sans-serif" font-size="8.5" fill="#14213D">By air</text>
-              </g>
-
-              <!-- Subtle white halo behind the route to lift it off the busy map -->
-              <g stroke="#FBF8F0" stroke-width="11" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.85">
-                <path d="M 290 290 L 335 340 L 240 380 L 205 395 L 155 400 L 175 475 L 225 475 L 245 530"/>
-                <path d="M 245 530 L 135 700"/>
-              </g>
-
-              <!-- Route line: road (solid) -->
-              <path d="M 290 290 L 335 340 L 240 380 L 205 395 L 155 400 L 175 475 L 225 475 L 245 530"
-                    stroke="#9E532B" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-              <!-- Route line: air (dashed) -->
-              <path d="M 245 530 L 135 700"
-                    stroke="#9E532B" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="6 7"/>
-
-              <!-- Markers (rendered with white halo behind labels) -->
-              <g font-family="Inter Tight, sans-serif" font-weight="600" font-size="12" text-anchor="middle">
-                <!-- Delhi -->
-                <g transform="translate(290,290)">
-                  <circle r="13" fill="#FBF8F0" stroke="#9E532B" stroke-width="2.2"/>
-                  <text y="4" fill="#9E532B">1</text>
-                </g>
-                <!-- Agra -->
-                <g transform="translate(335,340)">
-                  <circle r="13" fill="#FBF8F0" stroke="#9E532B" stroke-width="2.2"/>
-                  <text y="4" fill="#9E532B">2</text>
-                </g>
-                <!-- Jaipur -->
-                <g transform="translate(240,380)">
-                  <circle r="13" fill="#FBF8F0" stroke="#9E532B" stroke-width="2.2"/>
-                  <text y="4" fill="#9E532B">3</text>
-                </g>
-                <!-- Pushkar -->
-                <g transform="translate(205,395)">
-                  <circle r="13" fill="#FBF8F0" stroke="#9E532B" stroke-width="2.2"/>
-                  <text y="4" fill="#9E532B">4</text>
-                </g>
-                <!-- Jodhpur -->
-                <g transform="translate(155,400)">
-                  <circle r="13" fill="#FBF8F0" stroke="#9E532B" stroke-width="2.2"/>
-                  <text y="4" fill="#9E532B">5</text>
-                </g>
-                <!-- Ghanerao -->
-                <g transform="translate(175,475)">
-                  <circle r="13" fill="#FBF8F0" stroke="#9E532B" stroke-width="2.2"/>
-                  <text y="4" fill="#9E532B">6</text>
-                </g>
-                <!-- Ranakpur -->
-                <g transform="translate(225,475)">
-                  <circle r="13" fill="#FBF8F0" stroke="#9E532B" stroke-width="2.2"/>
-                  <text y="4" fill="#9E532B">7</text>
-                </g>
-                <!-- Udaipur -->
-                <g transform="translate(245,530)">
-                  <circle r="13" fill="#FBF8F0" stroke="#9E532B" stroke-width="2.2"/>
-                  <text y="4" fill="#9E532B">8</text>
-                </g>
-                <!-- Mumbai -->
-                <g transform="translate(135,700)">
-                  <circle r="13" fill="#FBF8F0" stroke="#9E532B" stroke-width="2.2"/>
-                  <text y="4" fill="#9E532B">9</text>
-                </g>
-              </g>
-
-              <!-- City labels (positioned to avoid the route line) -->
-              <g font-family="Fraunces, Georgia, serif" font-weight="600" font-size="14" fill="#14213D">
-                <text x="308" y="294" text-anchor="start">Delhi</text>
-                <text x="353" y="344" text-anchor="start">Agra</text>
-                <text x="258" y="384" text-anchor="start">Jaipur</text>
-                <text x="190" y="383" text-anchor="end">Pushkar</text>
-                <text x="138" y="404" text-anchor="end">Jodhpur</text>
-                <text x="158" y="479" text-anchor="end">Ghanerao</text>
-                <text x="243" y="479" text-anchor="start">Ranakpur</text>
-                <text x="263" y="534" text-anchor="start">Udaipur</text>
-                <text x="153" y="704" text-anchor="start">Mumbai</text>
-              </g>
-            </svg>
-            <span class="route-map-zoom" aria-hidden="true">
-              <svg viewBox="0 0 20 20" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="6"/><path d="m17 17-3.5-3.5"/><path d="M9 6v6M6 9h6"/></svg>
-              <span>Tap to enlarge</span>
-            </span>
-          </a>
-          <figcaption>By road through Rajasthan · by air to Mumbai</figcaption>
-        </figure>
-      </div><!-- /itinerary-map-col -->
-
-    </div><!-- /itinerary-layout -->
   </div>
 </section>
 <div class="section-divider"><span class="ornament"><span class="dot"></span><span class="stroke"></span><span class="dot center"></span><span class="stroke"></span><span class="dot"></span></span></div>
@@ -572,25 +320,6 @@
 
   /* Days grid — full width, 2 columns on desktop */
   .ext-days { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 48px; }
-
-  /* Extension route map — slim landscape banner inside the open ext body */
-  .ext-route-map {
-    margin: 0 0 32px;
-    aspect-ratio: 600 / 300;
-    overflow: hidden;
-    border: 1px solid rgba(184,134,11,0.4);
-    box-shadow:
-      0 0 0 4px rgba(184,134,11,0.10),
-      0 14px 32px -16px rgba(20,33,61,0.28),
-      0 6px 14px -10px rgba(20,33,61,0.14);
-    background: #FBF8F0;
-    position: relative;
-  }
-  .ext-route-map svg {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
   @media (max-width: 820px) { .ext-days { grid-template-columns: 1fr; gap: 22px; } }
   .ext-day { display: grid; grid-template-columns: 90px 1fr; gap: 18px; padding-bottom: 22px; border-bottom: 1px dashed rgba(20,33,61,0.15); }
   .ext-day:last-child { border-bottom: 0; padding-bottom: 0; }
@@ -648,45 +377,6 @@
             <div class="g" style="background-image:url('images/extensions/varanasi-shiva-mural.jpg');"><span class="caption">Dhamek Stupa, Sarnath</span></div>
             <div class="g" style="background-image:url('images/extensions/sarnath-stupa.jpg');"><span class="caption">Shiva mural</span></div>
           </div>
-          <figure class="ext-route-map" aria-label="Route map: Delhi to Varanasi and back, by air">
-            <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img">
-              <image href="images/varanasi-extension-base.jpg" x="0" y="0" width="600" height="300" preserveAspectRatio="xMidYMid slice"/>
-
-              <!-- Title card top-right -->
-              <g transform="translate(380,12)">
-                <rect width="208" height="80" fill="rgba(251,248,240,0.94)" stroke="#9E532B" stroke-width="1"/>
-                <text x="12" y="20" font-family="Inter Tight, sans-serif" font-size="8.5" letter-spacing="2" fill="#9E532B" font-weight="600">PRE-TOUR EXTENSION</text>
-                <text x="12" y="40" font-family="Fraunces, Georgia, serif" font-size="15" font-weight="600" fill="#14213D">Varanasi for Diwali</text>
-                <text x="12" y="56" font-family="Inter Tight, sans-serif" font-size="9.5" fill="#14213D">6 – 8 November 2026 · 2 nights</text>
-                <line x1="12" y1="68" x2="32" y2="68" stroke="#9E532B" stroke-width="2.2" stroke-dasharray="3 3"/>
-                <text x="37" y="71" font-family="Inter Tight, sans-serif" font-size="8.5" fill="#14213D">By air · round trip</text>
-              </g>
-
-              <!-- Flight path cream halo -->
-              <g stroke="#FBF8F0" stroke-width="10" fill="none" stroke-linecap="round" opacity="0.85">
-                <path d="M 145 65 Q 320 175, 502 215"/>
-              </g>
-              <!-- Flight path dashed -->
-              <path d="M 145 65 Q 320 175, 502 215" stroke="#9E532B" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-dasharray="6 6"/>
-              <!-- Outbound arrow (Delhi → Varanasi) -->
-              <g transform="translate(330, 165) rotate(28)"><path d="M -6 -5 L 4 0 L -6 5 Z" fill="#9E532B"/></g>
-              <!-- Return arrow (Varanasi → Delhi) -->
-              <g transform="translate(280, 130) rotate(208)"><path d="M -6 -5 L 4 0 L -6 5 Z" fill="#9E532B"/></g>
-
-              <!-- Markers -->
-              <g font-family="Inter Tight, sans-serif" font-weight="600" font-size="11" text-anchor="middle">
-                <g transform="translate(130,60)"><circle r="13" fill="#FBF8F0" stroke="#9E532B" stroke-width="2.2"/><text y="4" fill="#9E532B">1</text></g>
-                <g transform="translate(517,220)"><circle r="13" fill="#FBF8F0" stroke="#9E532B" stroke-width="2.2"/><text y="4" fill="#9E532B">2</text></g>
-              </g>
-
-              <!-- City labels -->
-              <g font-family="Fraunces, Georgia, serif" font-weight="600" font-size="14" fill="#14213D">
-                <text x="150" y="64" text-anchor="start">Delhi</text>
-                <text x="500" y="224" text-anchor="end">Varanasi</text>
-                <text x="500" y="242" text-anchor="end" font-size="10.5" font-style="italic" fill="#2D3654">+ Sarnath</text>
-              </g>
-            </svg>
-          </figure>
           <div class="ext-days">
               <div class="ext-day">
                 <div class="d-num"><strong>Day 1</strong>Fri · 6 Nov</div>
@@ -791,61 +481,6 @@
             <div class="g" style="background-image:url('images/extensions/kerala-elephants.jpg');"><span class="caption">Wild elephants, Periyar</span></div>
             <div class="g" style="background-image:url('images/extensions/kerala-coconut-climber.jpg');"><span class="caption">Coconut climber</span></div>
           </div>
-          <figure class="ext-route-map" style="aspect-ratio: 690 / 500;" aria-label="Route map: Mumbai to Kerala loop and back">
-            <svg viewBox="0 0 690 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img">
-              <image href="images/kerala-extension-base.jpg" x="0" y="0" width="690" height="500" preserveAspectRatio="xMidYMid slice"/>
-
-              <!-- Title card top-right -->
-              <g transform="translate(448,22)">
-                <rect width="224" height="118" fill="rgba(251,248,240,0.95)" stroke="#9E532B" stroke-width="1"/>
-                <text x="14" y="22" font-family="Inter Tight, sans-serif" font-size="9" letter-spacing="2" fill="#9E532B" font-weight="600">POST-TOUR EXTENSION</text>
-                <text x="14" y="46" font-family="Fraunces, Georgia, serif" font-size="18" font-weight="600" fill="#14213D">Five days in Kerala</text>
-                <text x="14" y="66" font-family="Cormorant Garamond, Georgia, serif" font-style="italic" font-size="13" fill="#2D3654">backwaters &amp; spice hills</text>
-                <text x="14" y="88" font-family="Inter Tight, sans-serif" font-size="10" fill="#14213D">20 – 27 November 2026 · 7 nights</text>
-                <line x1="14" y1="102" x2="34" y2="102" stroke="#9E532B" stroke-width="2.2"/>
-                <text x="39" y="105" font-family="Inter Tight, sans-serif" font-size="9" fill="#14213D">By road</text>
-                <line x1="100" y1="102" x2="120" y2="102" stroke="#9E532B" stroke-width="2.2" stroke-dasharray="3 3"/>
-                <text x="125" y="105" font-family="Inter Tight, sans-serif" font-size="9" fill="#14213D">By air</text>
-              </g>
-
-              <!-- Flight path halo (Mumbai → Cochin curve) -->
-              <g stroke="#FBF8F0" stroke-width="11" fill="none" stroke-linecap="round" opacity="0.9">
-                <path d="M 148 60 Q 130 260, 258 440"/>
-              </g>
-              <!-- Flight path dashed -->
-              <path d="M 148 60 Q 130 260, 258 440" stroke="#9E532B" stroke-width="2.8" fill="none" stroke-linecap="round" stroke-dasharray="7 7"/>
-              <!-- Outbound arrow -->
-              <g transform="translate(132, 230) rotate(110)"><path d="M -6 -5 L 4 0 L -6 5 Z" fill="#9E532B"/></g>
-              <!-- Return arrow -->
-              <g transform="translate(148, 140) rotate(290)"><path d="M -6 -5 L 4 0 L -6 5 Z" fill="#9E532B"/></g>
-
-              <!-- Kerala road loop halo -->
-              <g stroke="#FBF8F0" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
-                <path d="M 266 446 L 345 449 L 371 475 L 326 474 Z"/>
-              </g>
-              <!-- Kerala road loop solid -->
-              <path d="M 266 446 L 345 449 L 371 475 L 326 474 Z"
-                    stroke="#9E532B" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-
-              <!-- Markers -->
-              <g font-family="Inter Tight, sans-serif" font-weight="600" text-anchor="middle">
-                <g transform="translate(135,50)"><circle r="14" fill="#FBF8F0" stroke="#9E532B" stroke-width="2.4"/><text y="4" font-size="12" fill="#9E532B">1</text></g>
-                <g transform="translate(266,446)"><circle r="10" fill="#FBF8F0" stroke="#9E532B" stroke-width="2"/><text y="3.5" font-size="10" fill="#9E532B">2</text></g>
-                <g transform="translate(345,449)"><circle r="10" fill="#FBF8F0" stroke="#9E532B" stroke-width="2"/><text y="3.5" font-size="10" fill="#9E532B">3</text></g>
-                <g transform="translate(371,475)"><circle r="10" fill="#FBF8F0" stroke="#9E532B" stroke-width="2"/><text y="3.5" font-size="10" fill="#9E532B">4</text></g>
-                <g transform="translate(326,474)"><circle r="10" fill="#FBF8F0" stroke="#9E532B" stroke-width="2"/><text y="3.5" font-size="10" fill="#9E532B">5</text></g>
-              </g>
-
-              <!-- City labels (clear of the dense cluster) -->
-              <g font-family="Fraunces, Georgia, serif" font-weight="600" font-size="13" fill="#14213D">
-                <text x="156" y="55" text-anchor="start">Mumbai</text>
-                <text x="252" y="432" text-anchor="end">Cochin</text>
-                <text x="345" y="436" text-anchor="middle">Munnar</text>
-                <text x="389" y="478" text-anchor="start">Thekkady</text>
-                <text x="316" y="492" text-anchor="middle">Kumarakom</text>
-              </g>
-            </svg>
-          </figure>
           <div class="ext-days">
               <div class="ext-day">
                 <div class="d-num"><strong>Day 1</strong>Fri · 20 Nov</div>
@@ -1075,66 +710,10 @@
     </div>
     <div><h4>Journeys</h4><ul><li><a href="tour-nov-2026.html">North India · Nov 2026</a></li><li><a href="tour-nov-2026-rail.html">Rail on All Gauges · Nov 2026</a></li><li><a href="tour-feb-2027.html">Nagaur Cattle Fair · Feb 2027</a></li><li><a href="tour-feb-2027-stitching.html">Stitching Tracks · Feb 2027</a></li><li><a href="private.html">Private Journeys</a></li></ul></div>
     <div><h4>Discover</h4><ul><li><a href="india.html">About India</a></li><li><a href="about.html">Our Story</a></li><li><a href="booking.html">Booking</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-    <div><h4>Connect</h4><ul><li><a href="/cdn-cgi/l/email-protection#b0c4dfc5c2c3f0c4c2d1c6d5dcc0d1dcc39ec5c3"><span class="__cf_email__" data-cfemail="f4809b818687b480869582919884959887da8187">[email&#160;protected]</span></a></li><li><a href="tel:+15875865189">+1 587 586 5189</a></li><li><a href="https://instagram.com/travelpalsindia" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px; margin-right:6px;"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg>@travelpalsindia</a></li></ul></div>
+    <div><h4>Connect</h4><ul><li><a href="mailto:tours@travelpals.us">tours@travelpals.us</a></li><li><a href="tel:+15875865189">+1 587 586 5189</a></li><li><a href="https://instagram.com/travelpalsindia" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px; margin-right:6px;"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg>@travelpalsindia</a></li></ul></div>
   </div>
   <div class="container footer-bottom"><span>© 2026 Travel Pals · Atithi Devo Bhava</span><span>Curated with care</span></div>
 </footer>
 
-<!-- Route map lightbox -->
-<div id="routemap-lightbox" class="lightbox" role="dialog" aria-label="Route map, enlarged">
-  <a href="#itinerary" class="lightbox-backdrop" aria-label="Close"></a>
-  <figure class="lightbox-figure">
-    <a href="#itinerary" class="lightbox-close" aria-label="Close">×</a>
-    <div class="lightbox-img-wrap">
-      <svg class="route-map-svg" viewBox="0 0 620 820" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Route map: Delhi, Agra, Jaipur, Pushkar, Jodhpur, Ghanerao, Ranakpur, Udaipur, Mumbai">
-        <image href="images/nov2026routemap-base.jpg" x="0" y="0" width="620" height="820" preserveAspectRatio="xMidYMid slice"/>
-        <g transform="translate(360,30)">
-          <rect width="240" height="115" fill="rgba(251,248,240,0.94)" stroke="#9E532B" stroke-width="1"/>
-          <text x="14" y="22" font-family="Inter Tight, sans-serif" font-size="9" letter-spacing="2" fill="#9E532B" font-weight="600">TOUR ROUTE</text>
-          <text x="14" y="48" font-family="Fraunces, Georgia, serif" font-size="18" font-weight="600" fill="#14213D">North India</text>
-          <text x="14" y="68" font-family="Cormorant Garamond, Georgia, serif" font-style="italic" font-size="14" fill="#2D3654">Delhi to Mumbai</text>
-          <text x="14" y="88" font-family="Inter Tight, sans-serif" font-size="10" fill="#14213D">8 – 20 November 2026</text>
-          <text x="14" y="102" font-family="Inter Tight, sans-serif" font-size="10" fill="#2D3654">12 nights / 13 days</text>
-          <line x1="138" y1="92" x2="158" y2="92" stroke="#9E532B" stroke-width="2.4"/>
-          <text x="163" y="95" font-family="Inter Tight, sans-serif" font-size="8.5" fill="#14213D">By road</text>
-          <line x1="138" y1="105" x2="158" y2="105" stroke="#9E532B" stroke-width="2.4" stroke-dasharray="3 3"/>
-          <text x="163" y="108" font-family="Inter Tight, sans-serif" font-size="8.5" fill="#14213D">By air</text>
-        </g>
-        <g stroke="#FBF8F0" stroke-width="11" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.85">
-          <path d="M 290 290 L 335 340 L 240 380 L 205 395 L 155 400 L 175 475 L 225 475 L 245 530"/>
-          <path d="M 245 530 L 135 700"/>
-        </g>
-        <path d="M 290 290 L 335 340 L 240 380 L 205 395 L 155 400 L 175 475 L 225 475 L 245 530"
-              stroke="#9E532B" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M 245 530 L 135 700"
-              stroke="#9E532B" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="6 7"/>
-        <g font-family="Inter Tight, sans-serif" font-weight="600" font-size="12" text-anchor="middle">
-          <g transform="translate(290,290)"><circle r="13" fill="#FBF8F0" stroke="#9E532B" stroke-width="2.2"/><text y="4" fill="#9E532B">1</text></g>
-          <g transform="translate(335,340)"><circle r="13" fill="#FBF8F0" stroke="#9E532B" stroke-width="2.2"/><text y="4" fill="#9E532B">2</text></g>
-          <g transform="translate(240,380)"><circle r="13" fill="#FBF8F0" stroke="#9E532B" stroke-width="2.2"/><text y="4" fill="#9E532B">3</text></g>
-          <g transform="translate(205,395)"><circle r="13" fill="#FBF8F0" stroke="#9E532B" stroke-width="2.2"/><text y="4" fill="#9E532B">4</text></g>
-          <g transform="translate(155,400)"><circle r="13" fill="#FBF8F0" stroke="#9E532B" stroke-width="2.2"/><text y="4" fill="#9E532B">5</text></g>
-          <g transform="translate(175,475)"><circle r="13" fill="#FBF8F0" stroke="#9E532B" stroke-width="2.2"/><text y="4" fill="#9E532B">6</text></g>
-          <g transform="translate(225,475)"><circle r="13" fill="#FBF8F0" stroke="#9E532B" stroke-width="2.2"/><text y="4" fill="#9E532B">7</text></g>
-          <g transform="translate(245,530)"><circle r="13" fill="#FBF8F0" stroke="#9E532B" stroke-width="2.2"/><text y="4" fill="#9E532B">8</text></g>
-          <g transform="translate(135,700)"><circle r="13" fill="#FBF8F0" stroke="#9E532B" stroke-width="2.2"/><text y="4" fill="#9E532B">9</text></g>
-        </g>
-        <g font-family="Fraunces, Georgia, serif" font-weight="600" font-size="14" fill="#14213D">
-          <text x="308" y="294" text-anchor="start">Delhi</text>
-          <text x="353" y="344" text-anchor="start">Agra</text>
-          <text x="258" y="384" text-anchor="start">Jaipur</text>
-          <text x="190" y="383" text-anchor="end">Pushkar</text>
-          <text x="138" y="404" text-anchor="end">Jodhpur</text>
-          <text x="158" y="479" text-anchor="end">Ghanerao</text>
-          <text x="243" y="479" text-anchor="start">Ranakpur</text>
-          <text x="263" y="534" text-anchor="start">Udaipur</text>
-          <text x="153" y="704" text-anchor="start">Mumbai</text>
-        </g>
-      </svg>
-    </div>
-    <figcaption class="lightbox-caption">North India · Delhi to Mumbai · 12 nights, 13 days</figcaption>
-  </figure>
-</div>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</body>
 </html>
