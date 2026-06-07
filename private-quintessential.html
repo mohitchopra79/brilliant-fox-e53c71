@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Quintessential India · A Suggestive Private Journey — Travel Pals</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,30..100;1,9..144,300..700,30..100&family=Inter+Tight:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap">
-<link rel="stylesheet" href="styles.css?v=4">
+<link rel="stylesheet" href="styles.css?v=5">
 <style>
 /* Page-local refinements for the suggestive itinerary */
 .suggestive-hero {
@@ -329,7 +329,14 @@
       <li><a href="india.html">About India</a></li>
       <li><a href="about.html">Our Story</a></li>
       <li><a href="contact.html">Contact</a></li>
-      <li><a href="https://app.travelpals.us" class="nav-login">Login</a></li>
+      <li class="nav-dropdown">
+        <button type="button" class="nav-login" aria-haspopup="true" aria-expanded="false" onclick="var p=this.parentElement;p.classList.toggle('open');this.setAttribute('aria-expanded',p.classList.contains('open'));">Login <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown-menu">
+          <li><a href="https://client.app.travelpals.us">Client</a></li>
+          <li><a href="https://partner.app.travelpals.us">Partner</a></li>
+          <li><a href="https://staff.app.travelpals.us">Travelpals Team</a></li>
+        </ul>
+      </li>
       <li><a href="booking.html" class="nav-cta">Book Now</a></li>
     </ul>
   </div>
