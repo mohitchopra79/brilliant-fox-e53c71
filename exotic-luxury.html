@@ -85,6 +85,10 @@
 .dep-cell .dep-month { font-family: var(--caps); font-size: 11px; letter-spacing: 0.36em; color: var(--gold-deep); margin-bottom: 10px; font-weight: 600; }
 .dep-cell .dep-date { font-family: var(--display); font-size: 18px; color: var(--ink); margin-bottom: 4px; }
 .dep-cell .dep-note { font-family: var(--serif); font-style: italic; color: var(--ink-soft); font-size: 13px; }
+.dep-flat { grid-column: 1 / -1; display: flex; align-items: center; justify-content: center; gap: 14px; padding: 22px 28px; text-decoration: none; transition: background .15s ease; }
+.dep-flat:hover { background: var(--paper); }
+.dep-flat .dep-flat-text { font-family: var(--display); font-size: 17px; color: var(--ink); letter-spacing: 0.01em; }
+.dep-flat .dep-flat-arrow { font-family: var(--display); font-size: 18px; color: var(--gold-deep); }
 @media (max-width: 900px) { .dep-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 600px) { .dep-grid { grid-template-columns: 1fr; } }
 </style>
@@ -403,6 +407,7 @@
       <div class="dep-cell"><div class="dep-month">October 2027</div><div class="dep-date">08 Oct</div><div class="dep-note">cool season opens</div></div>
       <div class="dep-cell"><div class="dep-month">November 2027</div><div class="dep-date">05 Nov</div><div class="dep-note">peak season</div></div>
       <div class="dep-cell"><div class="dep-month">December 2027</div><div class="dep-date">03 Dec</div><div class="dep-note">crisp &amp; clear</div></div>
+      <a class="dep-flat" href="contact.html?interest=exotic"><span class="dep-flat-text">Other dates · Any week · runs privately</span><span class="dep-flat-arrow">→</span></a>
     </div>
   </div>
 </section>
