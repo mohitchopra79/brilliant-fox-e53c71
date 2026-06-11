@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The India Reader</title>
+<!--
+  ============================================================
+  THE INDIA READER — self-contained, app-embeddable widget
+  ------------------------------------------------------------
+  • No external stylesheet. All CSS + web-fonts are inlined below.
+  • Everything is scoped under ".tp-reader" so it will NOT collide
+    with your app's own global styles.
+  • To embed: copy the <style> block AND the <div class="tp-reader">…</div>
+    block into your page. That's all you need — delete the rest.
+  • Book covers load from the free Open Library API and fall back to
+    a styled typographic cover if an image is missing.
+  ============================================================
+-->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,30..100;1,9..144,300..700,30..100&family=Inter+Tight:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
+
+/* ---------- Scoped base ---------- */
+.tp-reader {
+  --linen:#F4F0E6; --linen-2:#ECE7D8; --paper:#FBF8F0;
+  --ink:#14213D; --ink-soft:#2D3654; --muted:#6B7088;
+  --terracotta:#C66E3D; --terracotta-deep:#9E532B; --olive:#6B7549;
+  --display:'Fraunces','Cormorant Garamond',Georgia,serif;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Inter Tight','Inter',-apple-system,sans-serif;
+  --caps:'Inter Tight','Inter',sans-serif;
+  font-family:var(--sans); font-size:16px; line-height:1.65; color:var(--ink);
+  background:var(--linen); -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+.tp-reader *{ box-sizing:border-box; margin:0; padding:0; }
+.tp-reader img{ max-width:100%; display:block; }
+.tp-reader a{ color:inherit; text-decoration:none; }
+.tp-reader h1,.tp-reader h2,.tp-reader h3,.tp-reader h4{ font-family:var(--display); font-weight:400; color:var(--ink); letter-spacing:-0.02em; line-height:1.08; font-variation-settings:"opsz" 96,"SOFT" 30; }
+.tp-reader h1{ font-size:clamp(34px,4.4vw,58px); }
+.tp-reader h2{ font-size:clamp(24px,2.4vw,36px); }
+.tp-reader h3{ font-size:clamp(18px,1.4vw,22px); font-weight:500; }
+.tp-reader .eyebrow{ font-family:var(--caps); text-transform:uppercase; letter-spacing:0.22em; font-size:10px; font-weight:500; color:var(--terracotta-deep); }
+.tp-reader .lede{ font-family:var(--sans); font-size:clamp(15px,1.1vw,18px); line-height:1.6; font-weight:400; color:var(--ink-soft); }
+.tp-reader .container{ max-width:1100px; margin:0 auto; padding:0 32px; }
+.tp-reader .container-narrow{ max-width:680px; margin:0 auto; padding:0 32px; }
+.tp-reader section{ padding:56px 0; position:relative; }
+.tp-reader section.tight{ padding:36px 0; }
+.tp-reader .btn{ display:inline-flex; align-items:center; gap:10px; font-family:var(--caps); font-size:13px; letter-spacing:0.01em; font-weight:500; padding:13px 26px; border:1px solid var(--ink); background:var(--ink); color:var(--linen); border-radius:100px; cursor:pointer; transition:all .2s ease; }
+.tp-reader .btn:hover{ background:var(--terracotta); border-color:var(--terracotta); color:#fff; }
+.tp-reader .btn-text{ font-family:var(--caps); font-size:13px; font-weight:500; color:var(--ink); border-bottom:1px solid var(--terracotta); padding-bottom:3px; display:inline-flex; align-items:center; gap:8px; transition:gap .2s ease; }
+.tp-reader .btn-text:hover{ gap:14px; color:var(--terracotta-deep); }
+.tp-reader .hr-gold{ width:44px; height:2px; background:var(--terracotta); }
+
+/* ---------- Section divider ---------- */
+.tp-reader .section-divider{ display:flex; align-items:center; justify-content:center; gap:18px; padding:18px 0; }
+.tp-reader .section-divider::before,.tp-reader .section-divider::after{ content:""; height:1px; width:96px; background:rgba(20,33,61,0.22); }
+.tp-reader .section-divider .ornament{ display:inline-flex; align-items:center; gap:6px; }
+.tp-reader .section-divider .ornament .dot{ width:5px; height:5px; background:var(--terracotta); transform:rotate(45deg); }
+.tp-reader .section-divider .ornament .dot.center{ width:7px; height:7px; }
+.tp-reader .section-divider .ornament .stroke{ width:1px; height:14px; background:rgba(20,33,61,0.35); }
+
+/* ---------- Hero ---------- */
+.tp-reader .reader-hero{ background:var(--ink); color:var(--linen); padding:96px 0 76px; position:relative; overflow:hidden; }
+.tp-reader .reader-hero::after{ content:""; position:absolute; inset:0; background:
+    radial-gradient(60% 90% at 85% 10%, rgba(198,110,61,0.18), transparent 60%),
+    radial-gradient(50% 80% at 10% 90%, rgba(107,117,73,0.16), transparent 60%); pointer-events:none; }
+.tp-reader .reader-hero .container{ position:relative; z-index:1; max-width:860px; }
+.tp-reader .reader-hero .eyebrow{ color:var(--terracotta); }
+.tp-reader .reader-hero h1{ color:var(--linen); margin-top:18px; }
+.tp-reader .reader-hero .lede{ color:rgba(244,240,230,0.82); margin-top:22px; max-width:660px; }
+.tp-reader .reader-hero .hr-gold{ margin:28px 0 0; }
+
+/* ---------- Section labels ---------- */
+.tp-reader .sec-label{ text-align:center; margin-bottom:44px; }
+.tp-reader .sec-label .eyebrow{ display:block; }
+.tp-reader .sec-label h2{ margin-top:14px; }
+.tp-reader .sec-label .sub{ font-family:var(--display); font-style:italic; font-size:18px; color:var(--muted); margin-top:8px; }
+.tp-reader .subhead{ display:flex; align-items:center; gap:18px; margin:8px 0 26px; }
+.tp-reader .subhead .k{ font-family:var(--caps); font-size:11px; letter-spacing:0.3em; text-transform:uppercase; color:var(--terracotta-deep); font-weight:600; white-space:nowrap; }
+.tp-reader .subhead .line{ height:1px; background:rgba(20,33,61,0.18); flex:1; }
+
+/* ---------- Book cards ---------- */
+.tp-reader .book-list{ display:grid; grid-template-columns:1fr 1fr; gap:26px; }
+.tp-reader .book-card{ display:flex; gap:24px; background:var(--paper); border:1px solid var(--linen-2); padding:24px; transition:box-shadow .2s ease, transform .2s ease; }
+.tp-reader .book-card:hover{ transform:translateY(-3px); box-shadow:0 24px 48px -30px rgba(20,33,61,0.3); }
+.tp-reader .book-cover{ position:relative; flex:0 0 122px; width:122px; aspect-ratio:2/3; overflow:hidden; border-radius:2px; box-shadow:0 10px 24px -14px rgba(20,33,61,0.55); }
+.tp-reader .cover-fallback{ position:absolute; inset:0; display:flex; flex-direction:column; justify-content:space-between; padding:14px 12px; background:linear-gradient(150deg, var(--c1,#2D3654), var(--c2,#14213D)); }
+.tp-reader .cover-fallback::before{ content:""; position:absolute; left:6px; top:6px; bottom:6px; width:2px; background:rgba(255,255,255,0.16); }
+.tp-reader .cf-title{ font-family:var(--display); font-size:15px; line-height:1.18; color:#F6F1E5; letter-spacing:-0.01em; }
+.tp-reader .cf-author{ font-family:var(--caps); font-size:8.5px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(246,241,229,0.7); font-weight:600; }
+.tp-reader .book-cover img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; background:var(--c1,#2D3654); }
+.tp-reader .book-body{ flex:1; display:flex; flex-direction:column; min-width:0; }
+.tp-reader .book-title{ font-family:var(--display); font-size:20px; font-weight:500; color:var(--ink); line-height:1.2; }
+.tp-reader .book-author{ font-family:var(--display); font-style:italic; font-size:15px; color:var(--terracotta-deep); margin-top:3px; }
+.tp-reader .book-pref{ font-family:var(--serif); font-size:16px; line-height:1.5; color:var(--ink-soft); margin-top:12px; flex:1; }
+.tp-reader .book-source{ margin-top:16px; }
+
+/* ---------- Film cards ---------- */
+.tp-reader .film-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:22px; }
+.tp-reader .film-card{ background:var(--ink); color:var(--linen); padding:30px 30px 26px; display:flex; flex-direction:column; position:relative; overflow:hidden; border:1px solid rgba(244,240,230,0.08); }
+.tp-reader .film-card::before{ content:""; position:absolute; right:-40px; top:-40px; width:120px; height:120px; border-radius:50%; background:radial-gradient(circle, rgba(198,110,61,0.22), transparent 70%); }
+.tp-reader .film-top{ display:flex; align-items:baseline; gap:14px; margin-bottom:12px; }
+.tp-reader .film-year{ font-family:var(--caps); font-size:11px; letter-spacing:0.22em; color:var(--terracotta); font-weight:600; }
+.tp-reader .film-place{ font-family:var(--caps); font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:rgba(244,240,230,0.55); font-weight:500; padding:3px 9px; border:1px solid rgba(244,240,230,0.2); border-radius:100px; }
+.tp-reader .film-title{ font-family:var(--display); font-size:23px; font-weight:500; color:var(--linen); line-height:1.15; letter-spacing:-0.01em; }
+.tp-reader .film-desc{ font-family:var(--serif); font-size:16px; line-height:1.5; color:rgba(244,240,230,0.78); margin-top:12px; flex:1; }
+.tp-reader .film-actions{ display:flex; align-items:center; gap:20px; margin-top:22px; flex-wrap:wrap; }
+.tp-reader .film-btn{ display:inline-flex; align-items:center; gap:9px; font-family:var(--caps); font-size:12px; font-weight:600; letter-spacing:0.04em; color:var(--ink); background:var(--linen); padding:10px 18px; border-radius:100px; transition:all .2s ease; }
+.tp-reader .film-btn:hover{ background:var(--terracotta); color:#fff; }
+.tp-reader .film-btn .play{ font-size:10px; }
+.tp-reader .film-link{ font-family:var(--caps); font-size:12px; font-weight:500; color:var(--linen); border-bottom:1px solid var(--terracotta); padding-bottom:3px; display:inline-flex; align-items:center; gap:7px; transition:gap .2s ease, color .2s ease; }
+.tp-reader .film-link:hover{ gap:12px; color:var(--terracotta); }
+
+/* ---------- Start-here callout ---------- */
+.tp-reader .start-here{ background:var(--paper); border:1px solid rgba(184,146,74,0.3); padding:40px 44px; }
+.tp-reader .start-here h3{ font-size:26px; margin:12px 0 6px; }
+.tp-reader .start-here p{ color:var(--ink-soft); font-size:15.5px; max-width:620px; }
+.tp-reader .start-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:26px; }
+.tp-reader .start-pick{ background:var(--linen); border:1px solid var(--linen-2); padding:18px; }
+.tp-reader .start-pick .pk{ font-family:var(--caps); font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:var(--terracotta-deep); font-weight:600; }
+.tp-reader .start-pick .pt{ font-family:var(--display); font-size:17px; color:var(--ink); margin-top:8px; line-height:1.2; }
+.tp-reader .start-pick .pn{ font-family:var(--serif); font-style:italic; font-size:14px; color:var(--muted); margin-top:6px; }
+
+/* ---------- Responsive ---------- */
+@media (max-width:860px){
+  .tp-reader .book-list,.tp-reader .film-grid{ grid-template-columns:1fr; }
+  .tp-reader .start-grid{ grid-template-columns:1fr 1fr; }
+  .tp-reader .start-here{ padding:32px 24px; }
+}
+@media (max-width:480px){
+  .tp-reader .start-grid{ grid-template-columns:1fr; }
+  .tp-reader .book-card{ flex-direction:column; }
+  .tp-reader .book-cover{ width:110px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     COPY FROM HERE  ↓↓↓  (this <div> + the <style> block above)
+     ============================================================ -->
+<div class="tp-reader">
+
+  <section class="reader-hero">
+    <div class="container">
+      <span class="eyebrow">Before You Go</span>
+      <h1>The India Reader</h1>
+      <p class="lede">A small, opinionated library — the books and films that genuinely evoke the romance, complexity and wonder of India, rather than just ticking off the landmarks. Read one on the plane, watch another the night before you fly. India will be waiting, and you will arrive already half in love.</p>
+      <div class="hr-gold"></div>
+    </div>
+  </section>
+
+  <!-- ============ BOOKS ============ -->
+  <section>
+    <div class="container">
+      <div class="sec-label">
+        <span class="eyebrow">The Shelf</span>
+        <h2>Books</h2>
+        <div class="sub">Twelve to read before — or during — the journey</div>
+      </div>
+
+      <div class="subhead"><span class="k">Non-Fiction &amp; Memoir</span><span class="line"></span></div>
+      <div class="book-list">
+
+        <article class="book-card">
+          <div class="book-cover" style="--c1:#C66E3D;--c2:#9E532B;">
+            <div class="cover-fallback"><span class="cf-title">Holy Cow</span><span class="cf-author">Sarah Macdonald</span></div>
+            <img src="https://covers.openlibrary.org/b/isbn/9780767915748-L.jpg?default=false" alt="Holy Cow cover" loading="lazy" onerror="this.remove()">
+          </div>
+          <div class="book-body">
+            <div class="book-title">Holy Cow</div>
+            <div class="book-author">Sarah Macdonald</div>
+            <p class="book-pref">An Australian journalist's two years living in India — funny, honest and deeply affectionate. The perfect entry point for a Western traveller.</p>
+            <div class="book-source"><a class="btn-text" href="https://www.amazon.com/s?k=Holy+Cow+Sarah+Macdonald" target="_blank" rel="noopener">Source the book →</a></div>
+          </div>
+        </article>
+
+        <article class="book-card">
+          <div class="book-cover" style="--c1:#2D3654;--c2:#14213D;">
+            <div class="cover-fallback"><span class="cf-title">India: A Million Mutinies Now</span><span class="cf-author">V. S. Naipaul</span></div>
+            <img src="https://covers.openlibrary.org/b/isbn/9780099477099-L.jpg?default=false" alt="India: A Million Mutinies Now cover" loading="lazy" onerror="this.remove()">
+          </div>
+          <div class="book-body">
+            <div class="book-title">India: A Million Mutinies Now</div>
+            <div class="book-author">V. S. Naipaul</div>
+            <p class="book-pref">Portraits of ordinary Indians across the whole of the country. Dense, unsentimental, and quietly revelatory.</p>
+            <div class="book-source"><a class="btn-text" href="https://www.amazon.com/s?k=India+A+Million+Mutinies+Now+Naipaul" target="_blank" rel="noopener">Source the book →</a></div>
+          </div>
+        </article>
+
+        <article class="book-card">
+          <div class="book-cover" style="--c1:#1d3a3a;--c2:#2f5d54;">
+            <div class="cover-fallback"><span class="cf-title">The Age of Kali</span><span class="cf-author">William Dalrymple</span></div>
+            <img src="https://covers.openlibrary.org/b/isbn/9780006550266-L.jpg?default=false" alt="The Age of Kali cover" loading="lazy" onerror="this.remove()">
+          </div>
+          <div class="book-body">
+            <div class="book-title">The Age of Kali</div>
+            <div class="book-author">William Dalrymple</div>
+            <p class="book-pref">Travels through a changing India by one of the finest writers on the subcontinent. Dalrymple is simply essential reading.</p>
+            <div class="book-source"><a class="btn-text" href="https://www.amazon.com/s?k=The+Age+of+Kali+Dalrymple" target="_blank" rel="noopener">Source the book →</a></div>
+          </div>
+        </article>
+
+        <article class="book-card">
+          <div class="book-cover" style="--c1:#3a2342;--c2:#5a3a63;">
+            <div class="cover-fallback"><span class="cf-title">City of Djinns</span><span class="cf-author">William Dalrymple</span></div>
+            <img src="https://covers.openlibrary.org/b/isbn/9780006375951-L.jpg?default=false" alt="City of Djinns cover" loading="lazy" onerror="this.remove()">
+          </div>
+          <div class="book-body">
+            <div class="book-title">City of Djinns</div>
+            <div class="book-author">William Dalrymple</div>
+            <p class="book-pref">A year living in Delhi — its layers of empire, its djinns and its dust. Magnificent for anyone starting their journey in the capital.</p>
+            <div class="book-source"><a class="btn-text" href="https://www.amazon.com/s?k=City+of+Djinns+Dalrymple" target="_blank" rel="noopener">Source the book →</a></div>
+          </div>
+        </article>
+
+        <article class="book-card">
+          <div class="book-cover" style="--c1:#3a3f24;--c2:#6B7549;">
+            <div class="cover-fallback"><span class="cf-title">Nine Lives</span><span class="cf-author">William Dalrymple</span></div>
+            <img src="https://covers.openlibrary.org/b/isbn/9781408809365-L.jpg?default=false" alt="Nine Lives cover" loading="lazy" onerror="this.remove()">
+          </div>
+          <div class="book-body">
+            <div class="book-title">Nine Lives</div>
+            <div class="book-author">William Dalrymple</div>
+            <p class="book-pref">Nine stories of spiritual India — a nun, a dancer, a maker of idols, a blind minstrel. Haunting and beautiful.</p>
+            <div class="book-source"><a class="btn-text" href="https://www.amazon.com/s?k=Nine+Lives+Dalrymple" target="_blank" rel="noopener">Source the book →</a></div>
+          </div>
+        </article>
+
+        <article class="book-card">
+          <div class="book-cover" style="--c1:#2A2D3A;--c2:#7a2f2f;">
+            <div class="cover-fallback"><span class="cf-title">Maximum City: Bombay Lost and Found</span><span class="cf-author">Suketu Mehta</span></div>
+            <img src="https://covers.openlibrary.org/b/isbn/9780375703409-L.jpg?default=false" alt="Maximum City cover" loading="lazy" onerror="this.remove()">
+          </div>
+          <div class="book-body">
+            <div class="book-title">Maximum City: Bombay Lost and Found</div>
+            <div class="book-author">Suketu Mehta</div>
+            <p class="book-pref">The definitive portrait of Mumbai, and a Pulitzer finalist. Utterly unputdownable — read it before your Bombay days.</p>
+            <div class="book-source"><a class="btn-text" href="https://www.amazon.com/s?k=Maximum+City+Suketu+Mehta" target="_blank" rel="noopener">Source the book →</a></div>
+          </div>
+        </article>
+
+        <article class="book-card">
+          <div class="book-cover" style="--c1:#7a3b1f;--c2:#b5632f;">
+            <div class="cover-fallback"><span class="cf-title">Shantaram</span><span class="cf-author">Gregory David Roberts</span></div>
+            <img src="https://covers.openlibrary.org/b/isbn/9780312330538-L.jpg?default=false" alt="Shantaram cover" loading="lazy" onerror="this.remove()">
+          </div>
+          <div class="book-body">
+            <div class="book-title">Shantaram</div>
+            <div class="book-author">Gregory David Roberts</div>
+            <p class="book-pref">A fugitive Australian finds redemption in the Bombay underworld. Sprawling, flawed, and utterly intoxicating.</p>
+            <div class="book-source"><a class="btn-text" href="https://www.amazon.com/s?k=Shantaram+Gregory+David+Roberts" target="_blank" rel="noopener">Source the book →</a></div>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="subhead" style="margin-top:46px;"><span class="k">Fiction</span><span class="line"></span></div>
+      <div class="book-list">
+
+        <article class="book-card">
+          <div class="book-cover" style="--c1:#243044;--c2:#3c4a66;">
+            <div class="cover-fallback"><span class="cf-title">A Fine Balance</span><span class="cf-author">Rohinton Mistry</span></div>
+            <img src="https://covers.openlibrary.org/b/isbn/9781400030651-L.jpg?default=false" alt="A Fine Balance cover" loading="lazy" onerror="this.remove()">
+          </div>
+          <div class="book-body">
+            <div class="book-title">A Fine Balance</div>
+            <div class="book-author">Rohinton Mistry</div>
+            <p class="book-pref">Set in 1970s India during the Emergency — devastating and gorgeous in equal measure. A novel you carry with you for years.</p>
+            <div class="book-source"><a class="btn-text" href="https://www.amazon.com/s?k=A+Fine+Balance+Rohinton+Mistry" target="_blank" rel="noopener">Source the book →</a></div>
+          </div>
+        </article>
+
+        <article class="book-card">
+          <div class="book-cover" style="--c1:#16382b;--c2:#2f6b4f;">
+            <div class="cover-fallback"><span class="cf-title">The God of Small Things</span><span class="cf-author">Arundhati Roy</span></div>
+            <img src="https://covers.openlibrary.org/b/isbn/9780812979657-L.jpg?default=false" alt="The God of Small Things cover" loading="lazy" onerror="this.remove()">
+          </div>
+          <div class="book-body">
+            <div class="book-title">The God of Small Things</div>
+            <div class="book-author">Arundhati Roy</div>
+            <p class="book-pref">The Booker Prize winner — Kerala at its most lush and most heartbreaking. Sentence for sentence, few novels are this alive.</p>
+            <div class="book-source"><a class="btn-text" href="https://www.amazon.com/s?k=The+God+of+Small+Things+Arundhati+Roy" target="_blank" rel="noopener">Source the book →</a></div>
+          </div>
+        </article>
+
+        <article class="book-card">
+          <div class="book-cover" style="--c1:#1c1c1c;--c2:#5a4a1f;">
+            <div class="cover-fallback"><span class="cf-title">The White Tiger</span><span class="cf-author">Aravind Adiga</span></div>
+            <img src="https://covers.openlibrary.org/b/isbn/9781416562603-L.jpg?default=false" alt="The White Tiger cover" loading="lazy" onerror="this.remove()">
+          </div>
+          <div class="book-body">
+            <div class="book-title">The White Tiger</div>
+            <div class="book-author">Aravind Adiga</div>
+            <p class="book-pref">A razor-sharp, darkly comic take on modern India's class divide. Another Booker winner, and a bracing antidote to postcard India.</p>
+            <div class="book-source"><a class="btn-text" href="https://www.amazon.com/s?k=The+White+Tiger+Aravind+Adiga" target="_blank" rel="noopener">Source the book →</a></div>
+          </div>
+        </article>
+
+        <article class="book-card">
+          <div class="book-cover" style="--c1:#4a2330;--c2:#7a3a4d;">
+            <div class="cover-fallback"><span class="cf-title">A Suitable Boy</span><span class="cf-author">Vikram Seth</span></div>
+            <img src="https://covers.openlibrary.org/b/isbn/9780060786526-L.jpg?default=false" alt="A Suitable Boy cover" loading="lazy" onerror="this.remove()">
+          </div>
+          <div class="book-body">
+            <div class="book-title">A Suitable Boy</div>
+            <div class="book-author">Vikram Seth</div>
+            <p class="book-pref">Epic post-Partition India, told through one mother's search for a husband for her daughter. Immersive like few novels ever are.</p>
+            <div class="book-source"><a class="btn-text" href="https://www.amazon.com/s?k=A+Suitable+Boy+Vikram+Seth" target="_blank" rel="noopener">Source the book →</a></div>
+          </div>
+        </article>
+
+        <article class="book-card">
+          <div class="book-cover" style="--c1:#1f3320;--c2:#3e5e36;">
+            <div class="cover-fallback"><span class="cf-title">The Jungle Book</span><span class="cf-author">Rudyard Kipling</span></div>
+            <img src="https://covers.openlibrary.org/b/isbn/9780141325293-L.jpg?default=false" alt="The Jungle Book cover" loading="lazy" onerror="this.remove()">
+          </div>
+          <div class="book-body">
+            <div class="book-title">The Jungle Book</div>
+            <div class="book-author">Rudyard Kipling</div>
+            <p class="book-pref">For Ranthambore-bound travellers, the perfect re-read. Mowgli's jungle is the very country you'll be tracking tigers through.</p>
+            <div class="book-source"><a class="btn-text" href="https://www.amazon.com/s?k=The+Jungle+Book+Kipling" target="_blank" rel="noopener">Source the book →</a></div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"><span class="ornament"><span class="dot"></span><span class="stroke"></span><span class="dot center"></span><span class="stroke"></span><span class="dot"></span></span></div>
+
+  <!-- ============ WHERE TO BEGIN ============ -->
+  <section class="tight">
+    <div class="container">
+      <div class="start-here">
+        <span class="eyebrow">If you only have time for four</span>
+        <h3>Where to begin</h3>
+        <p>For a classic Delhi–Agra–Ranthambore–Jaipur–Udaipur–Mumbai itinerary, these four map most directly onto the road ahead — one for the capital, one for the train romance, one for Bombay, and one for the tigers.</p>
+        <div class="start-grid">
+          <div class="start-pick"><div class="pk">Read · Delhi</div><div class="pt">City of Djinns</div><div class="pn">a year in the capital</div></div>
+          <div class="start-pick"><div class="pk">Watch · Rajasthan</div><div class="pt">The Darjeeling Limited</div><div class="pn">train-travel reverie</div></div>
+          <div class="start-pick"><div class="pk">Read · Mumbai</div><div class="pt">Maximum City</div><div class="pn">Bombay, lost &amp; found</div></div>
+          <div class="start-pick"><div class="pk">Watch · Ranthambore</div><div class="pt">Tiger</div><div class="pn">pre-safari viewing</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"><span class="ornament"><span class="dot"></span><span class="stroke"></span><span class="dot center"></span><span class="stroke"></span><span class="dot"></span></span></div>
+
+  <!-- ============ MOVIES ============ -->
+  <section>
+    <div class="container">
+      <div class="sec-label">
+        <span class="eyebrow">The Screening Room</span>
+        <h2>Movies &amp; Series</h2>
+        <div class="sub">Watch the trailer; we'll point you to where it streams</div>
+      </div>
+
+      <div class="subhead"><span class="k">Films</span><span class="line"></span></div>
+      <div class="film-grid">
+
+        <article class="film-card">
+          <div class="film-top"><span class="film-year">2008</span><span class="film-place">Mumbai</span></div>
+          <div class="film-title">Slumdog Millionaire</div>
+          <p class="film-desc">Visceral, electric Mumbai. A crowd-pleaser that genuinely captures the city's restless energy.</p>
+          <div class="film-actions">
+            <a class="film-btn" href="https://www.youtube.com/results?search_query=Slumdog+Millionaire+2008+official+trailer" target="_blank" rel="noopener"><span class="play">▶</span> Watch trailer</a>
+            <a class="film-link" href="https://www.justwatch.com/us/search?q=Slumdog+Millionaire" target="_blank" rel="noopener">Where to watch →</a>
+          </div>
+        </article>
+
+        <article class="film-card">
+          <div class="film-top"><span class="film-year">2007</span><span class="film-place">Rajasthan</span></div>
+          <div class="film-title">The Darjeeling Limited</div>
+          <p class="film-desc">Wes Anderson's love letter to Rajasthan train travel — visually stunning, spiritually restless. Perfect pre-trip viewing.</p>
+          <div class="film-actions">
+            <a class="film-btn" href="https://www.youtube.com/results?search_query=The+Darjeeling+Limited+2007+official+trailer" target="_blank" rel="noopener"><span class="play">▶</span> Watch trailer</a>
+            <a class="film-link" href="https://www.justwatch.com/us/search?q=The+Darjeeling+Limited" target="_blank" rel="noopener">Where to watch →</a>
+          </div>
+        </article>
+
+        <article class="film-card">
+          <div class="film-top"><span class="film-year">1982</span><span class="film-place">India</span></div>
+          <div class="film-title">Gandhi</div>
+          <p class="film-desc">Richard Attenborough's epic. Essential historical backdrop, and the locations are breathtaking from the first frame.</p>
+          <div class="film-actions">
+            <a class="film-btn" href="https://www.youtube.com/results?search_query=Gandhi+1982+official+trailer" target="_blank" rel="noopener"><span class="play">▶</span> Watch trailer</a>
+            <a class="film-link" href="https://www.justwatch.com/us/search?q=Gandhi+1982" target="_blank" rel="noopener">Where to watch →</a>
+          </div>
+        </article>
+
+        <article class="film-card">
+          <div class="film-top"><span class="film-year">1960</span><span class="film-place">Agra</span></div>
+          <div class="film-title">Mughal-E-Azam</div>
+          <p class="film-desc">India's greatest historical epic. The Agra fort scenes and the marble splendour alone are worth the evening.</p>
+          <div class="film-actions">
+            <a class="film-btn" href="https://www.youtube.com/results?search_query=Mughal-E-Azam+1960+trailer" target="_blank" rel="noopener"><span class="play">▶</span> Watch trailer</a>
+            <a class="film-link" href="https://www.justwatch.com/us/search?q=Mughal-E-Azam" target="_blank" rel="noopener">Where to watch →</a>
+          </div>
+        </article>
+
+        <article class="film-card">
+          <div class="film-top"><span class="film-year">1975</span><span class="film-place">Colonial India</span></div>
+          <div class="film-title">The Man Who Would Be King</div>
+          <p class="film-desc">John Huston's classic, with Connery and Caine. Adventure India at its grandest and most rollicking.</p>
+          <div class="film-actions">
+            <a class="film-btn" href="https://www.youtube.com/results?search_query=The+Man+Who+Would+Be+King+1975+trailer" target="_blank" rel="noopener"><span class="play">▶</span> Watch trailer</a>
+            <a class="film-link" href="https://www.justwatch.com/us/search?q=The+Man+Who+Would+Be+King" target="_blank" rel="noopener">Where to watch →</a>
+          </div>
+        </article>
+
+        <article class="film-card">
+          <div class="film-top"><span class="film-year">2001</span><span class="film-place">Delhi</span></div>
+          <div class="film-title">Monsoon Wedding</div>
+          <p class="film-desc">Mira Nair's joyful, chaotic Delhi family drama. Warm, marigold-bright, and utterly authentic.</p>
+          <div class="film-actions">
+            <a class="film-btn" href="https://www.youtube.com/results?search_query=Monsoon+Wedding+2001+official+trailer" target="_blank" rel="noopener"><span class="play">▶</span> Watch trailer</a>
+            <a class="film-link" href="https://www.justwatch.com/us/search?q=Monsoon+Wedding" target="_blank" rel="noopener">Where to watch →</a>
+          </div>
+        </article>
+
+        <article class="film-card">
+          <div class="film-top"><span class="film-year">2005</span><span class="film-place">Varanasi</span></div>
+          <div class="film-title">Water</div>
+          <p class="film-desc">Deepa Mehta's Varanasi-set masterpiece. Visually ravishing; emotionally unforgettable.</p>
+          <div class="film-actions">
+            <a class="film-btn" href="https://www.youtube.com/results?search_query=Water+2005+Deepa+Mehta+official+trailer" target="_blank" rel="noopener"><span class="play">▶</span> Watch trailer</a>
+            <a class="film-link" href="https://www.justwatch.com/us/search?q=Water+Deepa+Mehta" target="_blank" rel="noopener">Where to watch →</a>
+          </div>
+        </article>
+
+        <article class="film-card">
+          <div class="film-top"><span class="film-year">2001</span><span class="film-place">Rural Gujarat</span></div>
+          <div class="film-title">Lagaan</div>
+          <p class="film-desc">Bollywood at its epic best — rural India, colonial drama, and a village staking everything on a game of cricket. What's not to love.</p>
+          <div class="film-actions">
+            <a class="film-btn" href="https://www.youtube.com/results?search_query=Lagaan+2001+official+trailer" target="_blank" rel="noopener"><span class="play">▶</span> Watch trailer</a>
+            <a class="film-link" href="https://www.justwatch.com/us/search?q=Lagaan" target="_blank" rel="noopener">Where to watch →</a>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="subhead" style="margin-top:46px;"><span class="k">Documentaries &amp; Series</span><span class="line"></span></div>
+      <div class="film-grid">
+
+        <article class="film-card">
+          <div class="film-top"><span class="film-year">BBC · 2017</span><span class="film-place">Pan-India</span></div>
+          <div class="film-title">India with Simon Reeve</div>
+          <p class="film-desc">Thoughtful, wide-ranging and beautifully filmed — a generous, clear-eyed sweep across the whole country.</p>
+          <div class="film-actions">
+            <a class="film-btn" href="https://www.youtube.com/results?search_query=India+with+Simon+Reeve+BBC+trailer" target="_blank" rel="noopener"><span class="play">▶</span> Watch trailer</a>
+            <a class="film-link" href="https://www.justwatch.com/us/search?q=India+with+Simon+Reeve" target="_blank" rel="noopener">Where to watch →</a>
+          </div>
+        </article>
+
+        <article class="film-card">
+          <div class="film-top"><span class="film-year">Netflix · 2024</span><span class="film-place">Ranthambore</span></div>
+          <div class="film-title">Tiger</div>
+          <p class="film-desc">Ranthambore's famous tigress and her cubs, filmed over years. Perfect pre-safari viewing for the days in tiger country.</p>
+          <div class="film-actions">
+            <a class="film-btn" href="https://www.youtube.com/results?search_query=Tiger+2024+Disneynature+official+trailer" target="_blank" rel="noopener"><span class="play">▶</span> Watch trailer</a>
+            <a class="film-link" href="https://www.justwatch.com/us/search?q=Tiger+Disneynature" target="_blank" rel="noopener">Where to watch →</a>
+          </div>
+        </article>
+
+        <article class="film-card">
+          <div class="film-top"><span class="film-year">Netflix · 2018</span><span class="film-place">Mumbai</span></div>
+          <div class="film-title">Sacred Games</div>
+          <p class="film-desc">A gritty, brilliant Mumbai crime thriller. Not for the faint-hearted, but utterly compelling.</p>
+          <div class="film-actions">
+            <a class="film-btn" href="https://www.youtube.com/results?search_query=Sacred+Games+Netflix+official+trailer" target="_blank" rel="noopener"><span class="play">▶</span> Watch trailer</a>
+            <a class="film-link" href="https://www.justwatch.com/us/search?q=Sacred+Games" target="_blank" rel="noopener">Where to watch →</a>
+          </div>
+        </article>
+
+        <article class="film-card">
+          <div class="film-top"><span class="film-year">BBC / Netflix · 2020</span><span class="film-place">Lucknow &amp; Varanasi</span></div>
+          <div class="film-title">A Suitable Boy</div>
+          <p class="film-desc">Mira Nair's adaptation of the Vikram Seth novel — gorgeous Lucknow and Varanasi locations, lavishly realised.</p>
+          <div class="film-actions">
+            <a class="film-btn" href="https://www.youtube.com/results?search_query=A+Suitable+Boy+2020+BBC+official+trailer" target="_blank" rel="noopener"><span class="play">▶</span> Watch trailer</a>
+            <a class="film-link" href="https://www.justwatch.com/us/search?q=A+Suitable+Boy" target="_blank" rel="noopener">Where to watch →</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"><span class="ornament"><span class="dot"></span><span class="stroke"></span><span class="dot center"></span><span class="stroke"></span><span class="dot"></span></span></div>
+
+  <!-- ============ CLOSING ============ -->
+  <section class="tight" style="text-align:center;">
+    <div class="container-narrow">
+      <span class="eyebrow">Now the real thing</span>
+      <h2 style="margin-top:14px;">Read the books. Then come and live them.</h2>
+      <div style="display:flex; justify-content:center;"><div class="hr-gold" style="margin:18px 0 22px;"></div></div>
+      <p class="lede" style="margin:0 auto 28px; max-width:560px;">Every page and every frame here is a country you can actually walk into — Delhi's djinns, Bombay's tides, Ranthambore's tigers. Let us build the journey around what moves you.</p>
+      <!-- Update this href to your in-app route, e.g. /plan or a booking screen -->
+      <a href="mailto:tours@travelpals.us" class="btn">Start Planning →</a>
+    </div>
+  </section>
+
+</div>
+<!-- ============================================================
+     COPY TO HERE  ↑↑↑
+     ============================================================ -->
+
+</body>
+</html>
