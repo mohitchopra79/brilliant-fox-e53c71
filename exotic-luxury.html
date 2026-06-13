@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Exotic Luxury · Five-Star India — Travel Pals</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,30..100;1,9..144,300..700,30..100&family=Inter+Tight:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap">
-<link rel="stylesheet" href="styles.css?v=5">
+<link rel="stylesheet" href="styles.css?v=6">
 <style>
 .lux-hero {
   position: relative; min-height: 92vh; display: flex; align-items: flex-end;
@@ -85,6 +85,8 @@
 .dep-cell .dep-month { font-family: var(--caps); font-size: 11px; letter-spacing: 0.36em; color: var(--gold-deep); margin-bottom: 10px; font-weight: 600; }
 .dep-cell .dep-date { font-family: var(--display); font-size: 18px; color: var(--ink); margin-bottom: 4px; }
 .dep-cell .dep-note { font-family: var(--serif); font-style: italic; color: var(--ink-soft); font-size: 13px; }
+.dep-cell.dep-sold .dep-date { text-decoration: line-through; opacity: 0.5; }
+.dep-cell.dep-sold .dep-note { font-family: var(--caps); font-style: normal; font-weight: 600; text-transform: uppercase; letter-spacing: 0.18em; font-size: 11px; color: var(--terracotta-deep); }
 .dep-flat { grid-column: 1 / -1; display: flex; align-items: center; justify-content: center; gap: 14px; padding: 22px 28px; text-decoration: none; transition: background .15s ease; }
 .dep-flat:hover { background: var(--paper); }
 .dep-flat .dep-flat-text { font-family: var(--display); font-size: 17px; color: var(--ink); letter-spacing: 0.01em; }
@@ -101,7 +103,7 @@
     <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('nav-links').classList.toggle('open')">☰</button>
     <ul class="nav-links" id="nav-links">
       <li><a href="index.html">Home</a></li>
-      <li class="nav-dropdown nav-dropdown-groups"><a href="tours.html" class="active">Group Tours</a><ul class="nav-dropdown-menu"><li><a href="tour-nov-2026.html">North India · Nov 2026</a></li><li><a href="tour-nov-2026-rail.html">Rail on All Gauges · Nov 2026</a></li><li><a href="tour-feb-2027.html">Spirit of Rajasthan · Feb 2027</a></li><li><a href="tour-feb-2027-stitching.html">Stitching Tracks · Feb 2027</a></li><li><a href="tours.html">All group tours →</a></li></ul></li>
+      <li class="nav-dropdown nav-dropdown-groups"><a href="tours.html" class="active">Group Tours</a><ul class="nav-dropdown-menu"><li><a href="tour-nov-2026.html">North India · Nov 2026</a></li><li><a href="tour-nov-2026-rail.html">Rail on All Gauges · Nov 2026</a></li><li><a href="tour-feb-2027.html">Spirit of Rajasthan · Feb 2027</a></li><li><a href="tour-feb-2027-stitching.html">Stitching Tracks · Feb 2027</a></li><li><a href="golden-triangle.html">Golden Triangle with Extensions</a></li><li><a href="exotic-luxury.html">Exotic Luxury</a></li><li><a href="tours.html">All group tours →</a></li></ul></li>
       <li><a href="private.html">Private Journeys</a></li>
       <li><a href="india.html">About India</a></li>
       <li><a href="about.html">Our Story</a></li>
@@ -396,7 +398,7 @@
 
     <div class="dep-grid">
       <div class="dep-cell"><div class="dep-month">October 2026</div><div class="dep-date">09 Oct</div><div class="dep-note">cool season opens</div></div>
-      <div class="dep-cell"><div class="dep-month">November 2026</div><div class="dep-date">06 Nov</div><div class="dep-note">peak season</div></div>
+      <div class="dep-cell dep-sold"><div class="dep-month">November 2026</div><div class="dep-date">06 Nov</div><div class="dep-note">Sold Out</div></div>
       <div class="dep-cell"><div class="dep-month">December 2026</div><div class="dep-date">04 Dec</div><div class="dep-note">crisp &amp; clear</div></div>
       <div class="dep-cell"><div class="dep-month">January 2027</div><div class="dep-date">08 Jan</div><div class="dep-note">post-holiday calm</div></div>
       <div class="dep-cell"><div class="dep-month">February 2027</div><div class="dep-date">05 Feb</div><div class="dep-note">cool &amp; clear</div></div>
