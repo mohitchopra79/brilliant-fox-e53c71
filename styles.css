@@ -145,13 +145,11 @@ header.nav {
 }
 .brand { display: flex; align-items: center; gap: 12px; }
 .brand-mark {
-  width: 32px; height: 32px;
-  border-radius: 50%;
-  background: var(--ink);
+  width: auto; height: 34px;
   display: grid; place-items: center;
-  color: var(--linen);
-  font-family: var(--display); font-size: 16px; font-style: italic; font-weight: 500;
+  background: none;
 }
+.brand-mark img { height: 100%; width: auto; display: block; }
 .brand-name {
   font-family: var(--display);
   font-size: 18px;
@@ -258,15 +256,8 @@ header.nav {
 .nav-dropdown-menu a:hover { background: var(--linen); color: var(--terracotta-deep) !important; }
 .nav-dropdown-menu a::after { display: none !important; }
 
-/* Group Tours dropdown — left-aligned, nav-link styled toggle */
+/* Group Tours dropdown — opens on hover over the "Group Tours" text */
 .nav-dropdown-groups { display: inline-flex; align-items: center; }
-.nav-caret-btn {
-  background: transparent; border: 0; cursor: pointer;
-  color: var(--ink); padding: 0 0 0 5px; margin: 0;
-  display: inline-flex; align-items: center; line-height: 1;
-  transition: color .2s ease;
-}
-.nav-caret-btn:hover { color: var(--terracotta-deep); }
 .nav-dropdown-groups .nav-dropdown-menu { left: 0; right: auto; min-width: 248px; }
 
 /* ---------- Buttons ---------- */
@@ -438,7 +429,7 @@ header.nav {
 footer.site-footer { background: var(--ink); color: var(--linen); padding: 56px 0 24px; position: relative; }
 footer.site-footer .container { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; }
 footer.site-footer h4 { font-family: var(--caps); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,240,230,0.6); margin-bottom: 16px; font-weight: 500; }
-footer.site-footer .brand-mark { background: var(--linen); color: var(--ink); }
+footer.site-footer .brand-mark { background: none; }
 footer.site-footer .brand-name { color: var(--linen); font-size: 22px; }
 footer.site-footer p, footer.site-footer li { color: rgba(244,240,230,0.7); font-size: 14px; line-height: 1.7; }
 footer.site-footer ul { list-style: none; }
