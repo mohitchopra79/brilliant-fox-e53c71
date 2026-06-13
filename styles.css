@@ -638,6 +638,9 @@ footer.site-footer a:hover { color: var(--terracotta); }
   .nav-dropdown.open .nav-dropdown-menu { display: block; }
   .nav-dropdown:hover .nav-dropdown-menu { display: none; }
   .nav-dropdown.open:hover .nav-dropdown-menu { display: block; }
+  /* Group Tours submenu shows expanded inline on mobile (touch has no hover) */
+  .nav-dropdown-groups { display: block; }
+  .nav-dropdown-groups .nav-dropdown-menu { display: block; }
   .hero-inner { padding: 0 24px 48px; }
   .tour-grid { grid-template-columns: 1fr; gap: 24px; }
   .split { grid-template-columns: 1fr; gap: 32px; }
