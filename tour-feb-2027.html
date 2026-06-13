@@ -80,6 +80,32 @@
       0 0 0 13px #F5C99A,
       0 20px 50px rgba(26,31,58,0.18);
   }
+
+  /* Tour pricing — two-tier cards */
+  .tp-section { background: var(--linen); }
+  .tp-head { text-align: center; margin-bottom: 40px; }
+  .tp-head .eyebrow { color: var(--terracotta-deep); }
+  .tp-head h2 { font-family: var(--display); font-size: clamp(30px, 3.4vw, 40px); color: var(--ink); margin-top: 10px; font-weight: 500; }
+  .tp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 760px; margin: 0 auto; }
+  .tp-card { padding: 32px 34px 30px; border-radius: 4px; border-top: 3px solid #B8860B; }
+  .tp-card.dark { background: var(--ink); }
+  .tp-card.light { background: var(--paper); border: 1px solid var(--linen-2); border-top: 3px solid #B8860B; }
+  .tp-tier { font-family: var(--caps); font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 600; margin-bottom: 18px; }
+  .tp-card.dark .tp-tier { color: #E3B873; }
+  .tp-card.light .tp-tier { color: var(--terracotta-deep); }
+  .tp-amount { font-family: var(--display); line-height: 1; display: flex; align-items: baseline; gap: 7px; }
+  .tp-amount .cur { font-size: 16px; letter-spacing: 0.04em; }
+  .tp-amount .val { font-size: 52px; font-weight: 500; }
+  .tp-card.dark .tp-amount { color: var(--linen); }
+  .tp-card.dark .tp-amount .cur { color: #E3B873; }
+  .tp-card.light .tp-amount { color: var(--ink); }
+  .tp-card.light .tp-amount .cur { color: var(--terracotta-deep); }
+  .tp-per { font-family: var(--display); font-style: italic; font-size: 16px; margin-top: 10px; }
+  .tp-card.dark .tp-per { color: rgba(244,240,230,0.7); }
+  .tp-card.light .tp-per { color: var(--ink-soft); }
+  .tp-note { max-width: 760px; margin: 22px auto 0; background: var(--linen-2); padding: 16px 22px; border-radius: 4px; font-size: 14.5px; color: var(--ink-soft); }
+  .tp-note strong { color: var(--ink); }
+  @media (max-width: 700px) { .tp-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -272,6 +298,31 @@
 <div class="section-divider"><span class="ornament"><span class="dot"></span><span class="stroke"></span><span class="dot center"></span><span class="stroke"></span><span class="dot"></span></span></div>
 
 
+<!-- TOUR PRICING -->
+<section class="tp-section">
+  <div class="container">
+    <div class="tp-head">
+      <span class="eyebrow">Your Investment</span>
+      <h2>Tour pricing</h2>
+    </div>
+    <div class="tp-grid">
+      <div class="tp-card dark">
+        <div class="tp-tier">Twin Sharing</div>
+        <div class="tp-amount"><span class="cur">USD</span><span class="val">5,195</span></div>
+        <div class="tp-per">per person</div>
+      </div>
+      <div class="tp-card light">
+        <div class="tp-tier">Single Occupancy</div>
+        <div class="tp-amount"><span class="cur">USD</span><span class="val">6,780</span></div>
+        <div class="tp-per">per person</div>
+      </div>
+    </div>
+    <p class="tp-note"><strong>+ USD 190 per person</strong> airfare supplement (Udaipur → Mumbai, economy, 20kg checked).</p>
+  </div>
+</section>
+<div class="section-divider"><span class="ornament"><span class="dot"></span><span class="stroke"></span><span class="dot center"></span><span class="stroke"></span><span class="dot"></span></span></div>
+
+
 <!-- PRICE & CTA -->
 <section style="background:var(--ivory);">
   <div class="container">
@@ -279,11 +330,11 @@
       <div>
         <span class="eyebrow" style="color:var(--sandstone);">Reserve Your Seat</span>
         <h3>Spirit of Rajasthan · February 2027</h3>
-        <div class="price-row"><span class="big">Price on Request</span><span class="per">reserve with refundable deposit</span></div>
-        <p style="font-family:var(--serif); font-style:italic; color:var(--ink-soft); margin-bottom:12px;">Final tour cost is shared on enquiry — comparable boutique-class pricing. Group of 10 – 15 travellers.</p>
+        <div class="price-row"><span class="big">From USD 5,195</span><span class="per">per person · twin sharing</span></div>
+        <p style="font-family:var(--serif); font-style:italic; color:var(--ink-soft); margin-bottom:12px;">Single occupancy USD 6,780 per person, plus a USD 190 airfare supplement. Group of 10 – 15 travellers.</p>
         <p>Includes 12 nights' accommodation, daily breakfast, two dinners (Pushkar &amp; Ghanerao), exclusive A/C mini-coach, English-speaking guide, all monument fees, cycle-rickshaw &amp; metro in Old Delhi, open-jeep at Amber, home-cooking dinner in Jaipur, astrologer at Jantar Mantar, jungle safari at Kumbhalgarh, village high-tea at Ghanerao, boat ride on Lake Pichola, and 5% GST.</p>
         <hr/>
-        <p><strong style="color:var(--sandstone);">To secure your place:</strong> reserve your spot by paying a fully refundable booking deposit. Once confirmed, we'll share final pricing, supplements and bank details for the remaining balance.</p>
+        <p><strong style="color:var(--sandstone);">To secure your place:</strong> reserve your spot by paying a fully refundable booking deposit. Once confirmed, we'll share bank details for the remaining balance.</p>
       </div>
       <div class="cta-stack">
         <a href="https://buy.stripe.com/4gMdR13VZ9y0cZ10jlew806" target="_blank" rel="noopener" class="btn">Pay $500 Booking Fee →</a>
