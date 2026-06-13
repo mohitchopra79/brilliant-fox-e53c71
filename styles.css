@@ -145,11 +145,10 @@ header.nav {
 }
 .brand { display: flex; align-items: center; gap: 12px; }
 .brand-mark {
-  width: auto; height: 34px;
-  display: grid; place-items: center;
+  display: inline-flex; align-items: center;
   background: none;
 }
-.brand-mark img { height: 100%; width: auto; display: block; }
+.brand-mark img { height: 34px; width: auto; display: block; }
 .brand-name {
   font-family: var(--display);
   font-size: 18px;
