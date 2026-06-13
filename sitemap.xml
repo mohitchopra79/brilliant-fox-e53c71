@@ -16,14 +16,6 @@
   <url>
     <loc>https://travelpals.us/tours.html</loc>
     <changefreq>weekly</changefreq>
-    <image:image>
-      <image:loc>https://travelpals.us/images/nagaur-cattle-fair.jpg</image:loc>
-      <image:caption>Nagaur Cattle Fair, Rajasthan</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://travelpals.us/images/roag-shimla-platform.jpg</image:loc>
-      <image:caption>Shimla heritage railway, India</image:caption>
-    </image:image>
   </url>
   <url>
     <loc>https://travelpals.us/guides.html</loc>
@@ -36,10 +28,6 @@
   <url>
     <loc>https://travelpals.us/india.html</loc>
     <changefreq>weekly</changefreq>
-    <image:image>
-      <image:loc>https://travelpals.us/images/varanasi-ghats.jpg</image:loc>
-      <image:caption>Varanasi ghats on the Ganges</image:caption>
-    </image:image>
   </url>
   <url>
     <loc>https://travelpals.us/about.html</loc>
@@ -78,6 +66,14 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://travelpals.us/best-places-to-visit-in-india.html</loc>
+    <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://travelpals.us/images/varanasi-ghats.jpg</image:loc>
+      <image:caption>Best places to visit in India — Varanasi</image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://travelpals.us/golden-triangle-itinerary.html</loc>
     <changefreq>weekly</changefreq>
     <image:image>
@@ -110,11 +106,27 @@
     </image:image>
   </url>
   <url>
+    <loc>https://travelpals.us/india-visa-for-tourists.html</loc>
+    <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://travelpals.us/images/mumbai-gateway-taj.jpg</image:loc>
+      <image:caption>India tourist e-Visa — Gateway of India</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://travelpals.us/is-india-safe-for-tourists.html</loc>
+    <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://travelpals.us/images/roag-chai-jaipur.jpg</image:loc>
+      <image:caption>Is India safe for tourists</image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://travelpals.us/what-to-pack-for-india.html</loc>
     <changefreq>weekly</changefreq>
     <image:image>
       <image:loc>https://travelpals.us/images/varanasi-aarti.jpg</image:loc>
-      <image:caption>What to pack for India — Varanasi</image:caption>
+      <image:caption>What to pack for India</image:caption>
     </image:image>
   </url>
   <url>
@@ -124,10 +136,6 @@
   <url>
     <loc>https://travelpals.us/tour-nov-2026-rail.html</loc>
     <changefreq>weekly</changefreq>
-    <image:image>
-      <image:loc>https://travelpals.us/images/shimla-railcar.jpg</image:loc>
-      <image:caption>Kalka–Shimla heritage railway</image:caption>
-    </image:image>
   </url>
   <url>
     <loc>https://travelpals.us/tour-feb-2027.html</loc>
@@ -140,9 +148,5 @@
   <url>
     <loc>https://travelpals.us/tour-feb-2027-stitching.html</loc>
     <changefreq>weekly</changefreq>
-    <image:image>
-      <image:loc>https://travelpals.us/images/stitching-narrow-gauge.jpg</image:loc>
-      <image:caption>Narrow-gauge railway to Shimla</image:caption>
-    </image:image>
   </url>
 </urlset>
