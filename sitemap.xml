@@ -90,6 +90,22 @@
     </image:image>
   </url>
   <url>
+    <loc>https://travelpals.us/golden-triangle-itinerary.html</loc>
+    <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://travelpals.us/images/roag-chai-jaipur.jpg</image:loc>
+      <image:caption>Golden Triangle itinerary — Jaipur, Rajasthan</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://travelpals.us/best-time-to-visit-rajasthan.html</loc>
+    <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://travelpals.us/images/udaipur-lake-night.jpg</image:loc>
+      <image:caption>Best time to visit Rajasthan — Udaipur</image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://travelpals.us/tour-nov-2026.html</loc>
     <changefreq>weekly</changefreq>
     <image:image>
