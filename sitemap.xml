@@ -24,9 +24,13 @@
       <image:loc>https://travelpals.us/images/roag-shimla-platform.jpg</image:loc>
       <image:caption>Shimla heritage railway, India</image:caption>
     </image:image>
+  </url>
+  <url>
+    <loc>https://travelpals.us/guides.html</loc>
+    <changefreq>weekly</changefreq>
     <image:image>
-      <image:loc>https://travelpals.us/images/stitching-kantha-circle.jpg</image:loc>
-      <image:caption>Indian textile craft — kantha</image:caption>
+      <image:loc>https://travelpals.us/images/holi.jpg</image:loc>
+      <image:caption>India travel guides — Travel Pals</image:caption>
     </image:image>
   </url>
   <url>
@@ -36,18 +40,10 @@
       <image:loc>https://travelpals.us/images/varanasi-ghats.jpg</image:loc>
       <image:caption>Varanasi ghats on the Ganges</image:caption>
     </image:image>
-    <image:image>
-      <image:loc>https://travelpals.us/images/mumbai-gateway-taj.jpg</image:loc>
-      <image:caption>Gateway of India and the Taj, Mumbai</image:caption>
-    </image:image>
   </url>
   <url>
     <loc>https://travelpals.us/about.html</loc>
     <changefreq>weekly</changefreq>
-    <image:image>
-      <image:loc>https://travelpals.us/images/mary-crave.jpg</image:loc>
-      <image:caption>Travel Pals host Mary Crave in India</image:caption>
-    </image:image>
   </url>
   <url>
     <loc>https://travelpals.us/booking.html</loc>
@@ -76,25 +72,17 @@
   <url>
     <loc>https://travelpals.us/exotic-luxury.html</loc>
     <changefreq>weekly</changefreq>
-    <image:image>
-      <image:loc>https://travelpals.us/images/udaipur-lake-night.jpg</image:loc>
-      <image:caption>Lake Palace, Udaipur at night</image:caption>
-    </image:image>
   </url>
   <url>
     <loc>https://travelpals.us/golden-triangle.html</loc>
     <changefreq>weekly</changefreq>
-    <image:image>
-      <image:loc>https://travelpals.us/images/mumbai-gateway-taj.jpg</image:loc>
-      <image:caption>Golden Triangle India tour</image:caption>
-    </image:image>
   </url>
   <url>
     <loc>https://travelpals.us/golden-triangle-itinerary.html</loc>
     <changefreq>weekly</changefreq>
     <image:image>
       <image:loc>https://travelpals.us/images/roag-chai-jaipur.jpg</image:loc>
-      <image:caption>Golden Triangle itinerary — Jaipur, Rajasthan</image:caption>
+      <image:caption>Golden Triangle itinerary — Jaipur</image:caption>
     </image:image>
   </url>
   <url>
@@ -106,12 +94,32 @@
     </image:image>
   </url>
   <url>
-    <loc>https://travelpals.us/tour-nov-2026.html</loc>
+    <loc>https://travelpals.us/india-train-travel-guide.html</loc>
     <changefreq>weekly</changefreq>
     <image:image>
-      <image:loc>https://travelpals.us/images/udaipur-lake-night.jpg</image:loc>
-      <image:caption>Udaipur Lake Palace — North India tour</image:caption>
+      <image:loc>https://travelpals.us/images/shimla-railcar.jpg</image:loc>
+      <image:caption>India train travel — Kalka-Shimla railway</image:caption>
     </image:image>
+  </url>
+  <url>
+    <loc>https://travelpals.us/kerala-backwaters-guide.html</loc>
+    <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://travelpals.us/images/kerala-village-boat.jpg</image:loc>
+      <image:caption>Kerala backwaters houseboat</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://travelpals.us/what-to-pack-for-india.html</loc>
+    <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://travelpals.us/images/varanasi-aarti.jpg</image:loc>
+      <image:caption>What to pack for India — Varanasi</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://travelpals.us/tour-nov-2026.html</loc>
+    <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://travelpals.us/tour-nov-2026-rail.html</loc>
@@ -119,10 +127,6 @@
     <image:image>
       <image:loc>https://travelpals.us/images/shimla-railcar.jpg</image:loc>
       <image:caption>Kalka–Shimla heritage railway</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://travelpals.us/images/roag-golden-temple.jpg</image:loc>
-      <image:caption>Golden Temple, Amritsar</image:caption>
     </image:image>
   </url>
   <url>
