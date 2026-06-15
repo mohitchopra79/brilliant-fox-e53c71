@@ -3,6 +3,11 @@
   // Eligible nationalities (Indian e-Visa eligible list)
   var COUNTRIES = ["Albania","Andorra","Angola","Anguilla","Antigua & Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bolivia","Bosnia & Herzegovina","Botswana","Brazil","Brunei","Bulgaria","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Chile","Colombia","Comoros","Cook Islands","Costa Rica","Cote d'Ivoire","Croatia","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","El Salvador","Equatorial Guinea","Eritrea","Estonia","Eswatini","Fiji","Finland","France","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Grenada","Guatemala","Guernsey","Guinea","Guyana","Haiti","Honduras","Hungary","Iceland","Indonesia","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kiribati","Kuwait","Kyrgyzstan","Laos","Latvia","Lesotho","Liberia","Liechtenstein","Lithuania","Luxembourg","Macedonia","Madagascar","Malawi","Malaysia","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauru","Netherlands","New Zealand","Nicaragua","Niger","Niue Island","Norway","Oman","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Qatar","Republic of Korea","Romania","Russia","Rwanda","Saint Christopher & Nevis","Saint Lucia","Saint Vincent & the Grenadines","Samoa","San Marino","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","South Africa","Spain","Sri Lanka","Suriname","Sweden","Switzerland","Taiwan","Tajikistan","Tanzania","Thailand","Togo","Tonga","Trinidad & Tobago","Turks & Caicos Islands","Tuvalu","UAE","Ukraine","United Kingdom","Uruguay","USA","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Zambia","Zimbabwe"];
 
+  // Full country-of-birth list = eligible nationalities + countries whose nationals
+  // aren't e-Visa eligible but where a traveller may have been BORN (incl. India).
+  var BIRTH_EXTRA = ["Afghanistan","Algeria","Bhutan","Burkina Faso","Central African Republic","Chad","China","Congo (Republic)","Congo (DR)","Egypt","Ethiopia","Guinea-Bissau","India","Iran","Iraq","Lebanon","Libya","Maldives","Nepal","Nigeria","North Korea","Pakistan","Saudi Arabia","Somalia","South Sudan","Sudan","Syria","Tunisia","Turkey","Turkmenistan","Uganda","Yemen"];
+  var BIRTH_COUNTRIES = COUNTRIES.concat(BIRTH_EXTRA).sort(function (a, b) { return a.localeCompare(b); });
+
   // Map MRZ 3-letter codes -> country name (common eVisa nationalities)
   var ISO3 = {USA:"USA",GBR:"United Kingdom",AUS:"Australia",CAN:"Canada",DEU:"Germany",FRA:"France",ITA:"Italy",ESP:"Spain",NLD:"Netherlands",CHE:"Switzerland",SWE:"Sweden",NOR:"Norway",DNK:"Denmark",FIN:"Finland",IRL:"Ireland",NZL:"New Zealand",JPN:"Japan",KOR:"Republic of Korea",SGP:"Singapore",MYS:"Malaysia",ARE:"UAE",SAU:"Saudi Arabia",QAT:"Qatar",BHR:"Bahrain",OMN:"Oman",KWT:"Kuwait",ZAF:"South Africa",BRA:"Brazil",ARG:"Argentina",MEX:"Mexico",CHL:"Chile",RUS:"Russia",UKR:"Ukraine",POL:"Poland",PRT:"Portugal",BEL:"Belgium",AUT:"Austria",GRC:"Greece",ISR:"Israel",THA:"Thailand",VNM:"Vietnam",IDN:"Indonesia",PHL:"Philippines",LKA:"Sri Lanka",KEN:"Kenya",NGA:"Nigeria",CZE:"Czech Republic",HUN:"Hungary",ROU:"Romania",HRV:"Croatia",ISL:"Iceland",LUX:"Luxembourg",MUS:"Mauritius",FJI:"Fiji"};
 
@@ -13,9 +18,8 @@
 
   // e-Tourist sub-types
   var VISA_TYPES = [
-    {id:"et30", code:"e-T2 V", name:"e-Tourist — 30 days", duration:"30 days from first arrival", entries:"Double entry", stay:"Up to 30 days", fee:"$25", note:"Best for a single short trip."},
-    {id:"et1y", code:"e-T1 V", name:"e-Tourist — 1 year", duration:"365 days from grant of ETA", entries:"Multiple entries", stay:"Max 180 days / calendar year", fee:"$40", popular:true, note:"Most popular — flexible, multiple visits."},
-    {id:"et5y", code:"e-T1 V", name:"e-Tourist — 5 years", duration:"5 years from grant of ETA", entries:"Multiple entries", stay:"Max 180 days / calendar year", fee:"$80", note:"Great value for frequent travellers."}
+    {id:"et30", code:"e-T2 V", name:"e-Tourist — 30 days", duration:"30 days from first arrival", entries:"Double entry", stay:"Up to 30 days", fee:"$25", serviceFee:50, bankFee:3.125, stripeUrl:"https://buy.stripe.com/7sYeV5eADeSk7EHaXZew809", note:"Best for a single short trip."},
+    {id:"et1y", code:"e-T1 V", name:"e-Tourist — 1 year", duration:"365 days from grant of ETA", entries:"Multiple entries", stay:"Max 180 days / calendar year", fee:"$40", serviceFee:75, bankFee:4.80, stripeUrl:"https://buy.stripe.com/aFacMX3VZ11u3ord67ew80a", popular:true, note:"Most popular — flexible, multiple visits."}
   ];
 
   var PURPOSES = ["Recreation / Sightseeing","Casual visit to meet friends or relatives","Short-term Yoga programme","Short-term course (language, music, dance, arts & crafts, cooking)","Voluntary work of short duration","Medical treatment under Indian systems of medicine"];
@@ -118,7 +122,7 @@
   var DEMO_MRZ = "P<USASMITH<<EMMA<ROSE<<<<<<<<<<<<<<<<<<<<<<<<\n5421098763USA8806154F3009154<<<<<<<<<<<<<<04";
 
   window.TPDATA = {
-    COUNTRIES:COUNTRIES, PORTS:PORTS, EXIT_PORTS:EXIT_PORTS, VISA_TYPES:VISA_TYPES,
+    COUNTRIES:COUNTRIES, BIRTH_COUNTRIES:BIRTH_COUNTRIES, PORTS:PORTS, EXIT_PORTS:EXIT_PORTS, VISA_TYPES:VISA_TYPES,
     PURPOSES:PURPOSES, RELIGIONS:RELIGIONS, EDUCATION:EDUCATION, MARITAL:MARITAL,
     NAT_BY:NAT_BY, OCCUPATIONS:OCCUPATIONS, SECURITY:SECURITY, ISO3:ISO3,
     COUNTRIES_VISITED_HINT:COUNTRIES_VISITED_HINT,

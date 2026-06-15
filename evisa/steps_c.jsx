@@ -178,40 +178,20 @@ function money(n) { return "$" + (Number.isInteger(n) ? n : n.toFixed(2)); }
 function StepPay({ f, set, serviceFee, onPay, paying }) {
   const vt = TPDATA.VISA_TYPES.find((v) => v.id === f.visaType) || TPDATA.VISA_TYPES[1];
   const govt = feeNum(vt.fee);
-  const svc = serviceFee || 39;
-  const bank = Math.round(govt * 0.03 * 100) / 100;
+  const svc = (vt.serviceFee != null) ? vt.serviceFee : (serviceFee || 39);
+  const bank = (vt.bankFee != null) ? vt.bankFee : Math.round(govt * 0.03 * 100) / 100;
   const total = govt + svc + bank;
-  const [card, setCard] = useStateC({ num: "", exp: "", cvc: "", name: "" });
-  const fmtCard = (v) => v.replace(/\D/g, "").slice(0, 16).replace(/(.{4})/g, "$1 ").trim();
-  const fmtExp = (v) => { const d = v.replace(/\D/g, "").slice(0, 4); return d.length > 2 ? d.slice(0, 2) + "/" + d.slice(2) : d; };
-  const ready = card.num.replace(/\s/g, "").length >= 15 && card.exp.length === 5 && card.cvc.length >= 3 && card.name && f.consent;
+  const ready = f.consent;
   return (
     <div className="tp-fade">
       <div className="tp-pay">
         <div>
-          <Group title="Cardholder & payment">
-            <Note kind="info" >You're paying Travel Pals' assisted-service charge plus the government e-Visa fee, collected together. Your details are sent to our visa team to lodge the application on your behalf.</Note>
-            <div className="tp-grid" style={{ marginTop: 16 }}>
-              <Field col={12} label="Name on card" req>
-                <input className="tp-input" value={card.name} placeholder="As printed on the card"
-                  onChange={(e) => setCard({ ...card, name: e.target.value })} />
-              </Field>
-              <Field col={12} label="Card number" req>
-                <div className="tp-card-input">
-                  {TPI.card}
-                  <input inputMode="numeric" value={card.num} placeholder="1234 1234 1234 1234"
-                    onChange={(e) => setCard({ ...card, num: fmtCard(e.target.value) })} />
-                  <div className="tp-card-brands"><span>VISA</span><span>MC</span><span>AMEX</span></div>
-                </div>
-              </Field>
-              <Field col={6} label="Expiry" req>
-                <input className="tp-input" value={card.exp} placeholder="MM/YY"
-                  onChange={(e) => setCard({ ...card, exp: fmtExp(e.target.value) })} />
-              </Field>
-              <Field col={6} label="CVC" req>
-                <input className="tp-input" inputMode="numeric" value={card.cvc} placeholder="123"
-                  onChange={(e) => setCard({ ...card, cvc: e.target.value.replace(/\D/g, "").slice(0, 4) })} />
-              </Field>
+          <Group title="Secure payment">
+            <Note kind="info" >You'll complete payment on Stripe's secure checkout — Travel Pals never sees or stores your card details. Your assisted-service charge, the bank &amp; processing fee and the government e-Visa fee are collected together. The moment payment clears, our visa team lodges the application on your behalf.</Note>
+            <div style={{ marginTop: 16, display: "flex", flexDirection: "column", gap: 12 }}>
+              <div style={{ display: "flex", gap: 10, alignItems: "flex-start", fontSize: 14, color: "var(--ink-2)" }}>{TPI.lock}<span>Card details are entered on Stripe's PCI-secure page in a new tab — never here.</span></div>
+              <div style={{ display: "flex", gap: 10, alignItems: "flex-start", fontSize: 14, color: "var(--ink-2)" }}>{TPI.checkc}<span>Your completed application PDF downloads here for your records and to share with our team.</span></div>
+              <div style={{ display: "flex", gap: 10, alignItems: "flex-start", fontSize: 14, color: "var(--ink-2)" }}>{TPI.checkc}<span>We email your ETA once granted — typically 3–5 business days.</span></div>
             </div>
             <div style={{ marginTop: 18 }}>
               <Check checked={f.consent} onChange={(v) => set("consent", v)}>
@@ -229,12 +209,12 @@ function StepPay({ f, set, serviceFee, onPay, paying }) {
             <h3>Order summary</h3>
             <div className="tp-line">{vt.name}<span className="amt">{money(govt)}</span></div>
             <div className="tp-line">Travel Pals assisted service<span className="amt">{money(svc)}</span></div>
-            <div className="tp-line">Bank &amp; processing (3%)<span className="amt">{money(bank)}</span></div>
+            <div className="tp-line">Bank &amp; processing<span className="amt">{money(bank)}</span></div>
             <div className="tp-line total">Total due<span className="amt">{money(total)}</span></div>
             <button type="button" className="tp-btn primary lg block" style={{ marginTop: 18 }} disabled={!ready || paying} onClick={() => onPay(total)}>
-              {paying ? <React.Fragment><span className="tp-spin" style={{ borderTopColor: "#fff", borderColor: "rgba(255,255,255,.4)", borderTopColor: "#fff" }} />Processing…</React.Fragment> : <React.Fragment>{TPI.lock} Pay {money(total)} securely</React.Fragment>}
+              {paying ? <React.Fragment><span className="tp-spin" style={{ borderColor: "rgba(255,255,255,.4)", borderTopColor: "#fff" }} />Opening Stripe…</React.Fragment> : <React.Fragment>{TPI.lock} Pay {money(total)} with Stripe</React.Fragment>}
             </button>
-            <div className="tp-stripe-badge">{TPI.lock} Encrypted · powered by Stripe</div>
+            <div className="tp-stripe-badge">{TPI.lock} Secure checkout · powered by Stripe</div>
           </div>
         </div>
       </div>
@@ -243,26 +223,27 @@ function StepPay({ f, set, serviceFee, onPay, paying }) {
 }
 
 /* ---------- confirmation ---------- */
-function Confirmation({ f, refNo, onDownload, submitState, teamEmail }) {
+function Confirmation({ f, refNo, onDownload, submitState, teamEmail, payUrl }) {
   const st = (submitState && submitState.status) || "local";
   const ticketNo = (submitState && submitState.ticket) || refNo;
   const statusLine =
-    st === "sent" ? <React.Fragment>Your application PDF is attached to service ticket <b style={{ color: "var(--ink)" }}>{ticketNo}</b> and emailed to <b style={{ color: "var(--ink)" }}>{f.email || "your email"}</b>.</React.Fragment>
+    st === "sent" ? <React.Fragment>Your application form, passport bio-page and photograph have been emailed to the Travel Pals visa team (reference <b style={{ color: "var(--ink)" }}>{ticketNo}</b>){f.email ? <React.Fragment>, with a copy to <b style={{ color: "var(--ink)" }}>{f.email}</b></React.Fragment> : null}. Keep your downloaded PDF for your records.</React.Fragment>
     : st === "error" ? <React.Fragment>We couldn't reach the ticket system just now — please download your PDF below; our team will retry and follow up at <b style={{ color: "var(--ink)" }}>{f.email || "your email"}</b>.</React.Fragment>
     : <React.Fragment>Your full application PDF is ready to download below. Once your ticket endpoint is connected it will also be attached to a service ticket and emailed automatically.</React.Fragment>;
   return (
     <div className="tp-done tp-fade">
       <div className="seal">{TPI.checkc}</div>
-      <h2 className="tp-h" style={{ textAlign: "center" }}>Payment received — we're on it</h2>
+      <h2 className="tp-h" style={{ textAlign: "center" }}>Almost done — finish payment in the Stripe tab</h2>
       <p className="tp-sub" style={{ margin: "0 auto 4px" }}>
-        Thank you, {f.given || "traveller"}. Your application has been received by the Travel Pals visa team.
+        Thank you, {f.given || "traveller"}. We've opened Stripe's secure checkout in a new tab — complete your payment there to confirm. Your application details are saved with the Travel Pals visa team.
       </p>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <div className="tp-ref">{TPI.shield}<span>REF&nbsp;{refNo}</span></div>
       </div>
       <p className="muted" style={{ fontSize: 13, maxWidth: 460, margin: "0 auto" }}>{statusLine}</p>
       <div style={{ display: "flex", gap: 12, justifyContent: "center", marginTop: 18, flexWrap: "wrap" }}>
-        <button type="button" className="tp-btn primary" onClick={onDownload}>{TPI.upload} Download application PDF</button>
+        {payUrl && <a className="tp-btn primary" href={payUrl} target="_blank" rel="noopener">{TPI.lock} Complete payment on Stripe</a>}
+        <button type="button" className="tp-btn ghost" onClick={onDownload}>{TPI.upload} Download application PDF</button>
       </div>
       <ul className="tp-timeline">
         <li><span className="n">1</span><div className="tx"><h5>We review your details & documents</h5><p>Within a few hours our team checks everything against e-Visa specs and flags anything that needs fixing.</p></div></li>

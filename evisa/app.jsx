@@ -27,24 +27,17 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 
 /* ─────────────────────────────────────────────────────────────
-   INTEGRATION — Travel Pals intake API (Claude-Code backend).
-   On payment, the form builds the application PDF and POSTs JSON
-   (base64, no multipart) to /api/intake/ticket. The backend finds/
-   creates the client, opens a Service Ticket, stores the PDF, and
-   emails the support inbox + applicant a TKT- confirmation.
-
-   → Set `endpoint` to your real origin to go live (the "<...>"
-     placeholder keeps it in offline/download-only mode).
-   → Posting from the browser: leave `intakeKey` EMPTY (a key in
-     browser JS is public). Lock the API instead with
-     INTAKE_ALLOWED_ORIGINS=https://travelpals.in (CORS) + the
-     built-in rate-limit & honeypot. Only set `intakeKey` if you
-     proxy this server-to-server.
+   INTEGRATION — where a completed application is delivered.
+   On payment the form builds the application PDF and emails it,
+   together with the uploaded passport bio-page and photograph,
+   to `formEmail` via FormSubmit (https://formsubmit.co) — the
+   same free service the site's Contact form already uses, so the
+   address is pre-activated and submissions arrive immediately.
+   To change the destination, edit `formEmail` below.
    ───────────────────────────────────────────────────────────── */
 const INTEGRATION = {
-  endpoint: "https://<your-app-origin>/api/intake/ticket",  // ← replace <your-app-origin>
-  intakeKey: "",                                            // X-Intake-Key (server-to-server only)
-  teamEmail: "team@travelpals.in"
+  formEmail: "mohit@travelpals.in",   // ← e-Visa applications are emailed here
+  teamEmail: "mohit@travelpals.in"
 };
 
 const LS = "tp_evisa_v1";
@@ -150,35 +143,49 @@ function App() {
   function back() { goto(Math.max(step - 1, 0)); }
 
   const e2u = (blob) => new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result); r.onerror = rej; r.readAsDataURL(blob); });
-  const configured = () => INTEGRATION.endpoint && INTEGRATION.endpoint.indexOf("<") < 0;
+  const configured = () => !!INTEGRATION.formEmail;
+
+  // base64 / data-URL → Blob (for emailing the uploaded passport & photo as files)
+  function b64ToBlob(b64, type) {
+    try {
+      var s = b64.indexOf(",") >= 0 ? b64.split(",")[1] : b64;
+      var bin = atob(s), len = bin.length, arr = new Uint8Array(len);
+      for (var i = 0; i < len; i++) arr[i] = bin.charCodeAt(i);
+      return new Blob([arr], { type: type || "application/octet-stream" });
+    } catch (e) { return null; }
+  }
 
   async function submitToApp(blob, fname) {
     if (!configured() || !blob) { setSubmitState({ status: configured() ? "error" : "local" }); return; }
     try {
       const vt = TPDATA.VISA_TYPES.find((v) => v.id === form.visaType) || {};
-      const pdfData = await e2u(blob);
-      const attachments = [];
-      if (form.docPassportB64) attachments.push({ file_base64: form.docPassportB64, name: form.docPassportName || "passport-page", type: form.docPassportType || "application/octet-stream" });
-      if (form.photoB64) attachments.push({ file_base64: form.photoB64, name: form.photoName || "photo.jpg", type: form.photoType || "image/jpeg" });
-      const body = {
-        name: ((form.given || "") + " " + (form.surname || "")).trim() || "e-Visa applicant",
-        email: form.email || INTEGRATION.teamEmail,
-        phone: form.mobile || "",
-        subject: "e-Visa application \u2014 " + (form.surname || "applicant") + " (" + ref + ")",
-        message: "Travel Pals assisted e-Tourist visa intake.\nReference: " + ref +
-          "\nVisa: " + (vt.name || "") + "\nArrival: " + (form.arrivalPort || "") + " on " + (form.arrivalDate || "") +
-          "\nFull application is attached as a PDF.",
-        passport: { file_base64: pdfData, name: fname, type: "application/pdf" },
-        attachments: attachments,
-        company: form._hp_company || "",      // honeypot — real users leave blank
-        website_url: form._hp_url || ""        // honeypot — real users leave blank
-      };
-      const headers = { "Content-Type": "application/json" };
-      if (INTEGRATION.intakeKey) headers["X-Intake-Key"] = INTEGRATION.intakeKey;
-      const res = await fetch(INTEGRATION.endpoint, { method: "POST", headers, body: JSON.stringify(body) });
-      const j = await res.json().catch(() => ({}));
-      if (res.ok) setSubmitState({ status: "sent", ticket: j && j.ticket && j.ticket.number });
-      else setSubmitState({ status: "error", error: (j && j.error) || ("HTTP " + res.status) });
+      const fd = new FormData();
+      // FormSubmit control fields
+      fd.append("_subject", "e-Visa application \u2014 " + (form.surname || "applicant") + " (" + ref + ")");
+      fd.append("_template", "table");
+      fd.append("_captcha", "false");
+      if (form.email) fd.append("_cc", form.email);   // send the applicant a copy
+      fd.append("_honey", form._hp_company || "");   // honeypot — real users leave blank
+      // Readable summary in the email body
+      fd.append("Reference", ref);
+      fd.append("Applicant", (((form.given || "") + " " + (form.surname || "")).trim()) || "e-Visa applicant");
+      fd.append("Applicant email", form.email || "");
+      fd.append("Mobile", form.mobile || "");
+      fd.append("Nationality", form.nationality || "");
+      fd.append("Passport number", form.passportNo || "");
+      fd.append("Visa type", vt.name || "");
+      fd.append("Arrival", (form.arrivalPort || "") + (form.arrivalDate ? " on " + form.arrivalDate : ""));
+      fd.append("Address in India", [form.indiaAddr, form.indiaCity, form.indiaState].filter(Boolean).join(", "));
+      fd.append("Note", "Full application form attached as a PDF. Passport bio-page and photograph attached where provided.");
+      // Attachments: application PDF + uploaded passport scan + photo
+      fd.append("attachment", blob, fname);
+      if (form.docPassportB64) { const pb = b64ToBlob(form.docPassportB64, form.docPassportType); if (pb) fd.append("attachment", pb, form.docPassportName || "passport-page"); }
+      if (form.photoB64) { const ph = b64ToBlob(form.photoB64, form.photoType); if (ph) fd.append("attachment", ph, form.photoName || "photo.jpg"); }
+      // Deliver. no-cors keeps the browser from blocking the cross-origin POST;
+      // FormSubmit still receives and emails it. We can't read the opaque response,
+      // so we optimistically mark it sent (network failures are caught below).
+      await fetch("https://formsubmit.co/" + INTEGRATION.formEmail, { method: "POST", mode: "no-cors", body: fd });
+      setSubmitState({ status: "sent", ticket: ref });
     } catch (e) { setSubmitState({ status: "error" }); }
   }
 
@@ -188,13 +195,17 @@ function App() {
   }
 
   function pay(total) {
+    // Open Stripe's hosted payment link in a NEW TAB (the real charge). This must
+    // run synchronously inside the click handler so the browser doesn't block it.
+    const vt = TPDATA.VISA_TYPES.find((v) => v.id === form.visaType) || TPDATA.VISA_TYPES[0];
+    if (vt && vt.stripeUrl) { try { window.open(vt.stripeUrl, "_blank", "noopener"); } catch (e) {} }
     setPaying(true);
     setTimeout(async () => {
       let blob = null, fname = "application.pdf";
       try { const doc = window.TPPDF.build(form, ref); blob = doc.output("blob"); fname = window.TPPDF.filename(form, ref); setPdfRef({ doc, blob, fname }); } catch (e) {}
       await submitToApp(blob, fname);
       setPaying(false); setSubmitted(true); window.scrollTo({ top: 0, behavior: "smooth" });
-    }, 1700);
+    }, 800);
   }
 
   const cur = STEPS[step];
@@ -258,7 +269,7 @@ function App() {
 
         <section>
           {submitted
-            ? <div className="tp-card"><div className="tp-card-body"><Confirmation f={form} refNo={ref} onDownload={downloadPdf} submitState={submitState} teamEmail={INTEGRATION.teamEmail} /></div></div>
+            ? <div className="tp-card"><div className="tp-card-body"><Confirmation f={form} refNo={ref} onDownload={downloadPdf} submitState={submitState} teamEmail={INTEGRATION.teamEmail} payUrl={(TPDATA.VISA_TYPES.find((v) => v.id === form.visaType) || {}).stripeUrl} /></div></div>
             : <div className="tp-card">
                 <div className="tp-card-head">
                   <Eyebrow n={`${step + 1} / ${STEPS.length}`}>{cur.label}</Eyebrow>

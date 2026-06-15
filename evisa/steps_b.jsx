@@ -14,7 +14,7 @@ function Person({ f, set, prefix, title, optionalBirth }) {
         <Text col={6} label="Place of birth" req value={f[prefix + "BirthPlace"]}
           onChange={(v) => set(prefix + "BirthPlace", v)} />
         <Select col={6} label="Country of birth" req value={f[prefix + "BirthCountry"]}
-          onChange={(v) => set(prefix + "BirthCountry", v)} options={TPDATA.COUNTRIES} placeholder="Select country" />
+          onChange={(v) => set(prefix + "BirthCountry", v)} options={TPDATA.BIRTH_COUNTRIES} placeholder="Select country" />
       </div>
     </Group>
   );
