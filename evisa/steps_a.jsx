@@ -74,7 +74,7 @@ function StepPersonal({ f, set, a }) {
           <Text col={6} label="Town / city of birth" req value={f.birthCity}
             onChange={(v) => set("birthCity", v)} />
           <Select col={6} label="Country of birth" req value={f.birthCountry}
-            onChange={(v) => set("birthCountry", v)} options={TPDATA.COUNTRIES} placeholder="Select country" />
+            onChange={(v) => set("birthCountry", v)} options={TPDATA.BIRTH_COUNTRIES} placeholder="Select country" />
           <Select col={6} label="Nationality" req value={f.nationality} autofilled={a("nationality")}
             onChange={(v) => set("nationality", v)} options={TPDATA.COUNTRIES} placeholder="Select country" />
           <Select col={6} label="Acquired nationality by" req value={f.natBy}
@@ -82,7 +82,7 @@ function StepPersonal({ f, set, a }) {
           <Text col={6} label="National Id No." opt value={f.nationalId}
             onChange={(v) => set("nationalId", v)} hint="If issued by your country" />
           <Select col={6} label="Prior nationality" opt value={f.priorNationality}
-            onChange={(v) => set("priorNationality", v)} options={["None"].concat(TPDATA.COUNTRIES)} placeholder="If any" />
+            onChange={(v) => set("priorNationality", v)} options={["None"].concat(TPDATA.BIRTH_COUNTRIES)} placeholder="If any" />
           <Select col={6} label="Religion" req value={f.religion}
             onChange={(v) => set("religion", v)} options={TPDATA.RELIGIONS} />
           <Select col={6} label="Educational qualification" req value={f.education}

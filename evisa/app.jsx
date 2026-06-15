@@ -36,7 +36,13 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
    To change the destination, edit `formEmail` below.
    ───────────────────────────────────────────────────────────── */
 const INTEGRATION = {
-  formEmail: "mohit@travelpals.in",   // ← e-Visa applications are emailed here
+  // Preferred secure delivery: a Cloudflare Worker that emails via Resend with the
+  // application PDF + passport bio-page + photo attached. Paste the deployed Worker
+  // URL here (replacing the placeholder) to switch the form onto it.
+  workerUrl: "https://e-visa-form.mohit-fca.workers.dev",   // ← live Cloudflare Worker (Resend)
+  // Fallback used only while no Worker URL is set: FormSubmit (text reliable;
+  // attachments are dropped on background submits).
+  formEmail: "mohit@travelpals.in",
   teamEmail: "mohit@travelpals.in"
 };
 
@@ -143,9 +149,11 @@ function App() {
   function back() { goto(Math.max(step - 1, 0)); }
 
   const e2u = (blob) => new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result); r.onerror = rej; r.readAsDataURL(blob); });
-  const configured = () => !!INTEGRATION.formEmail;
+  const workerReady = () => INTEGRATION.workerUrl && INTEGRATION.workerUrl.indexOf("<") < 0;
+  const configured = () => workerReady() || !!INTEGRATION.formEmail;
+  const stripB64 = (s) => (s && s.indexOf(",") >= 0) ? s.split(",")[1] : s;
 
-  // base64 / data-URL → Blob (for emailing the uploaded passport & photo as files)
+  // base64 / data-URL → Blob (for the FormSubmit fallback)
   function b64ToBlob(b64, type) {
     try {
       var s = b64.indexOf(",") >= 0 ? b64.split(",")[1] : b64;
@@ -156,17 +164,48 @@ function App() {
   }
 
   async function submitToApp(blob, fname) {
-    if (!configured() || !blob) { setSubmitState({ status: configured() ? "error" : "local" }); return; }
+    if (!blob) { setSubmitState({ status: "local" }); return; }
+    const vt = TPDATA.VISA_TYPES.find((v) => v.id === form.visaType) || {};
+
+    // ── Preferred: secure serverless relay (Cloudflare Worker / Vercel) → Resend ──
+    if (workerReady()) {
+      try {
+        const attachments = [{ filename: fname, content: stripB64(await e2u(blob)) }];
+        if (form.docPassportB64) attachments.push({ filename: form.docPassportName || "passport-page", content: stripB64(form.docPassportB64) });
+        if (form.photoB64) attachments.push({ filename: form.photoName || "photo.jpg", content: stripB64(form.photoB64) });
+        const html =
+          "<h2>New e-Visa application</h2>" +
+          "<p><b>Reference:</b> " + ref + "</p>" +
+          "<p><b>Applicant:</b> " + (((form.given || "") + " " + (form.surname || "")).trim()) + "</p>" +
+          "<p><b>Email:</b> " + (form.email || "") + " &nbsp;&nbsp; <b>Mobile:</b> " + (form.mobile || "") + "</p>" +
+          "<p><b>Nationality:</b> " + (form.nationality || "") + " &nbsp;&nbsp; <b>Passport:</b> " + (form.passportNo || "") + "</p>" +
+          "<p><b>Visa:</b> " + (vt.name || "") + "</p>" +
+          "<p><b>Arrival:</b> " + (form.arrivalPort || "") + (form.arrivalDate ? " on " + form.arrivalDate : "") + "</p>" +
+          "<p>Full application form, passport bio-page and photograph are attached.</p>";
+        const res = await fetch(INTEGRATION.workerUrl, {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            subject: "e-Visa application \u2014 " + (form.surname || "applicant") + " (" + ref + ")",
+            html: html, cc: form.email || "", replyTo: form.email || "",
+            company: form._hp_company || "", attachments: attachments
+          })
+        });
+        const j = await res.json().catch(() => ({}));
+        if (res.ok && j && j.ok) setSubmitState({ status: "sent", ticket: ref });
+        else setSubmitState({ status: "error", error: (j && j.error) || ("HTTP " + res.status) });
+      } catch (e) { setSubmitState({ status: "error" }); }
+      return;
+    }
+
+    // ── Fallback: FormSubmit (text reliable; attachments may be dropped) ──
+    if (!INTEGRATION.formEmail) { setSubmitState({ status: "local" }); return; }
     try {
-      const vt = TPDATA.VISA_TYPES.find((v) => v.id === form.visaType) || {};
       const fd = new FormData();
-      // FormSubmit control fields
       fd.append("_subject", "e-Visa application \u2014 " + (form.surname || "applicant") + " (" + ref + ")");
       fd.append("_template", "table");
       fd.append("_captcha", "false");
-      if (form.email) fd.append("_cc", form.email);   // send the applicant a copy
-      fd.append("_honey", form._hp_company || "");   // honeypot — real users leave blank
-      // Readable summary in the email body
+      if (form.email) fd.append("_cc", form.email);
+      fd.append("_honey", form._hp_company || "");
       fd.append("Reference", ref);
       fd.append("Applicant", (((form.given || "") + " " + (form.surname || "")).trim()) || "e-Visa applicant");
       fd.append("Applicant email", form.email || "");
@@ -175,15 +214,10 @@ function App() {
       fd.append("Passport number", form.passportNo || "");
       fd.append("Visa type", vt.name || "");
       fd.append("Arrival", (form.arrivalPort || "") + (form.arrivalDate ? " on " + form.arrivalDate : ""));
-      fd.append("Address in India", [form.indiaAddr, form.indiaCity, form.indiaState].filter(Boolean).join(", "));
-      fd.append("Note", "Full application form attached as a PDF. Passport bio-page and photograph attached where provided.");
-      // Attachments: application PDF + uploaded passport scan + photo
+      fd.append("Note", "Full application attached as a PDF where supported.");
       fd.append("attachment", blob, fname);
       if (form.docPassportB64) { const pb = b64ToBlob(form.docPassportB64, form.docPassportType); if (pb) fd.append("attachment", pb, form.docPassportName || "passport-page"); }
       if (form.photoB64) { const ph = b64ToBlob(form.photoB64, form.photoType); if (ph) fd.append("attachment", ph, form.photoName || "photo.jpg"); }
-      // Deliver. no-cors keeps the browser from blocking the cross-origin POST;
-      // FormSubmit still receives and emails it. We can't read the opaque response,
-      // so we optimistically mark it sent (network failures are caught below).
       await fetch("https://formsubmit.co/" + INTEGRATION.formEmail, { method: "POST", mode: "no-cors", body: fd });
       setSubmitState({ status: "sent", ticket: ref });
     } catch (e) { setSubmitState({ status: "error" }); }
