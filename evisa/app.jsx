@@ -109,6 +109,8 @@ function App() {
   const [pdfRef, setPdfRef] = useState(null);
   const [submitState, setSubmitState] = useState({ status: "idle" });
   const [ref] = useState(() => "TP-" + Math.random().toString(36).slice(2, 7).toUpperCase() + "-IN");
+  const [gateOk, setGateOk] = useState(() => { try { return localStorage.getItem("tp_evisa_gate") === "1"; } catch (e) { return false; } });
+  function acceptGate() { try { localStorage.setItem("tp_evisa_gate", "1"); } catch (e) {} setGateOk(true); }
   const topRef = useRef(null);
 
   // theme + accent
@@ -266,6 +268,35 @@ function App() {
 
   return (
     <div className="tp-app" ref={topRef}>
+      {!gateOk && (
+        <div className="tp-gate" role="dialog" aria-modal="true" aria-labelledby="tp-gate-title">
+          <div className="tp-gate-card">
+            <div className="tp-gate-badge">{TPI.shield}</div>
+            <div className="tp-gate-eyebrow">Travel Pals Guests Only</div>
+            <h2 className="tp-gate-title" id="tp-gate-title">A guided e-Visa service for our travellers</h2>
+            <p className="tp-gate-body">
+              This assisted e-Visa facility is offered <b>exclusively to guests who have booked a tour with Travel Pals.</b> Our team prepares, checks and lodges your application for you — so you arrive with everything in order.
+            </p>
+            <ul className="tp-gate-points">
+              <li>{TPI.checkc}<span>Personal review of every field and document by our visa team</span></li>
+              <li>{TPI.checkc}<span>We lodge the application on your behalf and track it to approval</span></li>
+              <li>{TPI.checkc}<span>Passport scan auto-fill — your details stay on your device until you submit</span></li>
+            </ul>
+            <p className="tp-gate-body">
+              If you haven't booked a tour with us yet, this service isn't available — we'd love to help you plan a journey first.
+            </p>
+            <div className="tp-gate-actions">
+              <button type="button" className="tp-btn primary lg" onClick={acceptGate}>
+                {TPI.checkc} I'm a Travel Pals guest — Continue
+              </button>
+              <a className="tp-btn ghost lg" href="contact.html">
+                {TPI.arrowL} Return to website
+              </a>
+            </div>
+            <p className="tp-gate-fine">By continuing you confirm you are a booked Travel Pals guest. We may verify this against your booking before lodging your application.</p>
+          </div>
+        </div>
+      )}
       <header className="tp-top">
         <div className="tp-top-in">
           <a className="tp-brand" href="index.html" title="Return to travelpals.us">

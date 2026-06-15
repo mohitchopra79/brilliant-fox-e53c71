@@ -239,6 +239,37 @@
 <div class="section-divider"><span class="ornament"><span class="dot"></span><span class="stroke"></span><span class="dot center"></span><span class="stroke"></span><span class="dot"></span></span></div>
 
 
+<!-- ROUTE MAP -->
+<section style="background: var(--linen-2); padding: 60px 0 64px;">
+  <div class="container" style="max-width: 880px; text-align: center;">
+    <span class="eyebrow">The Map</span>
+    <h2 style="margin-top: 14px; margin-bottom: 30px;">Trace the journey, stop by stop</h2>
+    <figure style="margin: 0;">
+      <div class="rmz-viewport" id="rmzViewport">
+        <img class="rmz-img" id="rmzImg" src="images/feb2027-route-map.jpg?v=2" alt="Spirit of Rajasthan &amp; the Nagaur Cattle Fair — tour route map from Delhi through Rajasthan to Mumbai" draggable="false" />
+        <div class="rmz-controls">
+          <button type="button" class="rmz-btn" id="rmzIn" aria-label="Zoom in">+</button>
+          <button type="button" class="rmz-btn" id="rmzOut" aria-label="Zoom out">&minus;</button>
+          <button type="button" class="rmz-btn rmz-reset" id="rmzReset" aria-label="Reset zoom">&#8634;</button>
+        </div>
+        <span class="rmz-hint" id="rmzHint">Scroll or pinch to zoom · drag to pan</span>
+      </div>
+      <figcaption style="font-family: var(--caps); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terracotta-deep); font-weight: 500; margin-top: 18px;">Delhi · Agra · Jaipur · Nagaur · Jodhpur · Ghanerao · Udaipur · Mumbai</figcaption>
+    </figure>
+    <style>
+      .rmz-viewport{position:relative;overflow:hidden;border-radius:3px;box-shadow:0 36px 80px -40px rgba(20,33,61,0.45);background:#FBF8F0;touch-action:none;cursor:grab;}
+      .rmz-viewport.is-panning{cursor:grabbing;}
+      .rmz-img{display:block;width:100%;height:auto;margin:0;transform-origin:0 0;will-change:transform;user-select:none;-webkit-user-drag:none;}
+      .rmz-controls{position:absolute;top:14px;left:14px;display:flex;flex-direction:column;gap:8px;z-index:3;}
+      .rmz-btn{width:42px;height:42px;display:flex;align-items:center;justify-content:center;font-size:22px;line-height:1;font-family:Georgia,serif;color:#14213D;background:rgba(251,248,240,0.94);border:1px solid rgba(158,83,43,0.6);border-radius:3px;cursor:pointer;transition:background .15s ease,color .15s ease;box-shadow:0 4px 14px -6px rgba(20,33,61,0.5);}
+      .rmz-btn:hover{background:#9E532B;color:#FBF8F0;border-color:#9E532B;}
+      .rmz-reset{font-size:19px;}
+      .rmz-hint{position:absolute;bottom:14px;right:14px;z-index:3;font-family:var(--caps,system-ui);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#14213D;background:rgba(251,248,240,0.9);padding:7px 11px;border-radius:3px;border:1px solid rgba(158,83,43,0.4);pointer-events:none;transition:opacity .4s ease;}
+      .rmz-hint.is-hidden{opacity:0;}
+    </style>
+  </div>
+</section>
+
 <!-- ITINERARY -->
 <section>
   <div class="container">
@@ -411,5 +442,88 @@
   <div class="container footer-bottom"><span>© 2026 Travel Pals · Atithi Devo Bhava</span><span>Curated with care</span></div>
 </footer>
 
+<script>
+(function () {
+  var vp = document.getElementById('rmzViewport');
+  var img = document.getElementById('rmzImg');
+  if (!vp || !img) return;
+  var scale = 1, tx = 0, ty = 0;
+  var MIN = 1, MAX = 5;
+  var hint = document.getElementById('rmzHint');
+
+  function clamp() {
+    var w = vp.clientWidth, h = vp.clientHeight;
+    var minTx = w - w * scale, minTy = h - h * scale;
+    if (scale <= 1) { tx = 0; ty = 0; return; }
+    if (tx > 0) tx = 0; if (tx < minTx) tx = minTx;
+    if (ty > 0) ty = 0; if (ty < minTy) ty = minTy;
+  }
+  function apply() {
+    clamp();
+    img.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + scale + ')';
+  }
+  function zoomAt(cx, cy, factor) {
+    var prev = scale;
+    scale = Math.min(MAX, Math.max(MIN, scale * factor));
+    if (scale === prev) return;
+    tx = cx - (cx - tx) * (scale / prev);
+    ty = cy - (cy - ty) * (scale / prev);
+    apply();
+    if (hint) hint.classList.add('is-hidden');
+  }
+  function rel(e) {
+    var r = vp.getBoundingClientRect();
+    return [ (e.clientX || 0) - r.left, (e.clientY || 0) - r.top ];
+  }
+
+  vp.addEventListener('wheel', function (e) {
+    e.preventDefault();
+    var p = rel(e);
+    zoomAt(p[0], p[1], e.deltaY < 0 ? 1.18 : 1 / 1.18);
+  }, { passive: false });
+
+  document.getElementById('rmzIn').addEventListener('click', function () { zoomAt(vp.clientWidth / 2, vp.clientHeight / 2, 1.4); });
+  document.getElementById('rmzOut').addEventListener('click', function () { zoomAt(vp.clientWidth / 2, vp.clientHeight / 2, 1 / 1.4); });
+  document.getElementById('rmzReset').addEventListener('click', function () { scale = 1; tx = 0; ty = 0; apply(); });
+  vp.addEventListener('dblclick', function (e) { var p = rel(e); if (scale > 1) { scale = 1; tx = 0; ty = 0; apply(); } else { zoomAt(p[0], p[1], 2); } });
+
+  var dragging = false, sx = 0, sy = 0, stx = 0, sty = 0;
+  vp.addEventListener('pointerdown', function (e) {
+    if (scale <= 1) return;
+    dragging = true; vp.classList.add('is-panning');
+    sx = e.clientX; sy = e.clientY; stx = tx; sty = ty;
+    vp.setPointerCapture(e.pointerId);
+  });
+  vp.addEventListener('pointermove', function (e) {
+    if (!dragging) return;
+    tx = stx + (e.clientX - sx); ty = sty + (e.clientY - sy); apply();
+  });
+  function endDrag() { dragging = false; vp.classList.remove('is-panning'); }
+  vp.addEventListener('pointerup', endDrag);
+  vp.addEventListener('pointercancel', endDrag);
+
+  var pts = {}, pinchDist = 0;
+  vp.addEventListener('pointerdown', function (e) { pts[e.pointerId] = e; });
+  vp.addEventListener('pointermove', function (e) {
+    if (!(e.pointerId in pts)) return;
+    pts[e.pointerId] = e;
+    var ks = Object.keys(pts);
+    if (ks.length === 2) {
+      var a = pts[ks[0]], b = pts[ks[1]];
+      var d = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
+      if (pinchDist) {
+        var r = vp.getBoundingClientRect();
+        zoomAt((a.clientX + b.clientX) / 2 - r.left, (a.clientY + b.clientY) / 2 - r.top, d / pinchDist);
+      }
+      pinchDist = d;
+    }
+  });
+  function clearPt(e) { delete pts[e.pointerId]; if (Object.keys(pts).length < 2) pinchDist = 0; }
+  vp.addEventListener('pointerup', clearPt);
+  vp.addEventListener('pointercancel', clearPt);
+
+  window.addEventListener('resize', apply);
+})();
+</script>
 </body>
 </html>

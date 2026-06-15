@@ -368,3 +368,20 @@ button{font-family:inherit}
 .tp-foot a{color:var(--ink-2)}
 .muted{color:var(--muted)} .nowrap{white-space:nowrap}
 .hidden{display:none!important}
+
+/* ---------------- access gate modal ---------------- */
+.tp-gate{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:24px;background:color-mix(in srgb,var(--ink) 56%,transparent);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);animation:fade .3s var(--ease) both}
+.tp-gate-card{position:relative;width:100%;max-width:540px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);box-shadow:0 40px 100px -30px rgba(0,0,0,.5);padding:40px 40px 30px;text-align:center;animation:sealpop .35s var(--ease) both}
+.tp-gate-badge{width:64px;height:64px;border-radius:50%;background:var(--brand-tint);color:var(--brand);display:grid;place-items:center;margin:0 auto 20px}
+.tp-gate-badge svg{width:30px;height:30px}
+.tp-gate-eyebrow{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--brand-deep);font-weight:700;margin-bottom:10px}
+.tp-gate-title{font-family:var(--font-display);font-weight:500;font-size:var(--fs-5);letter-spacing:var(--display-ls);line-height:1.16;margin:0 0 16px;color:var(--ink)}
+.tp-gate-body{font-size:15px;line-height:1.6;color:var(--ink-2);margin:0 auto 14px;max-width:44ch}
+.tp-gate-body b{color:var(--ink);font-weight:600}
+.tp-gate-points{list-style:none;margin:18px auto;padding:18px 20px;max-width:46ch;text-align:left;display:grid;gap:12px;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-card)}
+.tp-gate-points li{display:flex;align-items:flex-start;gap:11px;font-size:14px;line-height:1.45;color:var(--ink-2)}
+.tp-gate-points li svg{width:18px;height:18px;flex:none;color:var(--accent);margin-top:1px}
+.tp-gate-actions{display:flex;flex-direction:column;gap:12px;margin:26px 0 18px}
+.tp-gate-actions .tp-btn{width:100%}
+.tp-gate-fine{font-size:12px;line-height:1.55;color:var(--muted);margin:0;max-width:48ch;margin-inline:auto}
+@media(max-width:560px){.tp-gate-card{padding:30px 22px 24px}}
