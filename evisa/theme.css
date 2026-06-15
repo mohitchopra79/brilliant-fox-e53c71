@@ -139,6 +139,10 @@ button{font-family:inherit}
 .tp-secure svg{width:15px;height:15px;color:var(--accent)}
 .tp-help{font-size:13px;color:var(--ink-2);text-decoration:none;border-bottom:1px solid var(--line-2);padding-bottom:1px}
 .tp-help:hover{color:var(--brand)}
+.tp-back{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;color:var(--ink-2);text-decoration:none;padding:7px 13px;border:1.5px solid var(--line-2);border-radius:var(--r-pill);transition:all .14s}
+.tp-back svg{width:15px;height:15px}
+.tp-back:hover{border-color:var(--brand);color:var(--brand)}
+@media(max-width:560px){.tp-back span,.tp-back-txt{display:none}}
 
 /* ---------------- layout ---------------- */
 .tp-main{flex:1;max-width:var(--maxw);width:100%;margin:0 auto;padding:28px 24px 120px;display:grid;grid-template-columns:248px 1fr;gap:36px}

@@ -268,7 +268,7 @@ function App() {
     <div className="tp-app" ref={topRef}>
       <header className="tp-top">
         <div className="tp-top-in">
-          <a className="tp-brand" href="#">
+          <a className="tp-brand" href="index.html" title="Return to travelpals.us">
             <img src="evisa/logo.png" alt="Travel Pals" />
             <div>
               <div className="tp-brand-name">Travel <b>Pals</b></div>
@@ -276,8 +276,9 @@ function App() {
             </div>
           </a>
           <div className="tp-top-right">
+            <a className="tp-back" href="index.html">{TPI.arrowL}<span className="tp-back-txt">Back to travelpals.us</span></a>
             <span className="tp-secure">{TPI.shield} Secure intake</span>
-            <a className="tp-help" href="#">Need help?</a>
+            <a className="tp-help" href="contact.html">Need help?</a>
           </div>
         </div>
       </header>
