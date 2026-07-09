@@ -16,6 +16,15 @@
   --olive: #6B7549;
   --char: #2A2D3A;
 
+  /* warm + gold register for the luxury mood */
+  --ivory: #EFE9DB;        /* soft warm panel, distinct from linen */
+  --ivory-2: #E5DCC7;
+  --cream: #FBF8F0;
+  --sandstone: #CBB079;    /* light antique gold — accents on dark grounds */
+  --gold: #B8924A;         /* antique gold */
+  --gold-soft: #D8C28A;
+  --gold-line: linear-gradient(90deg, rgba(184,146,74,0) 0%, rgba(184,146,74,0.9) 50%, rgba(184,146,74,0) 100%);
+
   --display: 'Fraunces', 'Cormorant Garamond', Georgia, serif;
   --serif: 'Cormorant Garamond', Georgia, serif;
   --sans: 'Inter Tight', 'Inter', -apple-system, sans-serif;
@@ -86,6 +95,9 @@ section.tight { padding: 36px 0; }
 section:has(+ .section-divider) { padding-bottom: 28px; }
 
 .hr-rule { width: 36px; height: 1px; background: var(--ink); margin: 14px 0; opacity: 0.85; }
+/* slim gold rule — used under section ledes for a refined, luxe register */
+.hr-gold { width: 54px; height: 2px; background: var(--gold-line); margin: 18px auto; border: 0; }
+.sec-head.left .hr-gold, .split .hr-gold { margin-left: 0; margin-right: 0; }
 
 /* ---------- Section divider — uniform editorial ornament ---------- */
 .section-divider {
@@ -424,6 +436,43 @@ header.nav {
 .tour-card .footer { display: flex; justify-content: space-between; align-items: center; margin-top: auto; gap: 12px; flex-wrap: wrap; }
 .tour-card .price { font-family: var(--display); font-size: 22px; color: var(--ink); }
 .tour-card .price small { font-family: var(--sans); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); display: block; margin-top: 2px; font-weight: 400; }
+
+/* ---------- e-Visa call-to-action band ---------- */
+.evisa-band { background: var(--linen-2); padding: 84px 0; }
+.evisa-card {
+  background: var(--ink); color: var(--linen);
+  border-radius: 22px;
+  padding: 54px 58px;
+  display: grid; grid-template-columns: 1.5fr 1fr;
+  gap: 54px; align-items: center;
+  box-shadow: 0 34px 60px -34px rgba(20,33,61,0.55);
+}
+.evisa-card .eyebrow { color: var(--sandstone); display: block; margin-bottom: 14px; }
+.evisa-card .evisa-title { color: var(--linen); margin: 0; max-width: 15ch; }
+.evisa-card .evisa-lede { color: rgba(244,240,230,0.80); margin-top: 16px; max-width: 48ch; font-size: 16px; }
+.evisa-card .evisa-cta.btn { margin-top: 28px; background: var(--terracotta); border-color: var(--terracotta); color: #fff; }
+.evisa-card .evisa-cta.btn:hover { background: var(--terracotta-deep); border-color: var(--terracotta-deep); }
+.evisa-aside { border-left: 1px solid rgba(244,240,230,0.16); padding-left: 46px; }
+.evisa-aside .evisa-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--caps); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--sandstone); font-weight: 500;
+}
+.evisa-aside .evisa-tag svg { width: 15px; height: 15px; }
+.evisa-aside h3 { color: var(--linen); font-family: var(--display); font-weight: 400; font-size: 21px; margin: 12px 0 0; }
+.evisa-aside p { color: rgba(244,240,230,0.72); font-size: 14.5px; line-height: 1.65; margin-top: 10px; }
+.evisa-aside .evisa-link {
+  display: inline-flex; align-items: center; gap: 7px;
+  margin-top: 16px; font-family: var(--caps); font-size: 12px; letter-spacing: 0.06em;
+  color: var(--sandstone); border-bottom: 1px solid rgba(203,176,121,0.5); padding-bottom: 3px;
+  font-weight: 500; transition: color .2s ease, border-color .2s ease, gap .2s ease;
+}
+.evisa-aside .evisa-link:hover { color: var(--linen); border-color: var(--linen); gap: 11px; }
+@media (max-width: 820px) {
+  .evisa-band { padding: 60px 0; }
+  .evisa-card { grid-template-columns: 1fr; gap: 34px; padding: 40px 30px; }
+  .evisa-aside { border-left: 0; border-top: 1px solid rgba(244,240,230,0.16); padding-left: 0; padding-top: 32px; }
+}
 
 /* ---------- Footer ---------- */
 footer.site-footer { background: var(--ink); color: var(--linen); padding: 56px 0 24px; position: relative; }

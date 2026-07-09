@@ -3,6 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://travelpals.us/</loc>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>weekly</changefreq>
     <image:image>
       <image:loc>https://travelpals.us/images/logo-namaste.png</image:loc>
@@ -15,10 +16,12 @@
   </url>
   <url>
     <loc>https://travelpals.us/tours.html</loc>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://travelpals.us/guides.html</loc>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>weekly</changefreq>
     <image:image>
       <image:loc>https://travelpals.us/images/holi.jpg</image:loc>
@@ -27,46 +30,57 @@
   </url>
   <url>
     <loc>https://travelpals.us/india.html</loc>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://travelpals.us/about.html</loc>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://travelpals.us/booking.html</loc>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://travelpals.us/contact.html</loc>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://travelpals.us/private.html</loc>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://travelpals.us/private-quintessential.html</loc>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://travelpals.us/private-three-kingdoms.html</loc>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://travelpals.us/private-north-kerala.html</loc>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://travelpals.us/exotic-luxury.html</loc>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://travelpals.us/golden-triangle.html</loc>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://travelpals.us/best-places-to-visit-in-india.html</loc>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>weekly</changefreq>
     <image:image>
       <image:loc>https://travelpals.us/images/varanasi-ghats.jpg</image:loc>
@@ -75,6 +89,7 @@
   </url>
   <url>
     <loc>https://travelpals.us/golden-triangle-itinerary.html</loc>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>weekly</changefreq>
     <image:image>
       <image:loc>https://travelpals.us/images/roag-chai-jaipur.jpg</image:loc>
@@ -83,6 +98,7 @@
   </url>
   <url>
     <loc>https://travelpals.us/best-time-to-visit-rajasthan.html</loc>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>weekly</changefreq>
     <image:image>
       <image:loc>https://travelpals.us/images/udaipur-lake-night.jpg</image:loc>
@@ -91,6 +107,7 @@
   </url>
   <url>
     <loc>https://travelpals.us/india-train-travel-guide.html</loc>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>weekly</changefreq>
     <image:image>
       <image:loc>https://travelpals.us/images/shimla-railcar.jpg</image:loc>
@@ -99,6 +116,7 @@
   </url>
   <url>
     <loc>https://travelpals.us/kerala-backwaters-guide.html</loc>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>weekly</changefreq>
     <image:image>
       <image:loc>https://travelpals.us/images/kerala-village-boat.jpg</image:loc>
@@ -107,6 +125,7 @@
   </url>
   <url>
     <loc>https://travelpals.us/india-visa-for-tourists.html</loc>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>weekly</changefreq>
     <image:image>
       <image:loc>https://travelpals.us/images/mumbai-gateway-taj.jpg</image:loc>
@@ -115,6 +134,7 @@
   </url>
   <url>
     <loc>https://travelpals.us/is-india-safe-for-tourists.html</loc>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>weekly</changefreq>
     <image:image>
       <image:loc>https://travelpals.us/images/roag-chai-jaipur.jpg</image:loc>
@@ -123,6 +143,7 @@
   </url>
   <url>
     <loc>https://travelpals.us/what-to-pack-for-india.html</loc>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>weekly</changefreq>
     <image:image>
       <image:loc>https://travelpals.us/images/varanasi-aarti.jpg</image:loc>
@@ -131,14 +152,17 @@
   </url>
   <url>
     <loc>https://travelpals.us/tour-nov-2026.html</loc>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://travelpals.us/tour-nov-2026-rail.html</loc>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://travelpals.us/tour-feb-2027.html</loc>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>weekly</changefreq>
     <image:image>
       <image:loc>https://travelpals.us/images/nagaur-cattle-fair.jpg</image:loc>
@@ -147,6 +171,7 @@
   </url>
   <url>
     <loc>https://travelpals.us/tour-feb-2027-stitching.html</loc>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>weekly</changefreq>
   </url>
 </urlset>
