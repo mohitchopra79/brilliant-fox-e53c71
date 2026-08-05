@@ -68,7 +68,7 @@
   .rail::-webkit-scrollbar { height:3px; }
   .rail::-webkit-scrollbar-track { background:rgba(233,224,203,0.12); }
   .rail::-webkit-scrollbar-thumb { background:var(--brass); }
-  .wl-plate { flex:0 0 400px; scroll-snap-align:start; border:1px solid rgba(180,138,63,0.32); background:var(--bark2); display:flex; flex-direction:column; }
+  .wl-plate { flex:0 0 400px; margin-right:24px; border:1px solid rgba(180,138,63,0.32); background:var(--bark2); display:flex; flex-direction:column; }
   .wl-plate-head { display:flex; justify-content:space-between; align-items:baseline; padding:16px 20px; border-bottom:1px solid rgba(180,138,63,0.32); }
   .wl-plate-no { font-family:'Newsreader',Georgia,serif; font-size:15px; color:var(--brass-lt); letter-spacing:0.08em; }
   .wl-plate-status { font-size:9px; letter-spacing:0.26em; text-transform:uppercase; color:rgba(233,224,203,0.5); }
@@ -87,6 +87,12 @@
   .wl-facts dt { font-size:9px; letter-spacing:0.22em; text-transform:uppercase; color:var(--brass); }
   .wl-facts dd { margin:0; font-size:13.5px; text-align:right; }
   .wl-facts dd.wl-odds { color:var(--moss); }
+
+  .wl-marquee { position:relative; overflow:hidden; -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%); mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%); }
+  .wl-track { display:flex; width:max-content; will-change:transform; animation:plateMarquee 78s linear infinite; }
+  .wl-marquee:hover .wl-track { animation-play-state:paused; }
+  @keyframes plateMarquee { from { transform:translate3d(0,0,0); } to { transform:translate3d(-50%,0,0); } }
+  @media (prefers-reduced-motion: reduce) { .wl-track { animation:none; } }
 
   /* interludes */
   .band { position:relative; overflow:hidden; padding:0; }
@@ -201,7 +207,7 @@
     .wl-nav ul { display:none; width:100%; justify-content:flex-start; }
     .wl-nav ul.open { display:flex; flex-direction:column; align-items:flex-start; gap:14px; padding:12px 0 4px; }
     .wl-lodges, .wl-faqs { grid-template-columns:1fr; }
-    .wl-plate { flex:0 0 82vw; }
+    .wl-plate { flex:0 0 82vw; margin-right:18px; }
     .wl-day { grid-template-columns:1fr; gap:8px; }
     .wl-foot-grid { grid-template-columns:1fr; gap:32px; }
   }
@@ -263,9 +269,9 @@
         <span class="eyebrow">Plates I – V</span>
         <h2 style="max-width:16ch;">The Indian Big Five</h2>
       </div>
-      <p>Africa's Big Five was a hunter's list. This one is a naturalist's — five apex species, five landscapes, and an honest reading of your chances. Drag the plates.</p>
+      <p>Africa's Big Five was a hunter's list. This one is a naturalist's — five apex species, five landscapes, and an honest reading of your chances. Hover to hold a plate still.</p>
     </div>
-    <div class="rail" id="wl-plates"></div>
+    <div class="wl-marquee"><div class="wl-track" id="wl-plates"></div></div>
   </div>
 </section>
 

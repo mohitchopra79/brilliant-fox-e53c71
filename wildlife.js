@@ -124,7 +124,7 @@
   function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
 
   /* Plates */
-  el('wl-plates').innerHTML = BIGFIVE.map(function (a) {
+  var plateHTML = BIGFIVE.map(function (a) {
     return '<article class="wl-plate">' +
       '<div class="wl-plate-head"><span class="wl-plate-no">Plate</span><span class="wl-plate-status">' + esc(a.status) + '</span></div>' +
       '<div class="wl-plate-img" style="background-color:' + a.tint + '">' +
@@ -218,6 +218,7 @@
         '</div>' +
       '</div></article>';
   }).join('');
+  el('wl-plates').innerHTML = plateHTML + plateHTML;
 
   /* Route */
   el('wl-itinerary').innerHTML = ITINERARY.map(function (d) {
