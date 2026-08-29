@@ -667,9 +667,7 @@ footer.site-footer a:hover { color: var(--terracotta); }
 .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--terracotta); }
 
 /* ---------- Mobile ---------- */
-@media (max-width: 900px) {
-  section { padding: 48px 0; }
-  .container, .container-narrow { padding: 0 24px; }
+@media (max-width: 1100px) {
   .nav-links { display: none; }
   .nav-toggle { display: block; }
   .nav-links.open {
@@ -690,6 +688,21 @@ footer.site-footer a:hover { color: var(--terracotta); }
   /* Group Tours submenu shows expanded inline on mobile (touch has no hover) */
   .nav-dropdown-groups { display: block; }
   .nav-dropdown-groups .nav-dropdown-menu { display: block; }
+}
+
+/* Between 1101px and 1290px the full nav fits only once it is tightened up. */
+@media (min-width: 1101px) and (max-width: 1290px) {
+  .nav-links { gap: 10px; }
+  .nav-links > li > a { font-size: 11px; }
+  .nav-cta { font-size: 11px !important; padding: 9px 15px !important; }
+  .nav-login { font-size: 11px !important; padding: 8px 13px !important; }
+  .brand-mark img { height: 36px; }
+  .brand-name { font-size: 16px; }
+}
+
+@media (max-width: 900px) {
+  section { padding: 48px 0; }
+  .container, .container-narrow { padding: 0 24px; }
   .hero-inner { padding: 0 24px 48px; }
   .tour-grid { grid-template-columns: 1fr; gap: 24px; }
   .split { grid-template-columns: 1fr; gap: 32px; }
