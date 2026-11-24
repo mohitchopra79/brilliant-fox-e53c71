@@ -23,6 +23,7 @@ Static website for Travel Pals (travelpals.us) — bespoke and small-group tours
 - `tour-nov-2026.html`, `tour-nov-2026-rail.html`, `tour-feb-2027.html`, `tour-feb-2027-stitching.html` — individual group tours
 - `private.html` — private journeys overview
 - `private-quintessential.html`, `private-three-kingdoms.html`, `private-north-kerala.html`, `golden-triangle.html`, `exotic-luxury.html` — individual private journeys
+- `renewal-retreat.html` + `renewal-retreat.css` — The Renewal Retreat (Costa Rica, July 2027); photos in `images/renewal/`
 - `india.html` — about India
 - `about.html` — about Travel Pals
 - `booking.html`, `contact.html` — booking & enquiry
